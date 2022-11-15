@@ -38,7 +38,7 @@ public class Tile
     {
         var color = Color.White;
         if (_keyboardSelected) color = Color.Red;
-        if (_mouseSelected) color = Color.Green;
+        if (_mouseSelected) color = Color.LightSlateGray;
         Globals.SpriteBatch.Draw(_texture, _position, color);
     }
 }
