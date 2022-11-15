@@ -8,11 +8,10 @@ namespace Isometric_test_1
 {
    public class Map
     {
-        private readonly Point MAP_SIZE = new(6, 4);
+        private readonly Point MAP_SIZE = new(2, 2);
         private readonly Point TILE_SIZE;
         private readonly Vector2 MAP_OFFSET = new(2.5f, 2);
         private readonly Tile[,] _tiles;
-        private Point _keyboardSelected = new(0, 0);
         private Tile _lastMouseSelected;
         public Map()
         {
@@ -25,22 +24,26 @@ namespace Isometric_test_1
                 Globals.Content.Load<Texture2D>("tile2"),
                 Globals.Content.Load<Texture2D>("tile3"),
                 Globals.Content.Load<Texture2D>("tile4"),
+                Globals.Content.Load<Texture2D>("tile5"),
             };
             TILE_SIZE.X = textures[0].Width;
             TILE_SIZE.Y = textures[0].Height / 2;
 
-            Random random = new();
+            //Random random = new();
 
-            for (int y = 0; y < MAP_SIZE.Y; y++)
-            {
-                for (int x = 0; x < MAP_SIZE.X; x++)
-                {
-                    int r = random.Next(0, textures.Length);
-                    _tiles[x, y] = new(textures[r], MapToScreen(x, y));
-                }
-            }
+            //for (int y = 0; y < MAP_SIZE.Y; y++)
+            //{
+            //    for (int x = 0; x < MAP_SIZE.X; x++)
+            //    {
+            //        int r = random.Next(0, textures.Length);
+            //        _tiles[x, y] = new(textures[r], MapToScreen(x, y));
+            //    }
+            //}
 
-            _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardSelect();
+            _tiles[0, 0] = new(textures[2], MapToScreen(0, 0));
+            _tiles[0, 1] = new(textures[1], MapToScreen(0, 1));
+            _tiles[1, 0] = new(textures[5], MapToScreen(1, 0));
+            _tiles[1, 1] = new(textures[3], MapToScreen(1, 1));
         }
 
         private Vector2 MapToScreen(int mapX, int mapY)
@@ -73,14 +76,6 @@ namespace Isometric_test_1
             {
                 _lastMouseSelected = _tiles[map.X, map.Y];
                 _lastMouseSelected.MouseSelect();
-            }
-
-            if (InputManager.Direction != Point.Zero)
-            {
-                _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardDeselect();
-                _keyboardSelected.X = Math.Clamp(_keyboardSelected.X + InputManager.Direction.X, 0, MAP_SIZE.X - 1);
-                _keyboardSelected.Y = Math.Clamp(_keyboardSelected.Y + InputManager.Direction.Y, 0, MAP_SIZE.Y - 1);
-                _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardSelect();
             }
         }
         public void Draw()
