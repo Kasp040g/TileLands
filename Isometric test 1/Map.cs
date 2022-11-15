@@ -39,8 +39,6 @@ namespace Isometric_test_1
                     _tiles[x, y] = new(textures[r], MapToScreen(x, y));
                 }
             }
-
-            _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardSelect();
         }
 
         private Vector2 MapToScreen(int mapX, int mapY)
@@ -73,14 +71,6 @@ namespace Isometric_test_1
             {
                 _lastMouseSelected = _tiles[map.X, map.Y];
                 _lastMouseSelected.MouseSelect();
-            }
-
-            if (InputManager.Direction != Point.Zero)
-            {
-                _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardDeselect();
-                _keyboardSelected.X = Math.Clamp(_keyboardSelected.X + InputManager.Direction.X, 0, MAP_SIZE.X - 1);
-                _keyboardSelected.Y = Math.Clamp(_keyboardSelected.Y + InputManager.Direction.Y, 0, MAP_SIZE.Y - 1);
-                _tiles[_keyboardSelected.X, _keyboardSelected.Y].KeyboardSelect();
             }
         }
         public void Draw()
