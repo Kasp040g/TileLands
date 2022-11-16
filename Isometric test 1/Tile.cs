@@ -3,30 +3,55 @@ namespace Isometric_test_1;
 
 public class Tile
 {
-    private readonly Texture2D _texture;
-    private readonly Vector2 _position;
-    private bool _mouseSelected;
+    public Texture2D _texture;
+    public readonly Point _mapPosition;
+    public readonly Vector2 _coordinates;
 
-    public Tile(Texture2D texture, Vector2 position)
+    private bool _mouseHovered;
+    private bool _mouseGrabbed;
+
+    public enum tileTypes
+    {
+        grass,
+        bush,
+        tree,
+    }
+
+    private tileTypes _tileType;
+
+    public Tile(Texture2D texture, Point position, Vector2 coordinates,tileTypes tileType)
     {
         _texture = texture;
-        _position = position;
+        _mapPosition = position;
+        _coordinates = coordinates;
+        _tileType = tileType;
     }
 
     public void MouseSelect()
     {
-        _mouseSelected = true;
+        _mouseHovered = true;
     }
 
     public void MouseDeselect()
     {
-        _mouseSelected = false;
+        _mouseHovered = false;
+    }
+
+    public void MouseGrab()
+    {
+        _mouseGrabbed = true;
+    }
+
+    public void MouseUngrab()
+    {
+        _mouseGrabbed = false;
     }
 
     public void Draw()
     {
         var color = Color.White;
-        if (_mouseSelected) color = Color.LightSlateGray;
-        Globals.SpriteBatch.Draw(_texture, _position, color);
+        if (_mouseHovered) color = Color.LightSlateGray;
+        if (_mouseGrabbed) color = Color.Red;
+        Globals.SpriteBatch.Draw(_texture, _coordinates, color);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,23 @@ namespace Isometric_test_1
         private readonly Point TILE_SIZE;
         private readonly Vector2 MAP_OFFSET = new(2.5f, 2);
         private readonly Tile[,] _tiles;
-        private Tile _lastMouseSelected;
+
+        private Tile _mouseHovered;
+        private Tile _mouseGrabbed;                 //Null means none has been grabbed
+
+        private Texture2D[] textures = new Texture2D[6];
+
         public Map()
         {
             _tiles = new Tile[MAP_SIZE.X, MAP_SIZE.Y];
 
-            Texture2D[] textures =
-            {
-                Globals.Content.Load<Texture2D>("tile0"),
-                Globals.Content.Load<Texture2D>("tile1"),
-                Globals.Content.Load<Texture2D>("tile2"),
-                Globals.Content.Load<Texture2D>("tile3"),
-                Globals.Content.Load<Texture2D>("tile4"),
-                Globals.Content.Load<Texture2D>("tile5"),
-            };
+            this.textures[0] = Globals.Content.Load<Texture2D>("tile0");
+            this.textures[1] = Globals.Content.Load<Texture2D>("tile1");
+            this.textures[2] = Globals.Content.Load<Texture2D>("tile2");
+            this.textures[3] = Globals.Content.Load<Texture2D>("tile3");
+            this.textures[4] = Globals.Content.Load<Texture2D>("tile4");
+            this.textures[5] = Globals.Content.Load<Texture2D>("tile5");
+
             TILE_SIZE.X = textures[0].Width;
             TILE_SIZE.Y = textures[0].Height / 2;
 
@@ -40,13 +44,13 @@ namespace Isometric_test_1
             //    }
             //}
 
-            _tiles[0, 0] = new(textures[2], MapToScreen(0, 0));
-            _tiles[0, 1] = new(textures[1], MapToScreen(0, 1));
-            _tiles[1, 0] = new(textures[5], MapToScreen(1, 0));
-            _tiles[1, 1] = new(textures[3], MapToScreen(1, 1));
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.tileTypes.grass);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.tileTypes.grass);
+            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.tileTypes.grass);
+            _tiles[1, 1] = new(textures[3], new Point(1, 1), MapToScreen(1, 1), Tile.tileTypes.grass);
         }
 
-        private Vector2 MapToScreen(int mapX, int mapY)
+        public Vector2 MapToScreen(int mapX, int mapY)
         {
             var screenX = ((mapX - mapY) * TILE_SIZE.X / 2) + (MAP_OFFSET.X * TILE_SIZE.X);
             var screenY = ((mapY + mapX) * TILE_SIZE.Y / 2) + (MAP_OFFSET.Y * TILE_SIZE.Y);
@@ -68,14 +72,51 @@ namespace Isometric_test_1
 
         public void Update()
         {
-            _lastMouseSelected?.MouseDeselect();
+            _mouseHovered?.MouseDeselect();
 
             var map = ScreenToMap(InputManager.MousePosition);
 
+            var _mouseState = Mouse.GetState();
+            var _mousePosition = new Point(_mouseState.X, _mouseState.Y);
+
             if (map.X >= 0 && map.Y >= 0 && map.X < MAP_SIZE.X && map.Y < MAP_SIZE.Y)
             {
-                _lastMouseSelected = _tiles[map.X, map.Y];
-                _lastMouseSelected.MouseSelect();
+                _mouseHovered = _tiles[map.X, map.Y];
+                _mouseHovered.MouseSelect();
+            }
+            else 
+            {
+                _mouseHovered = null;
+            }
+
+            //Grab a tile
+            if (_mouseHovered != null && _mouseGrabbed == null && _mouseState.LeftButton == ButtonState.Pressed)
+            {
+                _mouseGrabbed = _mouseHovered;
+                _mouseGrabbed.MouseGrab();
+            }
+
+            //Release tile
+            if (_mouseGrabbed != null && _mouseState.LeftButton == ButtonState.Released)
+            {
+                if (_mouseHovered != null && _mouseHovered != _mouseGrabbed)
+                {
+                    //if (_mouseHovered._mapPosition.X < _mouseGrabbed._mapPosition.X + 1.05
+                    //    && _mouseHovered._mapPosition.X > _mouseGrabbed._mapPosition.X - 1.05
+                    //    && _mouseHovered._mapPosition.Y < _mouseGrabbed._mapPosition.Y + 1.05
+                    //    && _mouseHovered._mapPosition.Y > _mouseGrabbed._mapPosition.Y - 1.05
+                    //    )
+                    var _hoveredTileVector = _mouseHovered._mapPosition.ToVector2();
+                    var _grabbedTileVector = _mouseGrabbed._mapPosition.ToVector2();
+
+                    if (Vector2.Distance(_hoveredTileVector,_grabbedTileVector) <= 1)
+                    {
+                        _mouseGrabbed._texture = textures[5];
+                    }
+                }
+
+                _mouseGrabbed.MouseUngrab();
+                _mouseGrabbed = null;
             }
         }
         public void Draw()
