@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.VisualBasic;
+
 namespace Isometric_test_1;
 
 public class Tile
@@ -10,16 +12,16 @@ public class Tile
     private bool _mouseHovered;
     private bool _mouseGrabbed;
 
-    public enum tileTypes
+    public enum TileTypes
     {
         grass,
         bush,
         tree,
     }
 
-    private tileTypes _tileType;
+    private TileTypes _tileType;
 
-    public Tile(Texture2D texture, Point position, Vector2 coordinates,tileTypes tileType)
+    public Tile(Texture2D texture, Point position, Vector2 coordinates, TileTypes tileType)
     {
         _texture = texture;
         _mapPosition = position;
@@ -45,6 +47,21 @@ public class Tile
     public void MouseUngrab()
     {
         _mouseGrabbed = false;
+    }
+
+
+    /// <summary>
+    /// Checks whether or not two tiles can be merged, if they can, give the resulting tile
+    /// </summary>
+    /// <param name="hoveredTile"></param>
+    /// <param name="grabbedTile"></param>
+    public void CheckTileMerge(Tile hoveredTile, Tile grabbedTile)
+    {
+        //First check if merge is possible
+        //Return the index in array if one is found
+        //Merge them
+
+
     }
 
     public void Draw()
