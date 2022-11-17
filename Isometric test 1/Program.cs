@@ -1,3 +1,3 @@
 ﻿
-using var game = new Isometric_test_1.Game1();
+using var game = new Isometric_test_1.GameWorld();
 game.Run();
