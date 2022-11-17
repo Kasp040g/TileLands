@@ -44,10 +44,10 @@ namespace Isometric_test_1
             //    }
             //}
 
-            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.tileTypes.grass);
-            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.tileTypes.grass);
-            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.tileTypes.grass);
-            _tiles[1, 1] = new(textures[3], new Point(1, 1), MapToScreen(1, 1), Tile.tileTypes.grass);
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.TileTypes.grass);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.TileTypes.grass);
+            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(textures[3], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
         }
 
         public Vector2 MapToScreen(int mapX, int mapY)
