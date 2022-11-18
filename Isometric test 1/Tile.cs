@@ -95,28 +95,35 @@ public class Tile
     /// <param name="grabbedTile"></param>
     public void CheckTileMerge(Tile hoveredTile)
     {
-        //First check if merge is possible
-        //Return the index in array if one is found
-        //Merge them
-
         var recipeFound = false;            //Tells whether or not a merge recipe was found
         var recipeIndex = 0;                //Tracks which recipe is currently being checked for possible merge
 
+
+        //Loop through the jagged array storing all the array recipies
         foreach (TileTypes[] tileArray in _mergeRecipies)
         {
+            //Checks the first two colums for the grabbed tile type(this one)
             if (tileArray[0] == this._tileType)
             {
+                //Checks if the hovered tile's tiletype is also a match inside the recipe
                 if (tileArray[1] == hoveredTile._tileType)
                 {
+                    //A merge recipe is found containing both the hovered til and the grabbed tile
                     recipeFound = true;
+
+                    //Break out of for each to keep recipe index and prevent further recipe checks
                     break;
                 }
             }
             else if (tileArray[1] == this._tileType)
             {
+                //Checks if the hovered tile's tiletype is also a match inside the recipe
                 if (tileArray[0] == hoveredTile._tileType)
                 {
+                    //A merge recipe is found containing both the hovered til and the grabbed tile
                     recipeFound = true;
+
+                    //Break out of for each to keep recipe index and prevent further recipe checks
                     break;
                 }
             }
@@ -125,9 +132,9 @@ public class Tile
             recipeIndex++;
         }
 
+        //Only update anything if a merge recipe match was found
         if (recipeFound == true)
         {
-            //this._tileType = TileTypes.empty;
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
         }
     }
