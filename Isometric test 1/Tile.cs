@@ -17,8 +17,8 @@ public class Tile
     //Create jagged array storing all recipies as their own arrays (hoveredTile,grabbedTile,resultingTile)
     private readonly TileTypes[][] _mergeRecipies = new TileTypes[][]
     {
-        new TileTypes[] {TileTypes.grass,TileTypes.grass,TileTypes.bush},
-        new TileTypes[] {TileTypes.bush,TileTypes.bush,TileTypes.tree},
+        new TileTypes[] {TileTypes.grass,       TileTypes.grass,        TileTypes.bush},
+        new TileTypes[] {TileTypes.bush,        TileTypes.bush,         TileTypes.tree},
     };
 
 
