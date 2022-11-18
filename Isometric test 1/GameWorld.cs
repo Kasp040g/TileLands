@@ -58,6 +58,9 @@ namespace Isometric_test_1
 
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
+
+            //Create test font
+            Globals.FontTest = Globals.Content.Load<SpriteFont>("FontTest");
         }
 
 
