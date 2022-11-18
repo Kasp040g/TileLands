@@ -14,12 +14,20 @@ public class Tile
     private bool _mouseHovered;
     private bool _mouseGrabbed;
 
+    //Create jagged array storing all recipies as their own arrays (hoveredTile,grabbedTile,resultingTile)
+    private readonly TileTypes[][] _mergeRecipies = new TileTypes[][]
+    {
+        new TileTypes[] {TileTypes.grass,TileTypes.grass,TileTypes.bush},
+        new TileTypes[] {TileTypes.bush,TileTypes.bush,TileTypes.tree},
+    };
+
 
     /// <summary>
     /// An enum state machine that stores the current type of the tile
     /// </summary>
     public enum TileTypes
     {
+        empty,
         grass,
         bush,
         tree,
@@ -85,13 +93,43 @@ public class Tile
     /// </summary>
     /// <param name="hoveredTile"></param>
     /// <param name="grabbedTile"></param>
-    public void CheckTileMerge(Tile hoveredTile, Tile grabbedTile)
+    public void CheckTileMerge(Tile hoveredTile)
     {
         //First check if merge is possible
         //Return the index in array if one is found
         //Merge them
 
+        var recipeFound = false;            //Tells whether or not a merge recipe was found
+        var recipeIndex = 0;                //Tracks which recipe is currently being checked for possible merge
 
+        foreach (TileTypes[] tileArray in _mergeRecipies)
+        {
+            if (tileArray[0] == this._tileType)
+            {
+                if (tileArray[1] == hoveredTile._tileType)
+                {
+                    recipeFound = true;
+                    break;
+                }
+            }
+            else if (tileArray[1] == this._tileType)
+            {
+                if (tileArray[0] == hoveredTile._tileType)
+                {
+                    recipeFound = true;
+                    break;
+                }
+            }
+
+            //Update index/count of current recipe
+            recipeIndex++;
+        }
+
+        if (recipeFound == true)
+        {
+            //this._tileType = TileTypes.empty;
+            hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
+        }
     }
 
 
@@ -104,5 +142,6 @@ public class Tile
         if (_mouseHovered) color = Color.LightSlateGray;
         if (_mouseGrabbed) color = Color.Red;
         Globals.SpriteBatch.Draw(_texture, _coordinates, color);
+        Globals.SpriteBatch.DrawString(Globals.FontTest,$"{_tileType}",_coordinates,Color.White);
     }
 }
