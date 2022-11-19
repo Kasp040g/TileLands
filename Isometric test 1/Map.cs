@@ -19,7 +19,7 @@ namespace Isometric_test_1
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
         private Tile _mouseGrabbed;                 //Null means none has been grabbed, else stores a reference to grabbed tile instance
 
-        private Texture2D[] textures = new Texture2D[6];
+        private Texture2D[] _textures = new Texture2D[6];
 
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace Isometric_test_1
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
 
             //Load tile textures and add them to texture array
-            this.textures[0] = Globals.Content.Load<Texture2D>("tile0");
-            this.textures[1] = Globals.Content.Load<Texture2D>("tile1");
-            this.textures[2] = Globals.Content.Load<Texture2D>("tile2");
-            this.textures[3] = Globals.Content.Load<Texture2D>("tile3");
-            this.textures[4] = Globals.Content.Load<Texture2D>("tile4");
-            this.textures[5] = Globals.Content.Load<Texture2D>("tile5");
+            this._textures[0] = Globals.Content.Load<Texture2D>("tile0");
+            this._textures[1] = Globals.Content.Load<Texture2D>("tile1");
+            this._textures[2] = Globals.Content.Load<Texture2D>("tile2");
+            this._textures[3] = Globals.Content.Load<Texture2D>("tile3");
+            this._textures[4] = Globals.Content.Load<Texture2D>("tile4");
+            this._textures[5] = Globals.Content.Load<Texture2D>("tile5");
 
             //Update tile size variables
-            _tileSize.X = textures[0].Width;
-            _tileSize.Y = textures[0].Height / 2;
+            _tileSize.X = _textures[0].Width;
+            _tileSize.Y = _textures[0].Height / 2;
 
             //Random random = new();
 
@@ -54,10 +54,10 @@ namespace Isometric_test_1
             //}
 
             //CREATE TEST MAP (DELETE LATER AS IT'S ONLY FOR TESTING) <<<<<
-            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.TileTypes.bush);
-            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.TileTypes.grass);
-            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.empty);
-            _tiles[1, 1] = new(textures[1], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+            _tiles[0, 0] = new(_textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.TileTypes.bush);
+            _tiles[0, 1] = new(_textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.TileTypes.grass);
+            _tiles[1, 0] = new(_textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.empty);
+            _tiles[1, 1] = new(_textures[1], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
         }
 
 
