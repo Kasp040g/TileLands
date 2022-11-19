@@ -10,9 +10,9 @@ namespace Isometric_test_1
    public class Map
     {
         //Setup basic tile and map information variables
-        private readonly Point MAP_SIZE = new(2, 2);
-        private readonly Point TILE_SIZE;
-        private readonly Vector2 MAP_OFFSET = new(2.5f, 2);
+        private readonly Point _mapSize = new(2, 2);
+        private readonly Point _tileSize;
+        private readonly Vector2 _mapOffset = new(2.5f, 2);
         private readonly Tile[,] _tiles;
 
         //Mouse interaction variables
@@ -28,7 +28,7 @@ namespace Isometric_test_1
         public Map()
         {
             //Create tile array from map size
-            _tiles = new Tile[MAP_SIZE.X, MAP_SIZE.Y];
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
 
             //Load tile textures and add them to texture array
             this.textures[0] = Globals.Content.Load<Texture2D>("tile0");
@@ -39,8 +39,8 @@ namespace Isometric_test_1
             this.textures[5] = Globals.Content.Load<Texture2D>("tile5");
 
             //Update tile size variables
-            TILE_SIZE.X = textures[0].Width;
-            TILE_SIZE.Y = textures[0].Height / 2;
+            _tileSize.X = textures[0].Width;
+            _tileSize.Y = textures[0].Height / 2;
 
             //Random random = new();
 
@@ -69,8 +69,8 @@ namespace Isometric_test_1
         /// <returns></returns>
         public Vector2 MapToScreen(int mapX, int mapY)
         {
-            var screenX = ((mapX - mapY) * TILE_SIZE.X / 2) + (MAP_OFFSET.X * TILE_SIZE.X);
-            var screenY = ((mapY + mapX) * TILE_SIZE.Y / 2) + (MAP_OFFSET.Y * TILE_SIZE.Y);
+            var screenX = ((mapX - mapY) * _tileSize.X / 2) + (_mapOffset.X * _tileSize.X);
+            var screenY = ((mapY + mapX) * _tileSize.Y / 2) + (_mapOffset.Y * _tileSize.Y);
 
             return new(screenX, screenY);
         }
@@ -83,12 +83,12 @@ namespace Isometric_test_1
         /// <returns></returns>
         private Point ScreenToMap(Point point)
         {
-            Vector2 vector = new(point.X - (int)(MAP_OFFSET.X * TILE_SIZE.X), point.Y - (int)(MAP_OFFSET.Y * TILE_SIZE.Y));
+            Vector2 vector = new(point.X - (int)(_mapOffset.X * _tileSize.X), point.Y - (int)(_mapOffset.Y * _tileSize.Y));
 
-            var x = vector.X + (2 * vector.Y) - (TILE_SIZE.X / 2);
-            int mapX = (x < 0) ? -1 : (int)(x / TILE_SIZE.X);
-            var y = -vector.X + (2 * vector.Y) + (TILE_SIZE.X / 2);
-            int mapY = (y < 0) ? -1 : (int)(y / TILE_SIZE.X);
+            var x = vector.X + (2 * vector.Y) - (_tileSize.X / 2);
+            int mapX = (x < 0) ? -1 : (int)(x / _tileSize.X);
+            var y = -vector.X + (2 * vector.Y) + (_tileSize.X / 2);
+            int mapY = (y < 0) ? -1 : (int)(y / _tileSize.X);
 
             return new(mapX, mapY);
         }
@@ -110,7 +110,7 @@ namespace Isometric_test_1
             var _mousePosition = new Point(_mouseState.X, _mouseState.Y);
 
             //Checks if the mouse coordinates are within bounds of the tile, thereby hovering it
-            if (mouseMap.X >= 0 && mouseMap.Y >= 0 && mouseMap.X < MAP_SIZE.X && mouseMap.Y < MAP_SIZE.Y)
+            if (mouseMap.X >= 0 && mouseMap.Y >= 0 && mouseMap.X < _mapSize.X && mouseMap.Y < _mapSize.Y)
             {
                 //Save the hovered tile
                 _mouseHovered = _tiles[mouseMap.X, mouseMap.Y];
@@ -170,9 +170,9 @@ namespace Isometric_test_1
         public void Draw()
         {
             //Loops through the map array and calls the individual tiles' draw method
-            for (int y = 0; y < MAP_SIZE.Y; y++)
+            for (int y = 0; y < _mapSize.Y; y++)
             {
-                for (int x = 0; x < MAP_SIZE.X; x++)
+                for (int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[x, y].Draw();
                 }
