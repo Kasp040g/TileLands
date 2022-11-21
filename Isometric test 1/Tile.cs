@@ -30,6 +30,7 @@ public class Tile
         empty,
         grass,
         bush,
+        sapling,
         tree,
     }
 

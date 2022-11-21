@@ -10,7 +10,7 @@ namespace Isometric_test_1
    public class Map
     {
         //Setup basic tile and map information variables
-        private readonly Point _mapSize = new(2, 2);
+        private readonly Point _mapSize = new(3, 3);
         private readonly Point _tileSize;
         private readonly Vector2 _mapOffset = new(2.5f, 2);
         private readonly Tile[,] _tiles;
@@ -39,7 +39,7 @@ namespace Isometric_test_1
         /// </summary>
         public Map()
         {
-            _levels = Level.Level1;
+            _levels = Level.Level2;
             
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -282,15 +282,15 @@ namespace Isometric_test_1
 
         private void Level2()
         {
-            _tiles[0, 0] = new(_textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
+            _tiles[0, 0] = new(_textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.empty);
             _tiles[0, 1] = new(_textures[1], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
             _tiles[0, 2] = new(_textures[5], new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
-            _tiles[1, 0] = new(_textures[1], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 0] = new(_textures[1], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.tree);
             _tiles[1, 1] = new(_textures[2], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
             _tiles[1, 2] = new(_textures[1], new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
-            _tiles[2, 0] = new(_textures[5], new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 0] = new(_textures[5], new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.empty);
             _tiles[2, 1] = new(_textures[1], new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
-            _tiles[2, 2] = new(_textures[1], new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
+            _tiles[2, 2] = new(_textures[1], new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.empty);
         }
 
         private void Level3()
