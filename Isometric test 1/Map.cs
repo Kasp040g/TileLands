@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
+
+using SharpDX.Direct3D9;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +25,8 @@ namespace Isometric_test_1
         private Texture2D[] _textures = new Texture2D[6];
 
         // Level States
+        private Level _levels;
+
         public enum Level
         {
             Level1,
@@ -30,9 +35,6 @@ namespace Isometric_test_1
             Level4,
             Level5,
         }
-
-        private Level _levels;
-
 
         /// <summary>
         /// Map constructer to load, setup and create tiles on map
