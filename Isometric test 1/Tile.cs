@@ -4,7 +4,7 @@ using Microsoft.VisualBasic;
 namespace Isometric_test_1;
 
 public class Tile
-{
+{   
     //Tile visuals variables
     public Texture2D _texture;
     public readonly Point _mapPosition;
@@ -33,7 +33,7 @@ public class Tile
         tree,
     }
 
-    private TileTypes _tileType;
+    public TileTypes _tileType;
 
 
     /// <summary>
@@ -129,7 +129,7 @@ public class Tile
             }
 
             //Update index/count of current recipe
-            recipeIndex++;
+              recipeIndex++;
         }
 
         //Only update anything if a merge recipe match was found
@@ -147,7 +147,7 @@ public class Tile
     {
         var color = Color.White;
         if (_mouseHovered) color = Color.LightSlateGray;
-        if (_mouseGrabbed) color = Color.Red;
+        if (_mouseGrabbed) color = Color.Green;
         Globals.SpriteBatch.Draw(_texture, _coordinates, color);
         Globals.SpriteBatch.DrawString(Globals.FontTest,$"{_tileType}",_coordinates,Color.White);
     }
