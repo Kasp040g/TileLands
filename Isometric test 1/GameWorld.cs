@@ -11,6 +11,9 @@ namespace Isometric_test_1
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
+        // Game State 
+        public enum GameState { Idle, Start, Play, CheckEnd }
+        private GameState _gameState;
 
         /// <summary>
         /// Game world constructer, creates and sets up the game world
@@ -25,6 +28,9 @@ namespace Isometric_test_1
 
             //Makes sure mouse is visible
             IsMouseVisible = true;
+
+            // Init first GameState
+            _gameState = GameState.Idle;
         }
 
 
@@ -79,6 +85,21 @@ namespace Isometric_test_1
 
             //Calls for game manager to update
             _gameManager.Update();
+
+            // Game State Switch
+            switch(_gameState)
+            {
+                case GameState.Idle:
+                    break;
+                case GameState.Start:
+                    break;
+                case GameState.Play:
+                    break;
+                case GameState.CheckEnd:
+                    break;
+                default:
+                    break;
+            }
 
             //Calls game update
             base.Update(gameTime);

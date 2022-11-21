@@ -21,12 +21,26 @@ namespace Isometric_test_1
 
         private Texture2D[] textures = new Texture2D[6];
 
+        // Level States
+        public enum Level
+        {
+            Level1,
+            Level2,
+            Level3,
+            Level4,
+            Level5,
+        }
+
+        private Level _levels;
+
 
         /// <summary>
         /// Map constructer to load, setup and create tiles on map
         /// </summary>
         public Map()
         {
+            _levels = Level.Level1;
+            
             //Create tile array from map size
             _tiles = new Tile[MAP_SIZE.X, MAP_SIZE.Y];
 
@@ -42,22 +56,25 @@ namespace Isometric_test_1
             TILE_SIZE.X = textures[0].Width;
             TILE_SIZE.Y = textures[0].Height / 2;
 
-            //Random random = new();
-
-            //for (int y = 0; y < MAP_SIZE.Y; y++)
-            //{
-            //    for (int x = 0; x < MAP_SIZE.X; x++)
-            //    {
-            //        int r = random.Next(0, textures.Length);
-            //        _tiles[x, y] = new(textures[r], MapToScreen(x, y));
-            //    }
-            //}
-
-            //CREATE TEST MAP (DELETE LATER AS IT'S ONLY FOR TESTING) <<<<<
-            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0),Tile.TileTypes.bush);
-            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1),Tile.TileTypes.grass);
-            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.empty);
-            _tiles[1, 1] = new(textures[1], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+            // Level state machine
+            switch(_levels)
+            {
+                case Level.Level1:
+                    Level1();
+                    SolutionFound();
+                    break;
+                case Level.Level2:
+                    Level2();
+                    break;
+                case Level.Level3:
+                    break;
+                case Level.Level4:
+                    break;
+                case Level.Level5:
+                    break;
+                default:
+                    break;
+            }
         }
 
 
@@ -99,6 +116,11 @@ namespace Isometric_test_1
         /// </summary>
         public void Update()
         {
+            
+            
+
+            #region Tile Merging
+
             //Checks if a tile is stored in mouse hovered and then calls for it to be unhovered if there is
             _mouseHovered?.MouseUnhovered();
 
@@ -161,6 +183,7 @@ namespace Isometric_test_1
                 //Reset grabbed variable
                 _mouseGrabbed = null;
             }
+            #endregion Tile merging            
         }
 
 
@@ -177,6 +200,109 @@ namespace Isometric_test_1
                     _tiles[x, y].Draw();
                 }
             }
+        }
+
+        private void SolutionFound()
+        {
+            
+            
+            switch(_levels)
+            {
+                case Level.Level1:
+                    var treeCount = 0;
+                    for(int y= 0; y < _tiles.GetLength(0); y++)
+                    {
+                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        {
+                            if(_tiles[x,y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+                                
+                            }
+                        }
+                    }
+                    if(treeCount == 1)
+                    {
+                        if(Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            // Press Space to continue
+                            ClearLevel();
+                            _levels = Level.Level2;
+                        }
+                        
+                    }
+                    break;
+                case Level.Level2:
+
+                    break;
+                case Level.Level3:
+                    break;
+                case Level.Level4:
+                    break;
+                case Level.Level5:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Leveltemp()
+        {
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+            _tiles[0, 2] = new(textures[5], new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
+            _tiles[1, 0] = new(textures[1], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(textures[2], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+            _tiles[1, 2] = new(textures[1], new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
+            _tiles[2, 0] = new(textures[5], new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(textures[1], new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
+            _tiles[2, 2] = new(textures[1], new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
+        }
+
+        private void ClearLevel()
+        {
+           
+            _tiles[0, 0] = new(textures[5], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.empty);
+            _tiles[0, 1] = new(textures[5], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.empty);
+            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.empty);
+            _tiles[1, 1] = new(textures[5], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.empty);
+        }
+
+        public void Level1()
+        {
+
+            // Level 1
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.bush);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+            _tiles[1, 0] = new(textures[5], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.empty);
+            _tiles[1, 1] = new(textures[1], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);           
+            
+        }
+
+        private void Level2()
+        {
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+            _tiles[0, 2] = new(textures[5], new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
+            _tiles[1, 0] = new(textures[1], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(textures[2], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+            _tiles[1, 2] = new(textures[1], new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
+            _tiles[2, 0] = new(textures[5], new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(textures[1], new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
+            _tiles[2, 2] = new(textures[1], new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
+        }
+
+        private void Level3()
+        {
+            _tiles[0, 0] = new(textures[2], new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
+            _tiles[0, 1] = new(textures[1], new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+            _tiles[0, 2] = new(textures[5], new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
+            _tiles[1, 0] = new(textures[1], new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(textures[2], new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+            _tiles[1, 2] = new(textures[1], new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
+            _tiles[2, 0] = new(textures[5], new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(textures[1], new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
+            _tiles[2, 2] = new(textures[1], new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
         }
     }
 }
