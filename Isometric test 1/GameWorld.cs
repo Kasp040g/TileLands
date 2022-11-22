@@ -71,7 +71,7 @@ namespace Isometric_test_1
 
             _scrollingBackgrounds = new List<ScrollingBackground>()
            {
-        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 10f, true)
+        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
         {
           Layer = 0.99f,
         },
