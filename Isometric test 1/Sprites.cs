@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SharpDX.Direct3D9;
+
 namespace Isometric_test_1
 {
     public class Sprite : Component
