@@ -37,18 +37,6 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/Clouds_Slow.png
 
-#begin boy.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:boy.png
-
 #begin FontTest.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
