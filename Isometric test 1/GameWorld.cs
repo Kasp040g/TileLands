@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Isometric_test_1
 {
@@ -11,6 +12,12 @@ namespace Isometric_test_1
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
+        public static int ScreenWidth = 1280;
+        public static int ScreenHeight = 720;
+
+        private List<ScrollingBackground> _scrollingBackgrounds;
+
+        private Player _player;
         // Game State 
         public enum GameState { Idle, Start, Play, CheckEnd }
         private GameState _gameState;
@@ -40,8 +47,9 @@ namespace Isometric_test_1
         protected override void Initialize()
         {
             //Set game window size
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            _graphics.ApplyChanges();
 
             //Transfer content to be global
             Globals.Content = Content;
@@ -61,6 +69,27 @@ namespace Isometric_test_1
         {
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            var boyTexture = Content.Load<Texture2D>("boy");
+
+            _player = new Player(boyTexture)
+            {
+                Position = new Vector2(500, (ScreenHeight - boyTexture.Height) - 20),
+                Layer = 1f,
+            };
+
+            _scrollingBackgrounds = new List<ScrollingBackground>()
+      {
+        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), _player, 10f, true)
+        {
+          Layer = 0.99f,
+        },
+       
+        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), _player, 25f, true)
+        {
+          Layer = 0.8f,
+        } };
+        
 
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
@@ -101,6 +130,11 @@ namespace Isometric_test_1
                     break;
             }
 
+            _player.Update(gameTime);
+
+            foreach (var sb in _scrollingBackgrounds)
+                sb.Update(gameTime);
+
             //Calls game update
             base.Update(gameTime);
         }
@@ -112,15 +146,17 @@ namespace Isometric_test_1
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            //Clears the screen and draws it black
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //Call for game managers draw method
-            _spriteBatch.Begin();
-            _gameManager.Draw();
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
+
+            _player.Draw(gameTime, _spriteBatch);
+
+            foreach (var sb in _scrollingBackgrounds)
+                sb.Draw(gameTime, _spriteBatch);
+
             _spriteBatch.End();
-           
-            //Inherited draw from game
+
             base.Draw(gameTime);
         }
     }
