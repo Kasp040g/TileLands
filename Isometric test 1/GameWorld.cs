@@ -69,16 +69,8 @@ namespace Isometric_test_1
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //var boyTexture = Content.Load<Texture2D>("boy");
-
-            //_player = new Player(boyTexture)
-            //{
-            //    Position = new Vector2(500, (ScreenHeight - boyTexture.Height) - 20),
-            //    Layer = 1f,
-            //};
-
             _scrollingBackgrounds = new List<ScrollingBackground>()
-      {
+           {
         new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 10f, true)
         {
           Layer = 0.99f,
@@ -129,7 +121,6 @@ namespace Isometric_test_1
                     break;
             }
 
-            //_player.Update(gameTime);
 
             foreach (var sb in _scrollingBackgrounds)
                 sb.Update(gameTime);
@@ -149,13 +140,8 @@ namespace Isometric_test_1
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
 
-            
-
             foreach (var sb in _scrollingBackgrounds)
                 sb.Draw(gameTime, _spriteBatch);
-
-            
-
 
             _spriteBatch.End();
 

@@ -75,9 +75,7 @@ namespace Isometric_test_1
         {
             _speed = (float)(_scrollingSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
-            //if (!_constantSpeed || _player.Velocity.X != 0)
-            //    _speed *= _player.Velocity.X;
-            ////_speed *= _player.Velocity.Y;
+          
 
             foreach (var sprite in _sprites)
                 sprite.Position.X -= _speed;
