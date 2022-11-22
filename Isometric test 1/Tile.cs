@@ -155,8 +155,8 @@ public class Tile
     public void Draw()
     {
         var color = Color.White;
-        if (_mouseHovered) color = Color.LightSlateGray;
-        if (_mouseGrabbed) color = Color.Green;
+        if (_mouseHovered) color = Color.LightGray;
+        if (_mouseGrabbed) color = Color.LightSeaGreen;
         Globals.SpriteBatch.Draw(_texture, _coordinates, color);
         Globals.SpriteBatch.DrawString(Globals.FontTest,$"{_tileType}",_coordinates,Color.White);
     }

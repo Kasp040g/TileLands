@@ -232,6 +232,7 @@ namespace Isometric_test_1
             if(_shouldShowWinText)
             {
                 Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n Press 'Space' for next level", Vector2.Zero, Color.White);
+                _shouldShowWinText = false;
             }
         }
 
@@ -255,10 +256,12 @@ namespace Isometric_test_1
                 }
                 if(treeCount == 1)
                 {
+                    // Press Space to continue
+                    _shouldShowWinText = true;
+
                     if(Keyboard.GetState().IsKeyDown(Keys.Space))
                     {
-                        // Press Space to continue
-
+                        
                         
 
                         ClearLevel();
