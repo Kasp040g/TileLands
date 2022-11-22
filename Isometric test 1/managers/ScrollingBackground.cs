@@ -19,7 +19,6 @@ namespace Isometric_test_1
 
         private List<Sprite> _sprites;
 
-        private readonly Player _player;
 
         private float _speed;
 
@@ -35,14 +34,13 @@ namespace Isometric_test_1
         }
 
 
-        public ScrollingBackground(Texture2D texture, Player player, float scrollingSpeed, bool constantSpeed = false)
-            : this(new List<Texture2D>() { texture, texture }, player, scrollingSpeed, constantSpeed)
+        public ScrollingBackground(Texture2D texture, float scrollingSpeed, bool constantSpeed = false)
+            : this(new List<Texture2D>() { texture, texture }, scrollingSpeed, constantSpeed)
         {
 
         }
-        public ScrollingBackground(List<Texture2D> textures, Player player, float scrollingSpeed, bool constantSpeed = false)
+        public ScrollingBackground(List<Texture2D> textures, float scrollingSpeed, bool constantSpeed = false)
         {
-            _player = player;
 
             _scrollingSpeed = scrollingSpeed;
 
@@ -77,9 +75,9 @@ namespace Isometric_test_1
         {
             _speed = (float)(_scrollingSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
-            if (!_constantSpeed || _player.Velocity.X != 0)
-                _speed *= _player.Velocity.X;
-            //_speed *= _player.Velocity.Y;
+            //if (!_constantSpeed || _player.Velocity.X != 0)
+            //    _speed *= _player.Velocity.X;
+            ////_speed *= _player.Velocity.Y;
 
             foreach (var sprite in _sprites)
                 sprite.Position.X -= _speed;

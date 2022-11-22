@@ -12,7 +12,7 @@ namespace Isometric_test_1
         //Setup basic tile and map information variables
         private readonly Point _mapSize = new(2, 2);
         private readonly Point _tileSize;
-        private readonly Vector2 _mapOffset = new(2.5f, 2);
+        private readonly Vector2 _mapOffset = new(4.5f, 5);
         private readonly Tile[,] _tiles;
 
         //Mouse interaction variables
