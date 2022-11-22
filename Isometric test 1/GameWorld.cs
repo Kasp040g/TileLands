@@ -11,6 +11,10 @@ namespace Isometric_test_1
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
+        public static int ScreenWidth = 1024;
+        public static int ScreenHeight = 768;
+
+
         // Game State 
         public enum GameState { Idle, Start, Play, CheckEnd }
         private GameState _gameState;
@@ -40,8 +44,9 @@ namespace Isometric_test_1
         protected override void Initialize()
         {
             //Set game window size
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            _graphics.ApplyChanges();
 
             //Transfer content to be global
             Globals.Content = Content;

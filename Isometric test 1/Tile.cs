@@ -1,10 +1,16 @@
 ﻿
+using System;
+
 using Microsoft.VisualBasic;
 
 namespace Isometric_test_1;
 
 public class Tile
-{   
+{
+    //Eventhandler for WinCon
+    public static EventHandler WinCon;
+
+    
     //Tile visuals variables
     public Texture2D _texture;
     public readonly Point _mapPosition;
@@ -109,7 +115,7 @@ public class Tile
                 if (tileArray[1] == hoveredTile._tileType)
                 {
                     //A merge recipe is found containing both the hovered til and the grabbed tile
-                    recipeFound = true;
+                    recipeFound = true;                    
 
                     //Break out of for each to keep recipe index and prevent further recipe checks
                     break;
@@ -136,6 +142,9 @@ public class Tile
         if (recipeFound == true)
         {
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
+
+            // invoke Event
+            WinCon?.Invoke(_mergeRecipies, new EventArgs());
         }
     }
 
