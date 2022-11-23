@@ -21,6 +21,8 @@ namespace Isometric_test_1
         public enum GameState { Idle, Start, Play, CheckEnd }
         private GameState _gameState;
 
+        private Eagle _eagle;
+
         /// <summary>
         /// Game world constructer, creates and sets up the game world
         /// </summary>
@@ -69,19 +71,25 @@ namespace Isometric_test_1
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _scrollingBackgrounds = new List<ScrollingBackground>()
-           {
-        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
-        {
-          Layer = 0.99f,
-        },
-       
-        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
-        {
-          Layer = 0.8f,
-        } };
-        
 
+            _eagle = new Eagle(new Dictionary<string, Animation>()
+            {
+              { "Bird_ss", new Animation(Content.Load<Texture2D>("Bird_ss"), 3) { FrameSpeed = 0.1f, } } }
+            );
+            
+
+             _scrollingBackgrounds = new List<ScrollingBackground>()
+             {
+                 new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
+                 {
+                     Layer = 0.99f,
+                 },
+                 new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
+                 {
+                     Layer = 0.8f,
+                 } 
+             };            
+            
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
@@ -142,7 +150,7 @@ namespace Isometric_test_1
 
             foreach (var sb in _scrollingBackgrounds)
                 sb.Draw(gameTime, _spriteBatch);
-
+            _spriteBatch.Draw(_eagle, Vector2.Zero, Color.White);
             _spriteBatch.End();
 
             _spriteBatch.Begin();

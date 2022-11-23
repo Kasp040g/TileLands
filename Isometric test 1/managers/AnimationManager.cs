@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Isometric_test_1.managers
+namespace Isometric_test_1
 {
     public class AnimationManager
     {
