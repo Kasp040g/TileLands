@@ -17,7 +17,7 @@ namespace Isometric_test_1
 
         private float _scrollingSpeed;
 
-        private List<Sprite> _sprites;
+        private List<Sprites> _sprites;
 
 
         private float _speed;
@@ -46,12 +46,12 @@ namespace Isometric_test_1
 
             _constantSpeed = constantSpeed;
 
-            _sprites = new List<Sprite>();
+            _sprites = new List<Sprites>();
 
             for (int i = 0; i < textures.Count; i++)
             {
                 var texture = textures[i];
-                _sprites.Add(new Sprite(texture)
+                _sprites.Add(new Sprites(texture)
                 {
                     Position = new Vector2((i * texture.Width) - 1, GameWorld.ScreenHeight - texture.Height) //låser skærmen til bunden. hvis den skulle låses til toppen skulle der bare stå 0
                 });
