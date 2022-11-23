@@ -2,6 +2,7 @@
 using System;
 
 using Microsoft.VisualBasic;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Isometric_test_1;
 
@@ -15,6 +16,7 @@ public class Tile
     public Texture2D _texture;
     public readonly Point _mapPosition;
     public readonly Vector2 _coordinates;
+
 
     //Mouse interaction variables
     private bool _mouseHovered;
@@ -142,6 +144,9 @@ public class Tile
         if (recipeFound == true)
         {
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
+            //SoundEffect _mergeSound = Assets.Audio.mergeSound;
+            //_mergeSound.Play();
+            Assets.Audio.mergeSound.Play();
 
             // invoke Event
             WinCon?.Invoke(_mergeRecipies, new EventArgs());

@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/Pop_sound_5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Pop_sound_5.wav
+
 #begin Backgrounds/Clouds_Fast.png
 /importer:TextureImporter
 /processor:TextureProcessor
