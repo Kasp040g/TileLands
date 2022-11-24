@@ -15,21 +15,20 @@ namespace Isometric_test_1
         protected Texture2D _texture;
 
 
-        public struct Sprites
+        public readonly struct Sprites
         {
             // Tiles
-            public static Texture2D tileGrassBlockEmpty = Globals.Content.Load<Texture2D>("tile0");
-            public static Texture2D tileGrassBlockGrass = Globals.Content.Load<Texture2D>("tile1");
-            public static Texture2D tileGrassBlockBush = Globals.Content.Load<Texture2D>("tile2");
-            public static Texture2D tileGrassBlockTree = Globals.Content.Load<Texture2D>("tile3");
+            public static Texture2D tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
+            public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
+            public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
+            public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
             public static Texture2D tileEmpty = Globals.Content.Load<Texture2D>("tile5");
         }
 
-        public struct Audio
+        public readonly struct Audio
         {
             // Audio
             public static SoundEffect mergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
-            
         }
 
         public float Layer
