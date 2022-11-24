@@ -17,8 +17,6 @@ namespace Isometric_test_1
         private bool _shouldDrawMap = true;
         private bool _shouldShowWinText = false;
 
-        private Vector2 TextPosition;
-
         //Mouse interaction variables
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
         private Tile _mouseGrabbed;                 //Null means none has been grabbed, else stores a reference to grabbed tile instance
