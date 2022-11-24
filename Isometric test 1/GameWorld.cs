@@ -56,8 +56,6 @@ namespace Isometric_test_1
             //Instantiate game manager
             _gameManager = new();
 
-            var hej = Assets.Audio.mergeSound;
-
             //Call game base initialization
             base.Initialize();
         }
@@ -72,17 +70,20 @@ namespace Isometric_test_1
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _scrollingBackgrounds = new List<ScrollingBackground>()
-           {
-        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
-        {
-          Layer = 0.99f,
-        },
+            {
+                new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
+                {
+                  Layer = 0.99f,
+                },
        
-        new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
-        {
-          Layer = 0.8f,
-        } };
-        
+                new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
+                {
+                  Layer = 0.8f,
+                } 
+            };
+
+            //Load audio files
+            Assets.Audio.LoadAudio();
 
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
