@@ -3,29 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Xna.Framework.Audio;
 using SharpDX.Direct3D9;
 
 namespace Isometric_test_1
 {
-    public class Sprites : Component
+    public class Assets : Component
     {
         protected float _layer { get; set; }
 
         protected Texture2D _texture;
 
 
-        public struct Library
+        public readonly struct Sprites
         {
-            // Tiles
-            public static Texture2D tileGrassBlockEmpty = Globals.Content.Load<Texture2D>("tile0");
-            public static Texture2D tileGrassBlockGrass = Globals.Content.Load<Texture2D>("tile1");
-            public static Texture2D tileGrassBlockBush = Globals.Content.Load<Texture2D>("tile2");
-            public static Texture2D tileGrassBlockTree = Globals.Content.Load<Texture2D>("tile3");
+            // Tile struct members
+            public static Texture2D tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
+            public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
+            public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
+            public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
             public static Texture2D tileEmpty = Globals.Content.Load<Texture2D>("tile5");
         }
 
+        public readonly struct Audio
+        {
+            // Audio struct members
+            public static SoundEffect mergeSound;
 
+
+            // Method to load audio files and assign them to the struct members
+            public static void LoadAudio()
+            {
+                mergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
+            }
+        }
 
         public float Layer
         {
@@ -45,7 +56,7 @@ namespace Isometric_test_1
                 return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
             }
         }
-        public Sprites(Texture2D texture)
+        public Assets(Texture2D texture)
         {
             _texture = texture;
         }
