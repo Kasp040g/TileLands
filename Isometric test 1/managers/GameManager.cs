@@ -13,6 +13,7 @@ namespace Isometric_test_1
         //Animations
         private Eagle _bird_ss = new(new(GameWorld.ScreenWidth,100));
 
+
         public void Update()
         {
             InputManager.Update();
