@@ -10,16 +10,20 @@ namespace Isometric_test_1
     {
         private readonly Map _map = new();
 
+        //Animations
+        private Eagle _bird_ss = new(new(200,200));
 
         public void Update()
         {
             InputManager.Update();
             _map.Update();
+            _bird_ss.Update();
         }
 
         public void Draw()
         {
             _map.Draw();
+            _bird_ss.Draw();
         }
     }
 }
