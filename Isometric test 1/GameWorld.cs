@@ -56,6 +56,8 @@ namespace Isometric_test_1
             //Instantiate game manager
             _gameManager = new();
 
+            var hej = Assets.Audio.mergeSound;
+
             //Call game base initialization
             base.Initialize();
         }

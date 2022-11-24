@@ -17,6 +17,14 @@ public class Tile
     public readonly Point _mapPosition;
     public readonly Vector2 _coordinates;
 
+    private readonly Texture2D[] _tileSprites = 
+    { 
+        Assets.Sprites.tileGrassBlock1,
+        Assets.Sprites.tileGrassBlock2,
+        Assets.Sprites.tileGrassBlock3,
+        Assets.Sprites.tileGrassBlock4
+    };
+
 
     //Mouse interaction variables
     private bool _mouseHovered;
@@ -51,12 +59,23 @@ public class Tile
     /// <param name="position"></param>
     /// <param name="coordinates"></param>
     /// <param name="tileType"></param>
-    public Tile(Texture2D texture, Point position, Vector2 coordinates, TileTypes tileType)
+    public Tile(Point position, Vector2 coordinates, TileTypes tileType)
     {
-        _texture = texture;
+        //Select and random tile texture
+        Random _rnd = new Random();
+        int _number = _rnd.Next(0, _tileSprites.Length);
+
+        _texture = _tileSprites[_number];
+
         _mapPosition = position;
         _coordinates = coordinates;
         _tileType = tileType;
+
+        //Check if tile is empty instead
+        if (_tileType == TileTypes.empty)
+        {
+            _texture = Assets.Sprites.tileEmpty;
+        }
     }
 
 
