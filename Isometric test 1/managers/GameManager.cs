@@ -11,7 +11,7 @@ namespace Isometric_test_1
         private readonly Map _map = new();
 
         //Animations
-        private Eagle _bird_ss = new(new(GameWorld.ScreenWidth,100));
+        private Eagle _bird_ss = new(new(GameWorld.ScreenWidth, 100));
 
         public void Update()
         {
