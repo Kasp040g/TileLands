@@ -250,7 +250,6 @@ namespace Isometric_test_1
                         if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
                         {
                             treeCount++;
-
                         }
                     }
                 }
@@ -313,7 +312,7 @@ namespace Isometric_test_1
             //}
         }
 
-        private void Leveltemp()
+        private void LevelTemp()
         {
             _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
             _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
@@ -335,7 +334,7 @@ namespace Isometric_test_1
             _tiles[1, 1] = new( new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.empty);
         }
 
-        public void Level1()
+        private void Level1()
         {
             _mapSize = new(2, 2);
 
@@ -412,10 +411,7 @@ namespace Isometric_test_1
             _tiles[4, 2] = new(new Point(4, 2), MapToScreen(4, 2), Tile.TileTypes.grass);
             _tiles[4, 3] = new(new Point(4, 3), MapToScreen(4, 3), Tile.TileTypes.grass);
             _tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.empty);
-
-
-
-
         }
     }
 }
+
