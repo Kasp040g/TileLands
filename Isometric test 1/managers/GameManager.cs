@@ -20,13 +20,14 @@ namespace Isometric_test_1
             {
                 Level3Done = false,
                 Score = 1000,
-            };
-            // save
-            //save(_sm);
+            };           
 
             // load
             _sm = load();
             Trace.WriteLine($"{_sm.Level3Done} {_sm.Score}");
+
+            // save
+            save(_sm);
 
         }
 
