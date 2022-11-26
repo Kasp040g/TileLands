@@ -131,6 +131,16 @@ namespace Isometric_test_1
                 _levels = _tempLevel;
             }
 
+            // Skip current level  ***************for Debugging**************
+            if(Keyboard.GetState().IsKeyDown(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            {
+                
+
+                ClearLevel();
+                _shouldDrawMap = true;
+                _levels++;
+            }
+
             if (_shouldDrawMap)
             {
                 // Level state machine
