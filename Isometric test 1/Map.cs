@@ -318,7 +318,7 @@ namespace Isometric_test_1
                             }
                         }
                     }
-                    if(treeCount <= 2)  // ****TEMP GOAL***
+                    if(treeCount == 2)  // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
