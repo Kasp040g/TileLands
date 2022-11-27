@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Isometric_test_1.managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Isometric_test_1
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
+
 
         public static int ScreenWidth = 1280;
         public static int ScreenHeight = 720;
@@ -107,7 +109,7 @@ namespace Isometric_test_1
             Globals.Update(gameTime);
 
             //Calls for game manager to update
-            _gameManager.Update();
+            _gameManager.Update(gameTime);
 
             // Game State Switch
             switch(_gameState)
@@ -123,7 +125,6 @@ namespace Isometric_test_1
                 default:
                     break;
             }
-
 
             foreach (var sb in _scrollingBackgrounds)
                 sb.Update(gameTime);
