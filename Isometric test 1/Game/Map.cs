@@ -294,19 +294,7 @@ namespace Isometric_test_1
             switch (_levels)
             {
                 case Level.Level1:
-                    var treeCount = 0;
-                    for (int x = 0; x < _tiles.GetLength(0); x++)
-
-                    {
-                        for (int y = 0; y < _tiles.GetLength(1); y++)
-                        {
-                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                            {
-                                treeCount++;
-                            }
-                        }
-                    }
-                    if (treeCount == 1)
+                    if (TileTypeCount(Tile.TileTypes.tree) == 1)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -320,19 +308,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level2:
-                    treeCount = 0;
-                    for (int x = 0; x < _tiles.GetLength(0); x++)
-
-                    {
-                        for (int y = 0; y < _tiles.GetLength(1); y++)
-                        {
-                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                            {
-                                treeCount++;
-                            }
-                        }
-                    }
-                    if (treeCount == 2)  // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) == 2)  // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -346,19 +322,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level3:
-                    treeCount = 0;
-
-                    for (int x = 0; x < _tiles.GetLength(0); x++)
-                    {
-                        for (int y = 0; y < _tiles.GetLength(1); y++)
-                        {
-                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                            {
-                                treeCount++;
-                            }
-                        }
-                    }
-                    if (treeCount == 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -372,20 +336,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level4:
-                    treeCount = 0;
-                    for (int x = 0; x < _tiles.GetLength(0); x++)
-
-                    {
-                        for (int y = 0; y < _tiles.GetLength(1); y++)
-                        {
-                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                            {
-                                treeCount++;
-
-                            }
-                        }
-                    }
-                    if (treeCount == 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -399,19 +350,8 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level5:
-                    treeCount = 0;
-                    for (int x = 0; x < _tiles.GetLength(0); x++)
-
-                    {
-                        for (int y = 0; y < _tiles.GetLength(1); y++)
-                        {
-                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                            {
-                                treeCount++;
-                            }
-                        }
-                    }
-                    if (treeCount == 3) // ****TEMP GOAL***
+               
+                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -594,6 +534,33 @@ namespace Isometric_test_1
             _tiles[3, 4] = new(new Point(3, 4), Tile.TileTypes.empty);
             _tiles[3, 5] = new(new Point(3, 5), Tile.TileTypes.empty);
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
+        }
+
+
+        /// <summary>
+        /// Loops through the tile map and returns the amount/count of how many of the provided tiletype were found
+        /// </summary>
+        /// <param name="tileType"></param>
+        /// <returns></returns>
+        public int TileTypeCount(Tile.TileTypes tileType)
+        {
+            //Keep track of how many of the specific tile type was found
+            int _count = 0;
+
+            //Loop through tile map and count how many of the specific tile type were found
+            for (int x = 0; x < _tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < _tiles.GetLength(1); y++)
+                {
+                    if (_tiles[x, y]._tileType == tileType)
+                    {
+                        _count++;
+                    }
+                }
+            }
+
+            //Return the amount of tiles of the specific type that was found
+            return _count;
         }
     }
 }
