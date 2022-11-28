@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿
 namespace Isometric_test_1
 {
     public class Map
@@ -21,7 +15,9 @@ namespace Isometric_test_1
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
         private Tile _mouseGrabbed;                 //Null means none has been grabbed, else stores a reference to grabbed tile instance
 
-        //private Texture2D[] Assets.Assets. = new Texture2D[6];
+        //Keyboard
+        private KeyboardState _currentKey;
+        private KeyboardState _previousKey;
 
         // Level States
         private Level _levels;
@@ -39,47 +35,12 @@ namespace Isometric_test_1
         /// Map constructer to load, setup and create tiles on map
         /// </summary>
         public Map()
-        {
-
+        {           
             _levels = Level.Level1;
-
-
-
-            ////Create tile array from map size
-            //_tiles = new Tile[_mapSize.X, _mapSize.Y];
-
-            //Load tile textures and add them to texture array
-            /*
-            this.Assets.Assets.[0] = Globals.Content.Load<Texture2D>("tile0");
-            this.Assets.Assets.tileGrassBlockGrass = Globals.Content.Load<Texture2D>("tile1");
-            this.Assets.Assets.tileGrassBlockBush = Globals.Content.Load<Texture2D>("tile2");
-            this.Assets.Assets.[3] = Globals.Content.Load<Texture2D>("tile3");
-            this.Assets.Assets.[4] = Globals.Content.Load<Texture2D>("tile4");
-            this.Assets.Assets.[5] = Globals.Content.Load<Texture2D>("tile5");
-            */
 
             //Update tile size variables
             _tileSize.X = Assets.Sprites.tileGrassBlock1.Width;
             _tileSize.Y = Assets.Sprites.tileGrassBlock1.Height / 2;
-
-            //// Level state machine
-            //switch(_levels)
-            //{
-            //    case Level.Level1:
-            //        Level1();
-            //        break;
-            //    case Level.Level2:
-            //        Level2();
-            //        break;
-            //    case Level.Level3:
-            //        break;
-            //    case Level.Level4:
-            //        break;
-            //    case Level.Level5:
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
 
@@ -121,8 +82,11 @@ namespace Isometric_test_1
         /// </summary>
         public void Update()
         {
+            _previousKey = _currentKey;
+            _currentKey = Keyboard.GetState();
+
             // Reset current level
-            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
             {
                 var _tempLevel = _levels;
 
@@ -132,10 +96,8 @@ namespace Isometric_test_1
             }
 
             // Skip current level  ***************for Debugging**************
-            if (Keyboard.GetState().IsKeyDown(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
             {
-
-
                 ClearLevel();
                 _shouldDrawMap = true;
                 _levels++;
@@ -264,34 +226,7 @@ namespace Isometric_test_1
 
         private void SolutionFound()
         {
-            //if (_levels == Level.Level1)
-            //{
-            //    var treeCount = 0;
-            //    for (int y = 0; y < _tiles.GetLength(0); y++)
-            //    {
-            //        for (int x = 0; x < _tiles.GetLength(1); x++)
-            //        {
-            //            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-            //            {
-            //                treeCount++;
-            //            }
-            //        }
-            //    }
-            //    if (treeCount == 1)
-            //    {
-            //        // Press Space to continue
-            //        _shouldShowWinText = true;
-
-            //        if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            //        {
-            //            ClearLevel();
-            //            _shouldDrawMap = true;
-            //            _levels = Level.Level2;
-            //        }
-            //    }
-            //}
-
-            switch (_levels)
+            switch(_levels)
             {
                 case Level.Level1:
                     if (TileTypeCount(Tile.TileTypes.tree) == 1)
@@ -299,7 +234,7 @@ namespace Isometric_test_1
                         // Press Space to continue
                         _shouldShowWinText = true;
 
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                        if(_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
                             _shouldDrawMap = true;
@@ -327,7 +262,7 @@ namespace Isometric_test_1
                         // Press Space to continue
                         _shouldShowWinText = true;
 
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                        if(_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
                             _shouldDrawMap = true;
@@ -356,7 +291,7 @@ namespace Isometric_test_1
                         // Press Space to continue
                         _shouldShowWinText = true;
 
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                        if(_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
                             _shouldDrawMap = true;
