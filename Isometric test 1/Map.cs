@@ -12,7 +12,7 @@ namespace Isometric_test_1
         //Setup basic tile and map information variables
         private Point _mapSize;
         private readonly Point _tileSize;
-        private readonly Vector2 _mapOffset = new(4.5f, 5);
+        private readonly Vector2 _mapOffset = new(0,0);
         private Tile[,] _tiles;
         private bool _shouldDrawMap = true;
         private bool _shouldShowWinText = false;
@@ -150,7 +150,12 @@ namespace Isometric_test_1
             _mouseHovered?.MouseUnhovered();
 
             //Converts the current mouse position into map coordinates
-            var mouseMap = ScreenToMap(InputManager.MousePosition);
+            var mousePosition = Camera.Instance.ScreenToWorld(InputManager.MousePosition.ToVector2()).ToPoint();
+            var mouseMap = ScreenToMap(mousePosition + new Point(GameWorld.WindowWidth / 2, (GameWorld.WindowHeight / 2)));
+
+            Console.WriteLine("input mouse" +InputManager.MousePosition);
+            Console.WriteLine("mpos" +mousePosition);
+            Console.WriteLine("mousemap" +mouseMap);
 
             //Get mouse state for inputs and mouse screen coordinates
             var _mouseState = Mouse.GetState();

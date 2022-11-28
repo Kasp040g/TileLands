@@ -23,6 +23,8 @@ namespace Isometric_test_1
 
         public static int ScreenWidth = 640;
         public static int ScreenHeight = 480;
+        public static int WindowWidth = 0;
+        public static int WindowHeight = 0;
 
         private List<ScrollingBackground> _scrollingBackgrounds;
 
@@ -75,7 +77,7 @@ namespace Isometric_test_1
 
             //Instantiate game manager
             _gameManager = new();
-
+            
             //Call game base initialization
             base.Initialize();
         }
@@ -100,6 +102,9 @@ namespace Isometric_test_1
             // (new screen size width - render buffer rectangle width) / 2
             var x = (Window.ClientBounds.Width - width) / 2;
             var y = (Window.ClientBounds.Height - height) / 2;
+            WindowWidth = Window.ClientBounds.Width;
+            WindowHeight = Window.ClientBounds.Height;
+
             _renderRectangle = new Rectangle(x, y, width, height);
         }
 
@@ -148,6 +153,9 @@ namespace Isometric_test_1
             //Calls for game manager to update
             _gameManager.Update();
 
+            //update camera
+            Camera.Instance.UpdateCamera(); 
+
             // Game State Switch
             switch(_gameState)
             {
@@ -193,7 +201,7 @@ namespace Isometric_test_1
             _spriteBatch.End();
 
             // then we draw the gamemanager(the game itself)
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(transformMatrix: Camera.Instance.ViewMatrix);
             _gameManager.Draw();
             _spriteBatch.End();
 
