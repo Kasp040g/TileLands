@@ -10,6 +10,8 @@ namespace Isometric_test_1
         private Tile[,] _tiles;
         private bool _shouldDrawMap = true;
         private bool _shouldShowWinText = false;
+        private bool _forest = false;
+
 
         //Mouse interaction variables
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
@@ -101,6 +103,14 @@ namespace Isometric_test_1
                 ClearLevel();
                 _shouldDrawMap = true;
                 _levels++;
+            }
+
+            // Skip current level  ***************for Debugging**************
+            if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            {
+                ClearLevel();
+                _shouldDrawMap = true;
+                _levels--;
             }
 
             if (_shouldDrawMap)
@@ -198,6 +208,7 @@ namespace Isometric_test_1
 
             // check if a solution was found
             SolutionFound();
+            DisplayForest();
         }
 
 
@@ -217,8 +228,13 @@ namespace Isometric_test_1
 
             if (_shouldShowWinText)
             {
-                Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n Press 'Space' for next level", Vector2.Zero, Color.White);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n Press 'Space' for next level", new Vector2(GameWorld.ScreenHeight /2, GameWorld.ScreenWidth / 2), Color.White);
                 _shouldShowWinText = false;
+            }
+            if(_forest)
+            {
+                Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n you have created a forest", new Vector2(GameWorld.ScreenHeight / 2, GameWorld.ScreenWidth / 2), Color.White);
+                _forest = false;
             }
         }
 
@@ -295,7 +311,7 @@ namespace Isometric_test_1
                         {
                             ClearLevel();
                             _shouldDrawMap = true;
-                            _levels = Level.Level1;
+                            //_levels = Level.Level1;
                         }
                     }
                     break;
@@ -303,8 +319,9 @@ namespace Isometric_test_1
                     break;
             }
         }
+        #region Levels
 
-        //private void LevelTemp()
+        //private void TempLevel()
         //{
         //    _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
         //    _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
@@ -470,8 +487,7 @@ namespace Isometric_test_1
             _tiles[3, 5] = new(new Point(3, 5), Tile.TileTypes.empty);
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
         }
-
-
+        #endregion Levels
         /// <summary>
         /// Loops through the tile map and returns the amount/count of how many of the provided tiletype were found
         /// </summary>
@@ -496,6 +512,40 @@ namespace Isometric_test_1
 
             //Return the amount of tiles of the specific type that was found
             return _count;
+        }
+
+        public void DisplayForest()
+        {
+            if(TileTypeCount(Tile.TileTypes.tree) <= 4) 
+            {
+                for(int x = 0; x < _tiles.GetLength(0)-1; x++)
+                {
+                    for(int y = 0; y < _tiles.GetLength(1)-1; y++)
+                    {
+                        if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                        {
+                            if(_tiles[x, y+1]._tileType == Tile.TileTypes.tree)
+                            {
+                                if(_tiles[x+1, y]._tileType == Tile.TileTypes.tree)
+                                {
+                                    if(_tiles[x+1, y+1]._tileType == Tile.TileTypes.tree)
+                                    {
+                                        //_count++;
+
+                                        // CHANGE ABOVE TILE DISPLAY
+
+                                        //START HOBVERING BIRDS ANIMATION
+
+                                        _forest = true;
+
+                                        System.Console.WriteLine("Forest Found");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
