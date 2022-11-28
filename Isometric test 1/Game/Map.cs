@@ -156,8 +156,10 @@ namespace Isometric_test_1
                         Level3();
                         break;
                     case Level.Level4:
+                        Level4();
                         break;
                     case Level.Level5:
+                        Level5();
                         break;
                     default:
                         break;
@@ -293,9 +295,10 @@ namespace Isometric_test_1
             {
                 case Level.Level1:
                     var treeCount = 0;
-                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                    for(int x = 0; x < _tiles.GetLength(0); x++)
+                    
                     {
-                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        for (int y = 0; y < _tiles.GetLength(1); y++)
                         {
                             if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
                             {
@@ -318,9 +321,10 @@ namespace Isometric_test_1
                     break;
                 case Level.Level2:
                     treeCount = 0;
-                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                    for(int x = 0; x < _tiles.GetLength(0); x++)
+                   
                     {
-                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        for (int y = 0; y < _tiles.GetLength(1); y++)
                         {
                             if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
                             {
@@ -343,9 +347,10 @@ namespace Isometric_test_1
                     break;
                 case Level.Level3:
                     treeCount = 0;
-                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                   
+                    for (int x = 0; x < _tiles.GetLength(0); x++)
                     {
-                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        for (int y = 0; y < _tiles.GetLength(1); y++)
                         {
                             if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
                             {
@@ -367,26 +372,75 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level4:
+                    treeCount = 0;
+                    for (int x = 0; x < _tiles.GetLength(0); x++)
+                        
+                    {
+                        for (int y = 0; y < _tiles.GetLength(1); y++)
+                        {
+                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+
+                            }
+                        }
+                    }
+                    if (treeCount == 3) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            _shouldDrawMap = true;
+                            _levels = Level.Level5;
+                        }
+                    }
                     break;
                 case Level.Level5:
+                    treeCount = 0;
+                    for (int x = 0; x < _tiles.GetLength(0); x++)
+                    
+                    {
+                        for (int y = 0; y < _tiles.GetLength(1); y++)
+                        {
+                            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+                            }
+                        }
+                    }
+                    if (treeCount == 3) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            _shouldDrawMap = true;
+                            _levels = Level.Level1;
+                        }
+                    }
                     break;
                 default:
                     break;
             }
         }
 
-        private void LevelTemp()
-        {
-            _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
-            _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
-            _tiles[0, 2] = new( new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
-            _tiles[1, 0] = new( new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
-            _tiles[1, 1] = new( new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
-            _tiles[1, 2] = new( new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
-            _tiles[2, 0] = new( new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
-            _tiles[2, 1] = new( new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
-            _tiles[2, 2] = new( new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
-        }
+        //private void LevelTemp()
+        //{
+        //    _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
+        //    _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+        //    _tiles[0, 2] = new( new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.grass);
+        //    _tiles[1, 0] = new( new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+        //    _tiles[1, 1] = new( new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+        //    _tiles[1, 2] = new( new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.grass);
+        //    _tiles[2, 0] = new( new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+        //    _tiles[2, 1] = new( new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.grass);
+        //    _tiles[2, 2] = new( new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
+        //}
 
         private void ClearLevel()
         {
@@ -433,7 +487,7 @@ namespace Isometric_test_1
             _tiles[2, 2] = new(new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
         }
 
-        private void Level4() //Goal 10 træer
+        private void Level3() //Goal 10 træer
         {
             _mapSize = new(5, 5);
             _mapOffset = new(4.5f, 3f);
@@ -476,7 +530,7 @@ namespace Isometric_test_1
             _tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.empty);
         }
 
-        private void Level5()
+        private void Level4()
         {
             _mapSize = new(5, 2);
             _mapOffset = new(3.75f, 3f);
@@ -499,11 +553,9 @@ namespace Isometric_test_1
             _tiles[4, 0] = new(new Point(4, 0), MapToScreen(4, 0), Tile.TileTypes.empty);
             _tiles[4, 1] = new(new Point(4, 1), MapToScreen(4, 1), Tile.TileTypes.grass);
 
-            
-
         }
 
-        private void Level3()
+        private void Level5()
         {
             _mapSize = new(4, 7);
             _mapOffset = new(5f, 3f);
