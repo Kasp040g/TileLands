@@ -9,12 +9,14 @@ namespace Isometric_test_1
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
-
+        private List<ScrollingBackground> _scrollingBackgrounds;
 
         public static int ScreenWidth = 1280;
         public static int ScreenHeight = 720;
 
-        private List<ScrollingBackground> _scrollingBackgrounds;
+
+        
+        
 
         // Game State 
         public enum GameState { Idle, Start, Play, CheckEnd }
@@ -68,6 +70,7 @@ namespace Isometric_test_1
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
             {
                 new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
@@ -123,6 +126,7 @@ namespace Isometric_test_1
                     break;
             }
 
+            //loops the backgrounds
             foreach (var sb in _scrollingBackgrounds)
                 sb.Update(gameTime);
 
@@ -141,6 +145,7 @@ namespace Isometric_test_1
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
 
+            
             foreach (var sb in _scrollingBackgrounds)
                 sb.Draw(gameTime, _spriteBatch);
 

@@ -12,7 +12,7 @@ namespace Isometric_test_1
         // Save/Load
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";
-        private readonly Map _map = new();
+        public static readonly Map _map = new();
 
         //Animations
         private Eagle _bird_ss = new(new(GameWorld.ScreenWidth, 100));

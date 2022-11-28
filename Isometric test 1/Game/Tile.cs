@@ -59,7 +59,7 @@ public class Tile
     /// <param name="position"></param>
     /// <param name="coordinates"></param>
     /// <param name="tileType"></param>
-    public Tile(Point position, Vector2 coordinates, TileTypes tileType)
+    public Tile(Point position, TileTypes tileType)
     {
         //Select and random tile texture
         Random _rnd = new Random();
@@ -68,7 +68,7 @@ public class Tile
         _texture = _tileSprites[_number];
 
         _mapPosition = position;
-        _coordinates = coordinates;
+        _coordinates = GameManager._map.MapToScreen(position.X,position.Y);
         _tileType = tileType;
 
         //Check if tile is empty instead
