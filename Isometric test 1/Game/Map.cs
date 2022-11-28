@@ -336,11 +336,14 @@ namespace Isometric_test_1
 
         private void ClearLevel()
         {
-
-            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.empty);
-            _tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.empty);
-            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.empty);
-            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.empty);
+            //foreach(Tile item in _tiles)
+            //{
+            //    _tiles[_mapSize.X, _mapSize.Y] = new(new Point(_mapSize.X, _mapSize.Y), Tile.TileTypes.empty);
+            //}
+            //_tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.empty);
+            //_tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.empty);
+            //_tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.empty);
+            //_tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.empty);
         }
 
         private void Level1()
