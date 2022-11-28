@@ -371,7 +371,7 @@ namespace Isometric_test_1
             _tiles[2, 2] = new(new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
         }
 
-        private void Level3() //Goal 10 træer
+        private void Level4() //Goal 10 træer
         {
             _mapSize = new(5, 5);
             _mapOffset = new(4.5f, 3f);
@@ -413,6 +413,85 @@ namespace Isometric_test_1
             _tiles[4, 3] = new(new Point(4, 3), MapToScreen(4, 3), Tile.TileTypes.grass);
             _tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.empty);
 
+
+
+
+        }
+
+        private void Level5()
+        {
+            _mapSize = new(5, 2);
+            _mapOffset = new(3.75f, 3f);
+
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            _tiles[0, 0] = new(new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.empty);
+            _tiles[0, 1] = new(new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
+
+            _tiles[1, 0] = new(new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.grass);
+
+            _tiles[2, 0] = new(new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.tree);
+            _tiles[2, 1] = new(new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.bush);
+
+            _tiles[3, 0] = new(new Point(3, 0), MapToScreen(3, 0), Tile.TileTypes.grass);
+            _tiles[3, 1] = new(new Point(3, 1), MapToScreen(3, 1), Tile.TileTypes.grass);
+
+            _tiles[4, 0] = new(new Point(4, 0), MapToScreen(4, 0), Tile.TileTypes.empty);
+            _tiles[4, 1] = new(new Point(4, 1), MapToScreen(4, 1), Tile.TileTypes.grass);
+
+            
+
+        }
+
+        private void Level3()
+        {
+            _mapSize = new(4, 7);
+            _mapOffset = new(5f, 3f);
+
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            _tiles[0, 0] = new(new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.empty);
+            _tiles[0, 1] = new(new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.empty);
+            _tiles[0, 2] = new(new Point(0, 2), MapToScreen(0, 2), Tile.TileTypes.empty);
+            _tiles[0, 3] = new(new Point(0, 3), MapToScreen(0, 3), Tile.TileTypes.empty);
+            _tiles[0, 4] = new(new Point(0, 4), MapToScreen(0, 4), Tile.TileTypes.bush);
+            _tiles[0, 5] = new(new Point(0, 5), MapToScreen(0, 5), Tile.TileTypes.bush);
+            _tiles[0, 6] = new(new Point(0, 6), MapToScreen(0, 6), Tile.TileTypes.grass);
+
+            _tiles[1, 0] = new(new Point(1, 0), MapToScreen(1, 0), Tile.TileTypes.bush);
+            _tiles[1, 1] = new(new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.bush);
+            _tiles[1, 2] = new(new Point(1, 2), MapToScreen(1, 2), Tile.TileTypes.empty);
+            _tiles[1, 3] = new(new Point(1, 3), MapToScreen(1, 3), Tile.TileTypes.empty);
+            _tiles[1, 4] = new(new Point(1, 4), MapToScreen(1, 4), Tile.TileTypes.empty);
+            _tiles[1, 5] = new(new Point(1, 5), MapToScreen(1, 5), Tile.TileTypes.grass);
+            _tiles[1, 6] = new(new Point(1, 6), MapToScreen(1, 6), Tile.TileTypes.grass);
+
+            _tiles[2, 0] = new(new Point(2, 0), MapToScreen(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(new Point(2, 1), MapToScreen(2, 1), Tile.TileTypes.tree);
+            _tiles[2, 2] = new(new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.empty);
+            _tiles[2, 3] = new(new Point(2, 3), MapToScreen(2, 3), Tile.TileTypes.empty);
+            _tiles[2, 4] = new(new Point(2, 4), MapToScreen(2, 4), Tile.TileTypes.empty);
+            _tiles[2, 5] = new(new Point(2, 5), MapToScreen(2, 5), Tile.TileTypes.empty);
+            _tiles[2, 6] = new(new Point(2, 6), MapToScreen(2, 6), Tile.TileTypes.bush);
+
+            _tiles[3, 0] = new(new Point(3, 0), MapToScreen(3, 0), Tile.TileTypes.grass);
+            _tiles[3, 1] = new(new Point(3, 1), MapToScreen(3, 1), Tile.TileTypes.empty);
+            _tiles[3, 2] = new(new Point(3, 2), MapToScreen(3, 2), Tile.TileTypes.empty);
+            _tiles[3, 3] = new(new Point(3, 3), MapToScreen(3, 3), Tile.TileTypes.empty);
+            _tiles[3, 4] = new(new Point(3, 4), MapToScreen(3, 4), Tile.TileTypes.empty);
+            _tiles[3, 5] = new(new Point(3, 5), MapToScreen(3, 5), Tile.TileTypes.empty);
+            _tiles[3, 6] = new(new Point(3, 6), MapToScreen(3, 6), Tile.TileTypes.empty);
+
+
+            //_tiles[4, 0] = new(new Point(4, 0), MapToScreen(4, 0), Tile.TileTypes.empty);
+            //_tiles[4, 1] = new(new Point(4, 1), MapToScreen(4, 1), Tile.TileTypes.grass);
+            //_tiles[4, 2] = new(new Point(4, 2), MapToScreen(4, 2), Tile.TileTypes.grass);
+            //_tiles[4, 3] = new(new Point(4, 3), MapToScreen(4, 3), Tile.TileTypes.grass);
+            //_tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.grass);
+            //_tiles[4, 5] = new(new Point(4, 5), MapToScreen(4, 5), Tile.TileTypes.grass);
 
 
 
