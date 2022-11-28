@@ -1,7 +1,4 @@
-﻿using Isometric_test_1.managers;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿
 using System.Collections.Generic;
 
 namespace Isometric_test_1

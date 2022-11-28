@@ -1,4 +1,4 @@
-﻿using Isometric_test_1.managers;
+﻿
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -39,8 +39,6 @@ namespace Isometric_test_1
             _map.Update();
             _debugManager.Update(gameTime);
             _bird_ss.Update();
-
-            
         }
 
         public void Draw()
