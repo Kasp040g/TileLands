@@ -23,7 +23,7 @@ namespace Isometric_test_1
             };           
 
             // load
-            _sm = load();
+           // _sm = load();
             Trace.WriteLine($"{_sm.Level3Done} {_sm.Score}");
 
             // save
