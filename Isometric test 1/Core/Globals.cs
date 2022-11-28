@@ -17,6 +17,8 @@ namespace Isometric_test_1
 
         public static SpriteFont FontTest { get; set; }
 
+        public static bool DebugModeToggled { get; set; }
+
 
 
         /// <summary>

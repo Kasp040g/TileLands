@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Isometric_test_1.managers;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
@@ -6,6 +7,8 @@ namespace Isometric_test_1
 {
     public class GameManager
     {
+        private readonly DebugManager _debugManager = new();
+
         // Save/Load
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";
@@ -30,10 +33,11 @@ namespace Isometric_test_1
             save(_sm);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             InputManager.Update();
             _map.Update();
+            _debugManager.Update(gameTime);
             _bird_ss.Update();
 
             
@@ -43,6 +47,7 @@ namespace Isometric_test_1
         {
             _map.Draw();
             _bird_ss.Draw();
+            _debugManager.Draw();
         }
 
         private void save(ScoreManager sm)
@@ -60,3 +65,4 @@ namespace Isometric_test_1
         }
     }
 }
+
