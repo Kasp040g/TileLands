@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
+using static Isometric_test_1.Assets;
 
 namespace Isometric_test_1
 {
@@ -86,6 +88,13 @@ namespace Isometric_test_1
 
             //Load audio files
             Assets.Audio.LoadAudio();
+
+
+            //Plays and repeats the background music
+            MediaPlayer.Play(Audio.BackgroundMusic);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.07f;
+            
 
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
