@@ -59,7 +59,7 @@ namespace Isometric_test_1
 
             //Instantiate game manager
             _gameManager = new();
-
+            _gameManager.Init();
             //Call game base initialization
             base.Initialize();
         }

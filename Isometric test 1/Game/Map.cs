@@ -41,7 +41,9 @@ namespace Isometric_test_1
         public Map()
         {
 
-            _levels = Level.Level3;
+            _levels = Level.Level1;
+
+            
 
             ////Create tile array from map size
             //_tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -119,6 +121,26 @@ namespace Isometric_test_1
         /// </summary>
         public void Update()
         {
+            // Reset current level
+            if(Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                var _tempLevel = _levels;
+
+                ClearLevel();
+                _shouldDrawMap = true;
+                _levels = _tempLevel;
+            }
+
+            // Skip current level  ***************for Debugging**************
+            if(Keyboard.GetState().IsKeyDown(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            {
+                
+
+                ClearLevel();
+                _shouldDrawMap = true;
+                _levels++;
+            }
+
             if (_shouldDrawMap)
             {
                 // Level state machine
@@ -240,80 +262,120 @@ namespace Isometric_test_1
 
         private void SolutionFound()
         {
-            if (_levels == Level.Level1)
-            {
-                var treeCount = 0;
-                for (int y = 0; y < _tiles.GetLength(0); y++)
-                {
-                    for (int x = 0; x < _tiles.GetLength(1); x++)
-                    {
-                        if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                        {
-                            treeCount++;
-
-                        }
-                    }
-                }
-                if (treeCount == 1)
-                {
-                    // Press Space to continue
-                    _shouldShowWinText = true;
-
-                    if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                    {
-
-
-
-                        ClearLevel();
-                        _shouldDrawMap = true;
-                        _levels = Level.Level2;
-
-                        //Level2();
-                    }
-                }
-            }
-
-            //switch(_levels)
+            //if (_levels == Level.Level1)
             //{
-            //    case Level.Level1:
-            //        var treeCount = 0;
-            //        for(int y= 0; y < _tiles.GetLength(0); y++)
+            //    var treeCount = 0;
+            //    for (int y = 0; y < _tiles.GetLength(0); y++)
+            //    {
+            //        for (int x = 0; x < _tiles.GetLength(1); x++)
             //        {
-            //            for(int x = 0; x < _tiles.GetLength(1); x++)
+            //            if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
             //            {
-            //                if(_tiles[x,y]._tileType == Tile.TileTypes.tree)
-            //                {
-            //                    treeCount++;
-
-            //                }
+            //                treeCount++;
             //            }
             //        }
-            //        if(treeCount == 1)
+            //    }
+            //    if (treeCount == 1)
+            //    {
+            //        // Press Space to continue
+            //        _shouldShowWinText = true;
+
+            //        if (Keyboard.GetState().IsKeyDown(Keys.Space))
             //        {
-            //            if(Keyboard.GetState().IsKeyDown(Keys.Space))
-            //            {
-            //                // Press Space to continue
-            //                ClearLevel();
-
-            //                _levels = Level.Level2;
-            //            }                        
+            //            ClearLevel();
+            //            _shouldDrawMap = true;
+            //            _levels = Level.Level2;
             //        }
-            //        break;
-            //    case Level.Level2:
-
-            //        break;
-            //    case Level.Level3:
-            //        break;
-            //    case Level.Level4:
-            //        break;
-            //    case Level.Level5:
-            //        break;
-            //    default:
-            //        break;
+            //    }
             //}
+
+            switch(_levels)
+            {
+                case Level.Level1:
+                    var treeCount = 0;
+                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                    {
+                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        {
+                            if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+                            }
+                        }
+                    }
+                    if(treeCount == 1)
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if(Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            _shouldDrawMap = true;
+                            _levels = Level.Level2;
+                        }
+                    }
+                    break;
+                case Level.Level2:
+                    treeCount = 0;
+                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                    {
+                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        {
+                            if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+                            }
+                        }
+                    }
+                    if(treeCount == 2)  // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if(Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            _shouldDrawMap = true;
+                            _levels = Level.Level3;
+                        }
+                    }
+                    break;
+                case Level.Level3:
+                    treeCount = 0;
+                    for(int y = 0; y < _tiles.GetLength(0); y++)
+                    {
+                        for(int x = 0; x < _tiles.GetLength(1); x++)
+                        {
+                            if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                            {
+                                treeCount++;
+                            }
+                        }
+                    }
+                    if(treeCount == 3) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if(Keyboard.GetState().IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            _shouldDrawMap = true;
+                            _levels = Level.Level4;
+                        }
+                    }
+                    break;
+                case Level.Level4:
+                    break;
+                case Level.Level5:
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void Leveltemp()
+        private void LevelTemp()
         {
             _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
             _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
@@ -335,7 +397,7 @@ namespace Isometric_test_1
             _tiles[1, 1] = new( new Point(1, 1), MapToScreen(1, 1), Tile.TileTypes.empty);
         }
 
-        public void Level1()
+        private void Level1()
         {
             _mapSize = new(2, 2);
 
@@ -412,10 +474,6 @@ namespace Isometric_test_1
             _tiles[4, 2] = new(new Point(4, 2), MapToScreen(4, 2), Tile.TileTypes.grass);
             _tiles[4, 3] = new(new Point(4, 3), MapToScreen(4, 3), Tile.TileTypes.grass);
             _tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.empty);
-
-
-
-
         }
 
         private void Level5()
@@ -498,3 +556,4 @@ namespace Isometric_test_1
         }
     }
 }
+
