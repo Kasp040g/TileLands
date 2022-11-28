@@ -1,8 +1,6 @@
 ﻿
 using System;
 
-using Microsoft.VisualBasic;
-using Microsoft.Xna.Framework.Audio;
 
 namespace Isometric_test_1;
 
