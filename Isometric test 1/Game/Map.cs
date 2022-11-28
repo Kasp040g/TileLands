@@ -596,12 +596,7 @@ namespace Isometric_test_1
             _tiles[3, 6] = new(new Point(3, 6), MapToScreen(3, 6), Tile.TileTypes.empty);
 
 
-            //_tiles[4, 0] = new(new Point(4, 0), MapToScreen(4, 0), Tile.TileTypes.empty);
-            //_tiles[4, 1] = new(new Point(4, 1), MapToScreen(4, 1), Tile.TileTypes.grass);
-            //_tiles[4, 2] = new(new Point(4, 2), MapToScreen(4, 2), Tile.TileTypes.grass);
-            //_tiles[4, 3] = new(new Point(4, 3), MapToScreen(4, 3), Tile.TileTypes.grass);
-            //_tiles[4, 4] = new(new Point(4, 4), MapToScreen(4, 4), Tile.TileTypes.grass);
-            //_tiles[4, 5] = new(new Point(4, 5), MapToScreen(4, 5), Tile.TileTypes.grass);
+           
 
 
 
