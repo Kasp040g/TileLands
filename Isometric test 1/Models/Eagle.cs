@@ -10,7 +10,7 @@ namespace Isometric_test_1
     {
         private static Texture2D _texture;
         private Vector2 _position;
-        private readonly Animation _anim;
+        private Animation _anim;
         private Vector2 _eagleSpeed = new Vector2(-1,0);
 
         public Eagle(Vector2 pos)

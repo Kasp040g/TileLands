@@ -8,7 +8,7 @@ namespace Isometric_test_1
 {
     public class AnimationManager
     {
-        private readonly Dictionary<object, Animation> _anims = new();
+        private Dictionary<object, Animation> _anims = new();
         private object _lastKey;
 
         public void AddAnimation(object key, Animation animation)
