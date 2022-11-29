@@ -247,7 +247,7 @@ namespace Isometric_test_1
             switch(_levels)
             {
                 case Level.Level1:
-                    if (TileTypeCount(Tile.TileTypes.tree) == 1)
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 1)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -265,7 +265,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level2:
-                    if (TileTypeCount(Tile.TileTypes.tree) == 2)  // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 2)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -280,7 +280,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level3:
-                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 3)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -295,7 +295,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level4:
-                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -311,7 +311,7 @@ namespace Isometric_test_1
                     break;
                 case Level.Level5:
                
-                    if (TileTypeCount(Tile.TileTypes.tree) == 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
