@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Isometric_test_1
 {
@@ -231,17 +232,37 @@ namespace Isometric_test_1
                     _tiles[x, y].Draw();
                 }
             }
-
             if (_shouldShowWinText)
             {
-                Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n Press 'Space' for next level", new Vector2(GameWorld.ScreenHeight /2, GameWorld.ScreenWidth / 2), Color.White);
+                string _text1 = "Congratulations";
+                string _text2 = "Press 'Space' for next level";
+
+                Vector2 _size1 = Globals.FontTest.MeasureString(_text1);
+                Vector2 _size2 = Globals.FontTest.MeasureString(_text2);
+
+                int _SO = 2;            //Shadow offset
+
+                Vector2 _textPosition1;
+                _textPosition1.X = GameWorld.ScreenWidth / 2 - _size1.X / 2;
+                _textPosition1.Y = (GameWorld.ScreenHeight / 4) * 3;
+
+                Vector2 _textPosition2;
+                _textPosition2.X = GameWorld.ScreenWidth / 2 - _size2.X / 2;
+                _textPosition2.Y = (GameWorld.ScreenHeight / 4) * 3;
+
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, new Vector2(_textPosition1.X + _SO, _textPosition1.Y + _SO), Color.Black);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X + _SO, _textPosition2.Y + _SO + _size2.Y), Color.Black);
+
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, _textPosition1, Color.White);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X, _textPosition2.Y + _size2.Y), Color.White);
+
                 _shouldShowWinText = false;
             }
-            if(_forest)
+            /*if(_forest)
             {
-                Globals.SpriteBatch.DrawString(Globals.FontTest, $"Congratulationos \n you have created a forest", new Vector2(GameWorld.ScreenHeight / 2, GameWorld.ScreenWidth / 2), Color.White);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, $"      Congratulations \n you have created a forest", new Vector2(GameWorld.ScreenHeight / 2, GameWorld.ScreenWidth / 2), Color.White);
                 _forest = false;
-            }
+            }*/
         }
 
         //Tile.WinCon = new EventHandler(solutio);

@@ -14,10 +14,7 @@ namespace Isometric_test_1
         private List<ScrollingBackground> _scrollingBackgrounds;
 
         public static int ScreenWidth = 1280;
-        public static int ScreenHeight = 720;
-
-
-        
+        public static int ScreenHeight = 720;  
         
 
         // Game State 
