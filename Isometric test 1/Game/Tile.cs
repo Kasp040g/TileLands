@@ -161,9 +161,10 @@ public class Tile
         if (recipeFound == true)
         {
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
-            //SoundEffect _mergeSound = Assets.Audio.mergeSound;
+            //SoundEffect _mergeSound = Assets.Audio.MergeSound;
             //_mergeSound.Play();
-            Assets.Audio.mergeSound.Play();
+            Assets.Audio.MergeSound.Play();
+            
 
             // invoke Event
             WinCon?.Invoke(_mergeRecipies, new EventArgs());

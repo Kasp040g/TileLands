@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
 using SharpDX.Direct3D9;
+using Microsoft.Xna.Framework.Media;
 
 namespace Isometric_test_1
 {
@@ -28,13 +29,25 @@ namespace Isometric_test_1
         public readonly struct Audio
         {
             // Audio struct members
-            public static SoundEffect mergeSound;
+            public static SoundEffect MergeSound;
+            public static SoundEffect WinSound;
+            public static SoundEffect ResetSound;
+          
+            public static Song BackgroundMusic;
+
+            
 
 
             // Method to load audio files and assign them to the struct members
             public static void LoadAudio()
             {
-                mergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
+                MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
+                
+                WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");
+                ResetSound = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
+
+                BackgroundMusic = Globals.Content.Load<Song>("Audio/lunar lounging_mp3");
+               
             }
         }
 

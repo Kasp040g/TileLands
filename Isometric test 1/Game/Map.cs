@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Isometric_test_1
 {
     public class Map
@@ -91,7 +92,8 @@ namespace Isometric_test_1
             if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
             {
                 var _tempLevel = _levels;
-
+                Assets.Audio.ResetSound.Play(0.1f, 0, 0);
+               
                 ClearLevel();
                 _shouldDrawMap = true;
                 _levels = _tempLevel;
@@ -249,12 +251,16 @@ namespace Isometric_test_1
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
+                        
 
-                        if(_currentKey.IsKeyDown(Keys.Space))
+
+                        if (_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
+                            Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
                             _levels = Level.Level2;
+                            
                         }
                     }
                     break;
@@ -267,6 +273,7 @@ namespace Isometric_test_1
                         if (Keyboard.GetState().IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
+                            Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
                             _levels = Level.Level3;
                         }
@@ -281,6 +288,7 @@ namespace Isometric_test_1
                         if(_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
+                            Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
                             _levels = Level.Level4;
                         }
@@ -295,6 +303,7 @@ namespace Isometric_test_1
                         if (Keyboard.GetState().IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
+                            Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
                             _levels = Level.Level5;
                         }
@@ -310,6 +319,7 @@ namespace Isometric_test_1
                         if(_currentKey.IsKeyDown(Keys.Space))
                         {
                             ClearLevel();
+                            Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
                             //_levels = Level.Level1;
                         }

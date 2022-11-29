@@ -13,11 +13,29 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/lunar lounging_mp3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/lunar lounging_mp3.mp3
+
 #begin Audio/Pop_sound_5.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/Pop_sound_5.wav
+
+#begin Audio/ResetSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/ResetSound.wav
+
+#begin Audio/WinSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/WinSound.wav
 
 #begin Backgrounds/Clouds_Fast.png
 /importer:TextureImporter
