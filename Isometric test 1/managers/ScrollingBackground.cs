@@ -25,7 +25,7 @@ namespace Isometric_test_1
         private float _speed;
 
 
-        //puts all ScrollingBackground.Laer to the same
+        //puts all ScrollingBackground.Layer to the same
         public float Layer
         {
             get { return _layer; }

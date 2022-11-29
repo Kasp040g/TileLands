@@ -290,7 +290,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level2:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 2)
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 4)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -320,7 +320,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level4:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -336,7 +336,7 @@ namespace Isometric_test_1
                     break;
                 case Level.Level5:
                
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -352,7 +352,7 @@ namespace Isometric_test_1
                     break;
                 case Level.Level6:
 
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -539,6 +539,11 @@ namespace Isometric_test_1
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
 
         }
+        /// <summary>
+        /// Level 6 is a for loop that makes a 10x10 map, allowing the player to play around and see how many trees they can get.
+        /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
+        /// whereas level 6 only consists of 1 type, which makes it easy to make in a loop.
+        /// </summary>
         private void Level6()
         {
              
