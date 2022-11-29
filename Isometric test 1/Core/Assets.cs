@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
-using SharpDX.Direct3D9;
 using Microsoft.Xna.Framework.Media;
 
 namespace Isometric_test_1
 {
     public class Assets : Component
     {
-        protected float _layer { get; set; }
-
+        private float _layer;
         protected Texture2D _texture;
+        public Vector2 Position;
 
+        public float Layer
+        {
+            get => _layer;
+            set => _layer = value;
+        }                
+
+        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
 
         public readonly struct Sprites
         {
@@ -23,12 +25,13 @@ namespace Isometric_test_1
             public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
             public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
             public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
-            public static Texture2D tileEmpty = Globals.Content.Load<Texture2D>("tile5");
+            public static Texture2D tileEmpty       = Globals.Content.Load<Texture2D>("tile5");
 
             // Tile objects
             public static Texture2D tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
-            public static Texture2D tileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
-            public static Texture2D tileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
+            public static Texture2D tileObjectBush  = Globals.Content.Load<Texture2D>("tileObjectBush");
+            public static Texture2D tileObjectTree  = Globals.Content.Load<Texture2D>("tileObjectTree");
+            public static Texture2D forest          = Globals.Content.Load<Texture2D>("Forest");
         }
 
         public readonly struct Audio
@@ -45,33 +48,17 @@ namespace Isometric_test_1
             // Method to load audio files and assign them to the struct members
             public static void LoadAudio()
             {
-                MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
-                WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");
-                ResetSound = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
+                // SoundEffects
+                MergeSound      = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");                
+                WinSound        = Globals.Content.Load<SoundEffect>("Audio/WinSound");
+                ResetSound      = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
 
+                // Music
                 BackgroundMusic = Globals.Content.Load<Song>("Audio/lunar lounging_mp3");
                
             }
         }
-
-        public float Layer
-        {
-            get { return _layer; }
-            set
-            {
-                _layer = value;
-            }
-        }
-
-        public Vector2 Position;
-
-        public Rectangle Rectangle
-        {
-            get
-            {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
-            }
-        }
+        
         public Assets(Texture2D texture)
         {
             _texture = texture;
