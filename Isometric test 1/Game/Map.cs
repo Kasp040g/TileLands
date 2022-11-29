@@ -541,7 +541,7 @@ namespace Isometric_test_1
 
                                         _forest = true;
 
-                                        System.Console.WriteLine("Forest Found");
+                                        
                                     }
                                 }
                             }
