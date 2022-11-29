@@ -9,12 +9,12 @@ public class Tile
 
 
     //Tile visuals variables
-    public Texture2D _tileSprite;                   //The sprite of the tile
+    public Texture2D _tileSprite;                       //The sprite of the tile
     public readonly Point _mapPosition;
     public readonly Vector2 _coordinates;
 
-    private Texture2D _tileObjectSprite;             //The sprite of the object on top of tile
-    private Vector2 _tileObjectOffset = Vector2.Zero;       //The offset of the object on the tile from the tile itself
+    public Texture2D _tileObjectSprite;                 //The sprite of the object on top of tile
+    public Vector2 _tileObjectOffset = Vector2.Zero;    //The offset of the object on the tile from the tile itself
 
 
     private readonly Texture2D[] _tileSprites =
@@ -47,6 +47,7 @@ public class Tile
         grass,
         bush,
         tree,
+        forest,
     }
 
     public TileTypes _tileType;
@@ -81,7 +82,7 @@ public class Tile
         UpdateTileObjectSprite();
     }
 
-
+    #region Mouse
     /// <summary>
     /// Tells the tile it is being hovered by the mouse
     /// </summary>
@@ -116,7 +117,7 @@ public class Tile
     {
         _mouseGrabbed = false;
     }
-
+    #endregion Mouse
 
     /// <summary>
     /// Checks whether or not two tiles can be merged, if they can, give the resulting tile
@@ -194,7 +195,7 @@ public class Tile
     public void UpdateTileObjectSprite()
     {
         // Switch case to check for tile type
-        switch (_tileType)
+        switch(_tileType)
         {
             // Empty
             case TileTypes.empty: _tileObjectSprite = null; break;
@@ -221,7 +222,7 @@ public class Tile
 
                 _tileObjectOffset.X = 0;
                 _tileObjectOffset.Y = -_tileObjectSprite.Height / 2 - 7;
-                break;
+                break;            
         }
     }
 }
