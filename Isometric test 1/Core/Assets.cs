@@ -24,6 +24,11 @@ namespace Isometric_test_1
             public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
             public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
             public static Texture2D tileEmpty = Globals.Content.Load<Texture2D>("tile5");
+
+            // Tile objects
+            public static Texture2D tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
+            public static Texture2D tileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
+            public static Texture2D tileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
         }
 
         public readonly struct Audio
@@ -34,8 +39,6 @@ namespace Isometric_test_1
             public static SoundEffect ResetSound;
           
             public static Song BackgroundMusic;
-
-            
 
 
             // Method to load audio files and assign them to the struct members

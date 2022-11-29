@@ -1,6 +1,4 @@
-﻿
-using System;
-
+﻿using System;
 
 namespace Isometric_test_1;
 
@@ -9,14 +7,18 @@ public class Tile
     //Eventhandler for WinCon
     public static EventHandler WinCon;
 
-    
+
     //Tile visuals variables
-    public Texture2D _texture;
+    public Texture2D _tileSprite;                   //The sprite of the tile
     public readonly Point _mapPosition;
     public readonly Vector2 _coordinates;
 
-    private readonly Texture2D[] _tileSprites = 
-    { 
+    private Texture2D _tileObjectSprite;             //The sprite of the object on top of tile
+    private Vector2 _tileObjectOffset = Vector2.Zero;       //The offset of the object on the tile from the tile itself
+
+
+    private readonly Texture2D[] _tileSprites =
+    {
         Assets.Sprites.tileGrassBlock1,
         Assets.Sprites.tileGrassBlock2,
         Assets.Sprites.tileGrassBlock3,
@@ -63,17 +65,20 @@ public class Tile
         Random _rnd = new Random();
         int _number = _rnd.Next(0, _tileSprites.Length);
 
-        _texture = _tileSprites[_number];
+        _tileSprite = _tileSprites[_number];
 
         _mapPosition = position;
-        _coordinates = GameManager._map.MapToScreen(position.X,position.Y);
+        _coordinates = GameManager._map.MapToScreen(position.X, position.Y);
         _tileType = tileType;
 
         //Check if tile is empty instead
         if (_tileType == TileTypes.empty)
         {
-            _texture = Assets.Sprites.tileEmpty;
+            _tileSprite = Assets.Sprites.tileEmpty;
         }
+
+        // Find and update the correct tile object sprite
+        UpdateTileObjectSprite();
     }
 
 
@@ -120,51 +125,38 @@ public class Tile
     /// <param name="grabbedTile"></param>
     public void CheckTileMerge(Tile hoveredTile)
     {
-        var recipeFound = false;            //Tells whether or not a merge recipe was found
-        var recipeIndex = 0;                //Tracks which recipe is currently being checked for possible merge
+        var recipeFound = false;            // Tells whether or not a merge recipe was found
+        var recipeIndex = 0;                // Tracks which recipe is currently being checked for possible merge
 
 
-        //Loop through the jagged array storing all the array recipies
+        // Loop through the jagged array storing all the array recipies
         foreach (TileTypes[] tileArray in _mergeRecipies)
         {
-            //Checks the first two colums for the grabbed tile type(this one)
-            if (tileArray[0] == this._tileType)
+            // Checks the first two colums for the grabbed tile type(this one)
+            if (tileArray[0] == this._tileType && tileArray[1] == hoveredTile._tileType ||
+               tileArray[1] == this._tileType && tileArray[0] == hoveredTile._tileType)
             {
-                //Checks if the hovered tile's tiletype is also a match inside the recipe
-                if (tileArray[1] == hoveredTile._tileType)
-                {
-                    //A merge recipe is found containing both the hovered til and the grabbed tile
-                    recipeFound = true;                    
+                // A merge recipe is found containing both the hovered til and the grabbed tile
+                recipeFound = true;
 
-                    //Break out of for each to keep recipe index and prevent further recipe checks
-                    break;
-                }
-            }
-            else if (tileArray[1] == this._tileType)
-            {
-                //Checks if the hovered tile's tiletype is also a match inside the recipe
-                if (tileArray[0] == hoveredTile._tileType)
-                {
-                    //A merge recipe is found containing both the hovered til and the grabbed tile
-                    recipeFound = true;
-
-                    //Break out of for each to keep recipe index and prevent further recipe checks
-                    break;
-                }
+                // Break out of for each to keep recipe index and prevent further recipe checks
+                break;
             }
 
             //Update index/count of current recipe
-              recipeIndex++;
+            recipeIndex++;
         }
 
         //Only update anything if a merge recipe match was found
         if (recipeFound == true)
         {
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
-            //SoundEffect _mergeSound = Assets.Audio.MergeSound;
-            //_mergeSound.Play();
+
             Assets.Audio.MergeSound.Play();
-            
+
+            // Find and update the correct tile object sprite for both tiles
+            hoveredTile.UpdateTileObjectSprite();
+            this.UpdateTileObjectSprite();
 
             // invoke Event
             WinCon?.Invoke(_mergeRecipies, new EventArgs());
@@ -180,11 +172,56 @@ public class Tile
         var color = Color.White;
         if (_mouseHovered) color = Color.LightGray;
         if (_mouseGrabbed) color = Color.LightSeaGreen;
-        Globals.SpriteBatch.Draw(_texture, _coordinates, color);
+        Globals.SpriteBatch.Draw(_tileSprite, _coordinates, color);
 
+        //Draw tile object sprite on top of tile
+        if (_tileObjectSprite != null)
+        {
+            Globals.SpriteBatch.Draw(_tileObjectSprite, _coordinates + _tileObjectOffset, color);
+        }
+
+        //Draw debug tile text
         if (Globals.DebugModeToggled == true)
         {
             Globals.SpriteBatch.DrawString(Globals.FontTest, $"{_tileType}", _coordinates, Color.White);
+        }
+    }
+
+
+    /// <summary>
+    /// Updates the sprite of the objects on the tiles depending on tile type
+    /// </summary>
+    public void UpdateTileObjectSprite()
+    {
+        // Switch case to check for tile type
+        switch (_tileType)
+        {
+            // Empty
+            case TileTypes.empty: _tileObjectSprite = null; break;
+
+            // Grass
+            case TileTypes.grass:
+                _tileObjectSprite = Assets.Sprites.tileObjectGrass;
+
+                _tileObjectOffset.X = _tileObjectSprite.Width / 2 + 13;
+                _tileObjectOffset.Y = -5;
+                break;
+
+            // Bush
+            case TileTypes.bush:
+                _tileObjectSprite = Assets.Sprites.tileObjectBush;
+
+                _tileObjectOffset.X = 0;
+                _tileObjectOffset.Y = -_tileObjectSprite.Height / 3 - 7;
+                break;
+
+            // Tree
+            case TileTypes.tree:
+                _tileObjectSprite = Assets.Sprites.tileObjectTree;
+
+                _tileObjectOffset.X = 0;
+                _tileObjectOffset.Y = -_tileObjectSprite.Height / 2 - 7;
+                break;
         }
     }
 }
