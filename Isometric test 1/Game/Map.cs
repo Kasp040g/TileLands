@@ -269,7 +269,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level2:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 2)
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 4)
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
@@ -299,7 +299,7 @@ namespace Isometric_test_1
                     }
                     break;
                 case Level.Level4:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _shouldShowWinText = true;
