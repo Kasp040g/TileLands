@@ -574,16 +574,22 @@ namespace Isometric_test_1
                 {
                     for(int y = 0; y < _tiles.GetLength(1)-1; y++)
                     {
-                        if(_tiles[x, y]    ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x, y+1]  ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x+1, y]  ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x+1, y+1]._tileType == Tile.TileTypes.tree)
+                        if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
                         {
-                            //CHANGE ABOVE TILE DISPLAY
+                            if(_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
+                            {
+                                if(_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
+                                {
+                                    if(_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
+                                    {
+                                        // CHANGE ABOVE TILE DISPLAY
 
-                            //START HOBVERING BIRDS ANIMATION
+                                        //START HOBVERING BIRDS ANIMATION
 
-                            _forest = true;
+                                        _forest = true;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
