@@ -38,6 +38,7 @@ namespace Isometric_test_1
             public static SoundEffect WinSound;
             public static SoundEffect ResetSound;
           
+
             public static Song BackgroundMusic;
 
 
@@ -45,7 +46,6 @@ namespace Isometric_test_1
             public static void LoadAudio()
             {
                 MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
-                
                 WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");
                 ResetSound = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
 
