@@ -32,6 +32,7 @@ namespace Isometric_test_1
             Level3,
             Level4,
             Level5,
+            Level6,
         }
 
         /// <summary>
@@ -134,6 +135,9 @@ namespace Isometric_test_1
                         break;
                     case Level.Level5:
                         Level5();
+                        break;
+                    case Level.Level6:
+                        Level6();
                         break;
                     default:
                         break;
@@ -321,6 +325,22 @@ namespace Isometric_test_1
                             ClearLevel();
                             Assets.Audio.WinSound.Play();
                             _shouldDrawMap = true;
+                            _levels = Level.Level6;
+                        }
+                    }
+                    break;
+                case Level.Level6:
+
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 3) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _shouldShowWinText = true;
+
+                        if (_currentKey.IsKeyDown(Keys.Space))
+                        {
+                            ClearLevel();
+                            Assets.Audio.WinSound.Play();
+                            _shouldDrawMap = true;
                             //_levels = Level.Level1;
                         }
                     }
@@ -496,6 +516,23 @@ namespace Isometric_test_1
             _tiles[3, 4] = new(new Point(3, 4), Tile.TileTypes.empty);
             _tiles[3, 5] = new(new Point(3, 5), Tile.TileTypes.empty);
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
+
+        }
+        private void Level6()
+        {
+             
+            _mapSize = new(10, 10);
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+            _mapOffset = new(4.5f, 0.1f);
+
+            for (int y = 0; y < _mapSize.Y; y++)
+            {
+                for (int x = 0; x < _mapSize.X; x++)
+                {
+                    _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.grass);
+                
+                }
+            }
         }
         #endregion Levels
         /// <summary>
@@ -537,7 +574,7 @@ namespace Isometric_test_1
                            _tiles[x+1, y]  ._tileType == Tile.TileTypes.tree && 
                            _tiles[x+1, y+1]._tileType == Tile.TileTypes.tree)
                         {
-                            // CHANGE ABOVE TILE DISPLAY
+                            //CHANGE ABOVE TILE DISPLAY
 
                             //START HOBVERING BIRDS ANIMATION
 
