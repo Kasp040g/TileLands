@@ -29,7 +29,7 @@ namespace Isometric_test_1
             StateManager.Init(this);
 
             // state
-            ChangeState(GameStates.Splash);
+            ChangeState(ScreenStates.Splash);
         }
 
         public void Init()
@@ -56,7 +56,7 @@ namespace Isometric_test_1
             save(_sm);
         }
 
-        public void ChangeState(GameStates state)
+        public void ChangeState(ScreenStates state)
         {
             _state = StateManager.States[state];
         }
@@ -77,7 +77,7 @@ namespace Isometric_test_1
         #region Button Methods
         public void Play(object sender, EventArgs e)
         {
-            ChangeState(GameStates.Game);
+            ChangeState(ScreenStates.Game);
         }
 
         public void Quit(object sender, EventArgs e)

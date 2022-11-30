@@ -18,7 +18,7 @@ namespace Isometric_test_1
         {
             if(InputManager.SpacePressed)
             {
-                gm.ChangeState(GameStates.Menu);
+                gm.ChangeState(ScreenStates.Menu);
             }
         }
 

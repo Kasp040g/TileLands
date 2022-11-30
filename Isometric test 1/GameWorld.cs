@@ -119,7 +119,7 @@ namespace Isometric_test_1
 
             //Quick Menu acces using escape
             if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                _gameManager.ChangeState(GameStates.Menu);
+                _gameManager.ChangeState(ScreenStates.Menu);
 
             //Calls for globals to update to keep track of time elapsed
             Globals.Update(gameTime);
