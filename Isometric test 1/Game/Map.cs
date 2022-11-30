@@ -44,7 +44,7 @@
         /// </summary>
         public Map()
         {
-            _levels = Level.Level6;
+            _levels = Level.Level1;
 
             //Update tile size variables
             _tileSize.X = Assets.Sprites.tileGrassBlock1.Width;
