@@ -13,6 +13,7 @@ namespace Isometric_test_1
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";
         public static readonly Map _map = new();
+        private bool _saveFileCreated;
 
         //Animations
         private Eagle _bird_ss = new(new(GameWorld.ScreenWidth, 100));
@@ -21,13 +22,21 @@ namespace Isometric_test_1
         {
             _sm = new()
             {
+                Level1Done = false,
+                Level2Done = false,
                 Level3Done = false,
+                Level4Done = false,
+                Level5Done = false,
+                EndlessUnlocked = false,
                 Score = 1000,
-            };           
+            };
 
             // load
-           // _sm = load();
-            Trace.WriteLine($"{_sm.Level3Done} {_sm.Score}");
+            if(_saveFileCreated)
+            {
+                _sm = load();
+                Trace.WriteLine($"{_sm.Level1Done} {_sm.Level2Done} {_sm.Level3Done} {_sm.Level4Done} {_sm.Level5Done} {_sm.EndlessUnlocked} {_sm.Score}");
+            }
 
             // save
             save(_sm);
@@ -54,6 +63,7 @@ namespace Isometric_test_1
             Trace.WriteLine(SaveThis);
             File.WriteAllText(_savePath, SaveThis);
             // File.AppendAllLines ?? for adding data??
+            _saveFileCreated = true;
         }
 
         private ScoreManager load()

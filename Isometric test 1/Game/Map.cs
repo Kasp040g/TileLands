@@ -286,6 +286,7 @@ namespace Isometric_test_1
                             _shouldDrawMap = true;
                             _levels = Level.Level2;
                             
+                            
                         }
                     }
                     break;
