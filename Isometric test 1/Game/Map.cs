@@ -44,7 +44,7 @@
         /// </summary>
         public Map()
         {
-            _levels = Level.Level1;
+            _levels = Level.Level6;
 
             //Update tile size variables
             _tileSize.X = Assets.Sprites.tileGrassBlock1.Width;
@@ -606,7 +606,57 @@
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
 
         }
+        private void Level6()
+        {
+            _mapSize = new(6, 6);
+            _mapOffset = new(5f, 3f);
 
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.empty);
+            _tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.grass);
+            _tiles[0, 2] = new(new Point(0, 2), Tile.TileTypes.grass);
+            _tiles[0, 3] = new(new Point(0, 3), Tile.TileTypes.empty);
+            _tiles[0, 4] = new(new Point(0, 4), Tile.TileTypes.empty);
+            _tiles[0, 5] = new(new Point(0, 5), Tile.TileTypes.empty);
+            
+            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.grass);
+            _tiles[1, 2] = new(new Point(1, 2), Tile.TileTypes.grass);
+            _tiles[1, 3] = new(new Point(1, 3), Tile.TileTypes.empty);
+            _tiles[1, 4] = new(new Point(1, 4), Tile.TileTypes.empty);
+            _tiles[1, 5] = new(new Point(1, 5), Tile.TileTypes.empty);
+            
+            _tiles[2, 0] = new(new Point(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(new Point(2, 1), Tile.TileTypes.grass);
+            _tiles[2, 2] = new(new Point(2, 2), Tile.TileTypes.grass);
+            _tiles[2, 3] = new(new Point(2, 3), Tile.TileTypes.empty);
+            _tiles[2, 4] = new(new Point(2, 4), Tile.TileTypes.empty);
+            _tiles[2, 5] = new(new Point(2, 5), Tile.TileTypes.empty);
+            
+            _tiles[3, 0] = new(new Point(3, 0), Tile.TileTypes.empty);
+            _tiles[3, 1] = new(new Point(3, 1), Tile.TileTypes.empty);
+            _tiles[3, 2] = new(new Point(3, 2), Tile.TileTypes.empty);
+            _tiles[3, 3] = new(new Point(3, 3), Tile.TileTypes.grass);
+            _tiles[3, 4] = new(new Point(3, 4), Tile.TileTypes.grass);
+            _tiles[3, 5] = new(new Point(3, 5), Tile.TileTypes.grass);
+
+            _tiles[4, 0] = new(new Point(4, 0), Tile.TileTypes.empty);
+            _tiles[4, 1] = new(new Point(4, 1), Tile.TileTypes.empty);
+            _tiles[4, 2] = new(new Point(4, 2), Tile.TileTypes.empty);
+            _tiles[4, 3] = new(new Point(4, 3), Tile.TileTypes.grass);
+            _tiles[4, 4] = new(new Point(4, 4), Tile.TileTypes.grass);
+            _tiles[4, 5] = new(new Point(4, 5), Tile.TileTypes.grass);
+
+            _tiles[5, 0] = new(new Point(5, 0), Tile.TileTypes.empty);
+            _tiles[5, 1] = new(new Point(5, 1), Tile.TileTypes.empty);
+            _tiles[5, 2] = new(new Point(5, 2), Tile.TileTypes.empty);
+            _tiles[5, 3] = new(new Point(5, 3), Tile.TileTypes.grass);
+            _tiles[5, 4] = new(new Point(5, 4), Tile.TileTypes.grass);
+            _tiles[5, 5] = new(new Point(5, 5), Tile.TileTypes.empty);
+
+        }
 
 
         /// <summary>
@@ -614,7 +664,7 @@
         /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
         /// whereas level 6 only consists of 1 type, which makes it easy to make in a loop.
         /// </summary>
-        private void Level6()
+        private void Level7()
         {
 
             _mapSize = new(10, 10);
