@@ -7,15 +7,11 @@ namespace Isometric_test_1
 {
     public class GameWorld : Game
     {
-        //Setup essential variables for the game
+        // Init. essential variables for the game
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
         private List<ScrollingBackground> _scrollingBackgrounds;
-
-        public static int ScreenWidth = 1280;
-        public static int ScreenHeight = 720;  
-        
 
         // Game State 
         public enum GameState { Idle, Start, Play, CheckEnd }
@@ -33,10 +29,7 @@ namespace Isometric_test_1
             Content.RootDirectory = "Content";
 
             //Makes sure mouse is visible
-            IsMouseVisible = true;
-
-            // Init first GameState
-            _gameState = GameState.Idle;
+            IsMouseVisible = true;            
         }
 
 
@@ -46,16 +39,15 @@ namespace Isometric_test_1
         protected override void Initialize()
         {
             //Set game window size
-            _graphics.PreferredBackBufferWidth = ScreenWidth;
-            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            Globals.Bounds = new(1600, 900);
+            _graphics.PreferredBackBufferWidth = Globals.Bounds.X;
+            _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
 
-            //Transfer content to be global
-            Globals.Content = Content;
-
-            //Instantiate game manager
+            //Instantiate game manager and run GameManager's Initialize
             _gameManager = new();
             _gameManager.Init();
+
             //Call game base initialization
             base.Initialize();
         }
@@ -68,6 +60,9 @@ namespace Isometric_test_1
         {
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //Transfer content to be global
+            Globals.Content = Content;
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -107,30 +102,19 @@ namespace Isometric_test_1
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
-            //Quick game exit using escape (DELETE LATER) <<<<<
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            // TODO : Quick game exit using escape (SAVE FOR LATER Method) <<<<<
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
+
+            //Quick Menu acces using escape
+            if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                _gameManager.ChangeState(GameStates.Menu);
 
             //Calls for globals to update to keep track of time elapsed
             Globals.Update(gameTime);
 
             //Calls for game manager to update
             _gameManager.Update(gameTime);
-
-            // Game State Switch
-            switch(_gameState)
-            {
-                case GameState.Idle:
-                    break;
-                case GameState.Start:
-                    break;
-                case GameState.Play:
-                    break;
-                case GameState.CheckEnd:
-                    break;
-                default:
-                    break;
-            }
 
             //loops the backgrounds
             foreach (var sb in _scrollingBackgrounds)

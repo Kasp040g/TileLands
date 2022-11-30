@@ -7,6 +7,10 @@ namespace Isometric_test_1
 {
     public class GameManager
     {
+        // Init States
+        private State _state;
+
+        // Instantiate DebugManager
         private DebugManager _debugManager = new();
 
         // Save/Load
@@ -16,7 +20,7 @@ namespace Isometric_test_1
         private bool _saveFileCreated;
 
         //Animations
-        private Eagle _bird_ss = new(new(GameWorld.ScreenWidth, 100));
+        private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
 
         public void Init()
         {
