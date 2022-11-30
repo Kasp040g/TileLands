@@ -1,7 +1,4 @@
-﻿using System;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Isometric_test_1
+﻿namespace Isometric_test_1
 {
     public class Map
     {
@@ -43,7 +40,7 @@ namespace Isometric_test_1
         /// Map constructer to load, setup and create tiles on map
         /// </summary>
         public Map()
-        {           
+        {
             _levels = Level.Level1;
 
             //Update tile size variables
@@ -94,18 +91,18 @@ namespace Isometric_test_1
             _currentKey = Keyboard.GetState();
 
             // Reset current level
-            if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
+            if (_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
             {
                 var _tempLevel = _levels;
                 Assets.Audio.ResetSound.Play(0.1f, 0, 0);
-               
+
                 ClearLevel();
                 _shouldDrawMap = true;
                 _levels = _tempLevel;
             }
 
             // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if (_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
             {
                 ClearLevel();
                 _shouldDrawMap = true;
@@ -113,7 +110,7 @@ namespace Isometric_test_1
             }
 
             // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if (_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
             {
                 ClearLevel();
                 _shouldDrawMap = true;
@@ -151,30 +148,6 @@ namespace Isometric_test_1
 
                 _shouldDrawMap = false;
             }
-
-
-            // Level goal text
-            if (_levelComplete == false)
-            {
-                switch (_levels)
-                {
-                    // Level 1
-                    case Level.Level1:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
-                        break;
-
-                    // Level 2
-                    case Level.Level2:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 4 tree";
-                        break;
-
-                    // Default
-                    default:
-                        _textGoal = "";
-                        break;
-                }
-            }
-
 
             #region Tile Merging
 
@@ -333,77 +306,123 @@ namespace Isometric_test_1
 
         private void SolutionFound()
         {
+            // Update 
+            UpdateGoalText();
 
+            bool _spacePressed = false;
 
-
-            switch(_levels)
+            // Check for SPACE press
+            if (_currentKey.IsKeyDown(Keys.Space))
             {
+                _spacePressed = true;
+            }
+
+            // Check if all goals of the current level is met
+            switch (_levels)
+            {
+                // Level 1
                 case Level.Level1:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
+
+                        // Go to next level
+                        if (_spacePressed)
+                        {     
+                            _levels = Level.Level2;
+                        }
                     }
                     break;
+
+                // Level 2
                 case Level.Level2:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 4)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
-
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.Level3;
+                        }
                     }
                     break;
+
+                // Level 3
                 case Level.Level3:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 3)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
-
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.Level4;
+                        }
                     }
                     break;
+
+                // Level 4
                 case Level.Level4:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
-
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.Level5;
+                        }
                     }
                     break;
+
+                // Level 5
                 case Level.Level5:
-               
                     if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
-
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.Level6;
+                        }
                     }
                     break;
-                case Level.Level6:
 
+                // Level 6
+                case Level.Level6:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
-
-
                     }
                     break;
+
+                // Default
                 default:
                     break;
             }
 
+            // Check if level is complete and the player can progress to the next scene
             if (_levelComplete == true)
             {
-                if (_currentKey.IsKeyDown(Keys.Space))
+                // Check for SPACE key press
+                if (_spacePressed)
                 {
+                    // Clears the level of tiles
                     ClearLevel();
+
+                    // Play win sound
                     Assets.Audio.WinSound.Play();
+
+                    //Now draw map again
                     _shouldDrawMap = true;
-                    _levels = Level.Level1 + 1;
                 }
             }
         }
@@ -588,7 +607,7 @@ namespace Isometric_test_1
         /// </summary>
         private void Level6()
         {
-             
+
             _mapSize = new(10, 10);
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
             _mapOffset = new(4.5f, 0.1f);
@@ -598,7 +617,7 @@ namespace Isometric_test_1
                 for (int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.grass);
-                
+
                 }
             }
         }
@@ -631,34 +650,34 @@ namespace Isometric_test_1
 
         public void DisplayForest()
         {
-            if(TileTypeCount(Tile.TileTypes.tree) <= 4) 
+            if (TileTypeCount(Tile.TileTypes.tree) <= 4)
             {
-                for(int x = 0; x < _tiles.GetLength(0)-1; x++)
+                for (int x = 0; x < _tiles.GetLength(0) - 1; x++)
                 {
-                    for(int y = 0; y < _tiles.GetLength(1)-1; y++)
+                    for (int y = 0; y < _tiles.GetLength(1) - 1; y++)
                     {
-                        if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
-                        {                            
-                            if(_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
+                        if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                        {
+                            if (_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
                             {
-                                if(_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
+                                if (_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
                                 {
-                                    if(_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
+                                    if (_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
                                     {
                                         // CHANGE ABOVE TILE DISPLAY
                                         var _forestTile = _tiles[x + 1, y + 1];
-                                        
+
                                         // Update tiles to forest type
-                                        _forestTile._tileType      = Tile.TileTypes.forest;
+                                        _forestTile._tileType = Tile.TileTypes.forest;
                                         _tiles[x, y + 1]._tileType = Tile.TileTypes.forest;
                                         _tiles[x + 1, y]._tileType = Tile.TileTypes.forest;
-                                        _tiles[x,y]._tileType      = Tile.TileTypes.forest;
+                                        _tiles[x, y]._tileType = Tile.TileTypes.forest;
 
                                         // Update tiles to forest sprite
-                                        _forestTile     ._tileObjectSprite = Assets.Sprites.forest;
+                                        _forestTile._tileObjectSprite = Assets.Sprites.forest;
                                         _tiles[x, y + 1]._tileObjectSprite = null;
                                         _tiles[x + 1, y]._tileObjectSprite = null;
-                                        _tiles[x , y]   ._tileObjectSprite = null;
+                                        _tiles[x, y]._tileObjectSprite = null;
 
                                         // update forest sprite offset
                                         _forestTile._tileObjectOffset.X = -40;
@@ -670,9 +689,38 @@ namespace Isometric_test_1
                                         //forest = true;
                                     }
                                 }
-                            }                            
+                            }
                         }
                     }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Updates the text that is displayed to track level goals
+        /// </summary>
+        public void UpdateGoalText()
+        {
+            // Won't be updated if level is complete
+            if (_levelComplete == false)
+            {
+                switch (_levels)
+                {
+                    // Level 1
+                    case Level.Level1:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
+                        break;
+
+                    // Level 2
+                    case Level.Level2:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 4 tree";
+                        break;
+
+                    // Default
+                    default:
+                        _textGoal = "";
+                        break;
                 }
             }
         }
