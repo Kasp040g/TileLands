@@ -472,8 +472,30 @@ namespace Isometric_test_1
             _tiles[4, 3] = new(new Point(4, 3), Tile.TileTypes.grass);
             _tiles[4, 4] = new(new Point(4, 4), Tile.TileTypes.empty);
         }
-
         private void Level4()
+        {
+            _mapSize = new(4, 2);
+            _mapOffset = new(4f, 3f);
+
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.bush);
+            _tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.bush);
+
+
+            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.bush);
+            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.bush);
+
+
+            _tiles[2, 0] = new(new Point(2, 0), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(new Point(2, 1), Tile.TileTypes.grass);
+
+
+            _tiles[3, 0] = new(new Point(3, 0), Tile.TileTypes.grass);
+            _tiles[3, 1] = new(new Point(3, 1), Tile.TileTypes.empty);
+        }
+        private void Level5()
         {
             _mapSize = new(5, 2);
             _mapOffset = new(3.75f, 3f);
@@ -498,7 +520,7 @@ namespace Isometric_test_1
 
         }
 
-        private void Level5()
+        private void Level6()
         {
             _mapSize = new(4, 7);
             _mapOffset = new(5f, 3f);
@@ -539,12 +561,14 @@ namespace Isometric_test_1
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
 
         }
+
+        
         /// <summary>
         /// Level 6 is a for loop that makes a 10x10 map, allowing the player to play around and see how many trees they can get.
         /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
         /// whereas level 6 only consists of 1 type, which makes it easy to make in a loop.
         /// </summary>
-        private void Level6()
+        private void LevelEndless()
         {
              
             _mapSize = new(10, 10);
