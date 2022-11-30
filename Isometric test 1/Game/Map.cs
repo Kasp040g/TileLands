@@ -637,16 +637,40 @@ namespace Isometric_test_1
                 {
                     for(int y = 0; y < _tiles.GetLength(1)-1; y++)
                     {
-                        if(_tiles[x, y]    ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x, y+1]  ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x+1, y]  ._tileType == Tile.TileTypes.tree && 
-                           _tiles[x+1, y+1]._tileType == Tile.TileTypes.tree)
-                        {
-                            //CHANGE ABOVE TILE DISPLAY
+                        if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                        {                            
+                            if(_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
+                            {
+                                if(_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
+                                {
+                                    if(_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
+                                    {
+                                        // CHANGE ABOVE TILE DISPLAY
+                                        var _forestTile = _tiles[x + 1, y + 1];
+                                        
+                                        // Update tiles to forest type
+                                        _forestTile._tileType      = Tile.TileTypes.forest;
+                                        _tiles[x, y + 1]._tileType = Tile.TileTypes.forest;
+                                        _tiles[x + 1, y]._tileType = Tile.TileTypes.forest;
+                                        _tiles[x,y]._tileType      = Tile.TileTypes.forest;
 
-                            //START HOBVERING BIRDS ANIMATION
+                                        // Update tiles to forest sprite
+                                        _forestTile     ._tileObjectSprite = Assets.Sprites.forest;
+                                        _tiles[x, y + 1]._tileObjectSprite = null;
+                                        _tiles[x + 1, y]._tileObjectSprite = null;
+                                        _tiles[x , y]   ._tileObjectSprite = null;
 
-                            _forest = true;
+                                        // update forest sprite offset
+                                        _forestTile._tileObjectOffset.X = -40;
+                                        _forestTile._tileObjectOffset.Y = -200;
+
+                                        //START HOVERING BIRDS ANIMATION
+
+
+                                        //forest = true;
+                                    }
+                                }
+                            }                            
                         }
                     }
                 }

@@ -8,11 +8,11 @@ namespace Isometric_test_1
 {
     public class Animation
     {
-        private readonly Texture2D _texture;
-        private readonly List<Rectangle> _sourceRectangles = new();
-        private readonly int _frames;
+        private Texture2D _texture;
+        private List<Rectangle> _sourceRectangles = new();
+        private int _frames;
         private int _frame;
-        private readonly float _frameTime;
+        private float _frameTime;
         private float _frameTimeLeft;
         private bool _active = true;
 

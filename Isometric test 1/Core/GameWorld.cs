@@ -90,7 +90,7 @@ namespace Isometric_test_1
             //Plays and repeats the background music
             MediaPlayer.Play(Audio.BackgroundMusic);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.07f;
+            MediaPlayer.Volume = 1f;
             
 
             //Transfer sprite batch to be global
