@@ -69,7 +69,8 @@ public class Tile
         _tileSprite = _tileSprites[_number];
 
         _mapPosition = position;
-        _coordinates = GameManager._map.MapToScreen(position.X, position.Y);
+        //_coordinates = GameManager._map.MapToScreen(position.X, position.Y);
+        _coordinates = GameState._map.MapToScreen(position.X, position.Y);
         _tileType = tileType;
 
         //Check if tile is empty instead
