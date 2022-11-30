@@ -13,9 +13,11 @@ namespace Isometric_test_1
         private GameManager _gameManager;
         private List<ScrollingBackground> _scrollingBackgrounds;
 
-        // Game State 
-        public enum GameState { Idle, Start, Play, CheckEnd }
-        private GameState _gameState;
+        public static int ScreenWidth = 1600;
+        public static int ScreenHeight = 900;
+
+        //public static int ScreenWidth = 1280;
+        //public static int ScreenHeight = 720;
 
         /// <summary>
         /// Game world constructer, creates and sets up the game world
@@ -44,6 +46,9 @@ namespace Isometric_test_1
             _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
 
+            // TODO : merge into assets
+            Sprites.Load(Content);
+
             //Instantiate game manager and run GameManager's Initialize
             _gameManager = new();
             _gameManager.Init();
@@ -61,8 +66,13 @@ namespace Isometric_test_1
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Transfer sprite batch to be global
+            Globals.SpriteBatch = _spriteBatch;
+
             //Transfer content to be global
             Globals.Content = Content;
+
+            
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -88,11 +98,12 @@ namespace Isometric_test_1
             MediaPlayer.Volume = 1f;
             
 
-            //Transfer sprite batch to be global
-            Globals.SpriteBatch = _spriteBatch;
+            
 
             //Create test font
             Globals.FontTest = Globals.Content.Load<SpriteFont>("FontTest");
+
+            
         }
 
 
