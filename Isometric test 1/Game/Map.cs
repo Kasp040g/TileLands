@@ -2,6 +2,9 @@
 {
     public class Map
     {
+        //Animations
+        private Eagle _bird_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight /2));
+
         //Setup basic tile and map information variables
         private Point _mapSize;
         private readonly Point _tileSize;
@@ -87,6 +90,9 @@
         /// </summary>
         public void Update()
         {
+            // Update Animations
+            _bird_ss.Update();
+
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
@@ -226,6 +232,9 @@
         /// </summary>
         public void Draw()
         {
+            // Draw Animations
+            _bird_ss.Draw();
+
             //Loops through the map array and calls the individual tiles' draw method
             for (int y = 0; y < _mapSize.Y; y++)
             {
