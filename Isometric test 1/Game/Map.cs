@@ -11,7 +11,7 @@ namespace Isometric_test_1
         private Vector2 _mapOffset = new(4.5f, 4f);
         private Tile[,] _tiles;
         private bool _shouldDrawMap = true;
-        private bool _shouldShowWinText = false;
+        private bool _levelComplete = false;
         private bool _forest = false;
 
 
@@ -22,6 +22,9 @@ namespace Isometric_test_1
         //Keyboard
         private KeyboardState _currentKey;
         private KeyboardState _previousKey;
+
+        //Text goals
+        string _textGoal = "";              //The current goal as a string
 
         // Level States
         private Level _levels;
@@ -143,7 +146,33 @@ namespace Isometric_test_1
                     default:
                         break;
                 }
+
+                _levelComplete = false;
+
                 _shouldDrawMap = false;
+            }
+
+
+            // Level goal text
+            if (_levelComplete == false)
+            {
+                switch (_levels)
+                {
+                    // Level 1
+                    case Level.Level1:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
+                        break;
+
+                    // Level 2
+                    case Level.Level2:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 4 tree";
+                        break;
+
+                    // Default
+                    default:
+                        _textGoal = "";
+                        break;
+                }
             }
 
 
@@ -232,106 +261,115 @@ namespace Isometric_test_1
                     _tiles[x, y].Draw();
                 }
             }
-            if (_shouldShowWinText)
+            if (_levelComplete)
             {
+                //Setup text strings
                 string _text1 = "Congratulations";
                 string _text2 = "Press 'Space' for next level";
 
+                //Measure the string both horizontal and vertical
                 Vector2 _size1 = Globals.FontTest.MeasureString(_text1);
                 Vector2 _size2 = Globals.FontTest.MeasureString(_text2);
 
-                int _SO = 2;            //Shadow offset
+                //Setup text shadow
+                int _SO = 2;                                 //Shadow offset
+                Color _SHA_COL = Color.DarkSlateBlue;        //Shadow color
 
+                //Set text 1 positions
                 Vector2 _textPosition1;
                 _textPosition1.X = GameWorld.ScreenWidth / 2 - _size1.X / 2;
                 _textPosition1.Y = (GameWorld.ScreenHeight / 4) * 3;
 
+                //Set text 2 positions
                 Vector2 _textPosition2;
                 _textPosition2.X = GameWorld.ScreenWidth / 2 - _size2.X / 2;
                 _textPosition2.Y = (GameWorld.ScreenHeight / 4) * 3;
 
-                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, new Vector2(_textPosition1.X + _SO, _textPosition1.Y + _SO), Color.Black);
-                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X + _SO, _textPosition2.Y + _SO + _size2.Y), Color.Black);
+                //Draw text shadow
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, new Vector2(_textPosition1.X + _SO, _textPosition1.Y + _SO), _SHA_COL);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X + _SO, _textPosition2.Y + _SO + _size2.Y), _SHA_COL);
 
-                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, _textPosition1, Color.White);
-                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X, _textPosition2.Y + _size2.Y), Color.White);
+                //Draw text
+                Color _TEXT_COL = Color.White;
 
-                _shouldShowWinText = false;
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, _textPosition1, _TEXT_COL);
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X, _textPosition2.Y + _size2.Y), _TEXT_COL);
             }
             /*if(_forest)
             {
                 Globals.SpriteBatch.DrawString(Globals.FontTest, $"      Congratulations \n you have created a forest", new Vector2(GameWorld.ScreenHeight / 2, GameWorld.ScreenWidth / 2), Color.White);
                 _forest = false;
             }*/
+
+
+            if (_textGoal != "")
+            {
+                //Text
+                string _text = $"Goals:\n{_textGoal}";
+
+                //Measure the string both horizontal and vertical
+                Vector2 _size1 = Globals.FontTest.MeasureString(_textGoal);
+
+                //Setup text shadow
+                int _SO = 2;                                 //Shadow offset
+                Color _SHA_COL = Color.DarkSlateBlue;        //Shadow color
+
+                //Set text 1 positions
+                Vector2 _textPosition1;
+                _textPosition1.X = GameWorld.ScreenWidth / 20;
+                _textPosition1.Y = GameWorld.ScreenHeight / 20;
+
+                //Draw text shadow
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text, new Vector2(_textPosition1.X + _SO, _textPosition1.Y + _SO), _SHA_COL);
+
+                //Draw text
+                Color _TEXT_COL = Color.White;
+
+                Globals.SpriteBatch.DrawString(Globals.FontTest, _text, _textPosition1, _TEXT_COL);
+            }
         }
 
         //Tile.WinCon = new EventHandler(solutio);
 
         private void SolutionFound()
         {
+
+
+
             switch(_levels)
             {
                 case Level.Level1:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 1)
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
-                        
-
-
-                        if (_currentKey.IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            _levels = Level.Level2;
-                            
-                        }
+                        _levelComplete = true;
                     }
                     break;
                 case Level.Level2:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 4)
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
+                        _levelComplete = true;
 
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            _levels = Level.Level3;
-                        }
+
                     }
                     break;
                 case Level.Level3:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 3)
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
+                        _levelComplete = true;
 
-                        if(_currentKey.IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            _levels = Level.Level4;
-                        }
+
                     }
                     break;
                 case Level.Level4:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
+                        _levelComplete = true;
 
-                        if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            _levels = Level.Level5;
-                        }
+
                     }
                     break;
                 case Level.Level5:
@@ -339,15 +377,9 @@ namespace Isometric_test_1
                     if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
+                        _levelComplete = true;
 
-                        if(_currentKey.IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            _levels = Level.Level6;
-                        }
+
                     }
                     break;
                 case Level.Level6:
@@ -355,21 +387,28 @@ namespace Isometric_test_1
                     if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
-                        _shouldShowWinText = true;
+                        _levelComplete = true;
 
-                        if (_currentKey.IsKeyDown(Keys.Space))
-                        {
-                            ClearLevel();
-                            Assets.Audio.WinSound.Play();
-                            _shouldDrawMap = true;
-                            //_levels = Level.Level1;
-                        }
+
                     }
                     break;
                 default:
                     break;
             }
+
+            if (_levelComplete == true)
+            {
+                if (_currentKey.IsKeyDown(Keys.Space))
+                {
+                    ClearLevel();
+                    Assets.Audio.WinSound.Play();
+                    _shouldDrawMap = true;
+                    _levels = Level.Level1 + 1;
+                }
+            }
         }
+
+
         #region Levels
 
         //private void TempLevel()
@@ -539,6 +578,9 @@ namespace Isometric_test_1
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
 
         }
+
+
+
         /// <summary>
         /// Level 6 is a for loop that makes a 10x10 map, allowing the player to play around and see how many trees they can get.
         /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
