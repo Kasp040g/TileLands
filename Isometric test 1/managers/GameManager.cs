@@ -21,7 +21,7 @@ namespace Isometric_test_1
         private bool _saveFileCreated;
 
         //Animations
-        private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
+        //private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
 
         public GameManager()
         {
@@ -66,14 +66,14 @@ namespace Isometric_test_1
             InputManager.Update();
             _map.Update();
             _debugManager.Update(gameTime);
-            _bird_ss.Update();
+            //_bird_ss.Update();
             _state.Update(this);
         }
 
         public void Draw()
         {
             _map.Draw();
-            _bird_ss.Draw();
+            //_bird_ss.Draw();
             _debugManager.Draw();
             _state.Draw(this);
         }

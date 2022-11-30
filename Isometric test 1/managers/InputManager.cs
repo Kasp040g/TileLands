@@ -10,9 +10,9 @@ namespace Isometric_test_1
         // Direction and Position
         private static Vector2 _direction;
         public static Vector2 Direction => _direction;
-        public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
+        //public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
 
-        //public static Point MousePosition => Mouse.GetState().Position;
+        public static Point MousePosition => Mouse.GetState().Position;
 
         // Keyboard properties
         public static bool SpacePressed { get; private set; }

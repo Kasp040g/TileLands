@@ -14,7 +14,7 @@ namespace Isometric_test_1
 
             //Bottons            
             AddButton(new(Sprites.Btn_Big, new(x, y))).OnClick += gm.Play;
-            AddButton(new(Sprites.Btn_Big, new(x, y + 300))).OnClick += gm.Quit;
+            AddButton(new(Sprites.Btn_Small, new(x, y + 300))).OnClick += gm.Quit;
         }
 
         private Button AddButton(Button button)
