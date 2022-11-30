@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -21,6 +22,15 @@ namespace Isometric_test_1
 
         //Animations
         private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
+
+        public GameManager()
+        {
+            // Init
+            StateManager.Init(this);
+
+            // state
+            ChangeState(GameStates.Splash);
+        }
 
         public void Init()
         {
@@ -46,12 +56,18 @@ namespace Isometric_test_1
             save(_sm);
         }
 
+        public void ChangeState(GameStates state)
+        {
+            _state = StateManager.States[state];
+        }
+
         public void Update(GameTime gameTime)
         {
             InputManager.Update();
             _map.Update();
             _debugManager.Update(gameTime);
             _bird_ss.Update();
+            _state.Update(this);
         }
 
         public void Draw()
@@ -59,7 +75,20 @@ namespace Isometric_test_1
             _map.Draw();
             _bird_ss.Draw();
             _debugManager.Draw();
+            _state.Draw(this);
         }
+
+        #region Button Methods
+        public void Play(object sender, EventArgs e)
+        {
+            ChangeState(GameStates.Game);
+        }
+
+        public void Quit(object sender, EventArgs e)
+        {
+
+        }
+        #endregion Button Methods
 
         private void save(ScoreManager sm)
         {
