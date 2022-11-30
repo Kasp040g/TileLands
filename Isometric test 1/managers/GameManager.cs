@@ -17,7 +17,7 @@ namespace Isometric_test_1
         // Save/Load
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";
-        public static Map _map = new();
+        //public static Map _map = new();
         private bool _saveFileCreated;
 
         //Animations
@@ -64,16 +64,12 @@ namespace Isometric_test_1
         public void Update(GameTime gameTime)
         {
             InputManager.Update();
-            _map.Update();
-            _debugManager.Update(gameTime);
-            //_bird_ss.Update();
+            _debugManager.Update(gameTime);            
             _state.Update(this);
         }
 
         public void Draw()
-        {
-            _map.Draw();
-            //_bird_ss.Draw();
+        {            
             _debugManager.Draw();
             _state.Draw(this);
         }
