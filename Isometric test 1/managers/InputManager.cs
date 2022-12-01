@@ -1,28 +1,45 @@
-﻿namespace Isometric_test_1
-
+﻿
+namespace Isometric_test_1
 {
     public static class InputManager
     {
+        // Input states        
+        private static MouseState _lastMouseState;
         private static KeyboardState _lastKeyboardState;
 
-        //private static Point _direction;
-        //public static Point Direction => _direction;
+        // Direction and Position
+        private static Vector2 _direction;
+        public static Vector2 Direction => _direction;
+        //public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
+
         public static Point MousePosition => Mouse.GetState().Position;
+
+        // Keyboard properties
+        public static bool SpacePressed { get; private set; }
+
+        // Mouse properties
+        public static Rectangle MouseRectangle { get; private set; }
+        public static bool MouseRightClicked { get; private set; }
+        public static bool MouseLeftClicked { get; private set; }
 
         public static void Update()
         {
+            // Storing Input states
             var keyboardState = Keyboard.GetState();
+            var mouseState = Mouse.GetState();
+            var onscreen = mouseState.X >= 0 && mouseState.X < Globals.SpriteBatch.GraphicsDevice.PresentationParameters.BackBufferWidth
+                        && mouseState.Y >= 0 && mouseState.Y < Globals.SpriteBatch.GraphicsDevice.PresentationParameters.BackBufferHeight;
 
-            //_direction = Point.Zero;
-            
-            //if (keyboardState.IsKeyDown(Keys.W) && _lastKeyboardState.IsKeyUp(Keys.W)) _direction.Y--;
-            //if (keyboardState.IsKeyDown(Keys.S) && _lastKeyboardState.IsKeyUp(Keys.S)) _direction.Y++;
-            //if (keyboardState.IsKeyDown(Keys.A) && _lastKeyboardState.IsKeyUp(Keys.A)) _direction.X--;
-            //if (keyboardState.IsKeyDown(Keys.D) && _lastKeyboardState.IsKeyUp(Keys.D)) _direction.X++;
+            // Mouse Handling
+            MouseLeftClicked = (mouseState.LeftButton == ButtonState.Pressed) && (_lastMouseState.LeftButton == ButtonState.Released) && onscreen;
+            MouseRightClicked = (mouseState.RightButton == ButtonState.Pressed) && (_lastMouseState.RightButton == ButtonState.Released) && onscreen;
+            MouseRectangle = new(mouseState.X, mouseState.Y, 1, 1);
 
-            if(keyboardState.IsKeyDown(Keys.R) && _lastKeyboardState.IsKeyUp(Keys.R)) 
-            if(keyboardState.IsKeyDown(Keys.N) && _lastKeyboardState.IsKeyUp(Keys.N)) 
+            // Key Handling
+            SpacePressed = _lastKeyboardState.IsKeyUp(Keys.Space) && keyboardState.IsKeyDown(Keys.Space);
 
+            // Reseting Input States
+            _lastMouseState = mouseState;
             _lastKeyboardState = keyboardState;
         }
     }

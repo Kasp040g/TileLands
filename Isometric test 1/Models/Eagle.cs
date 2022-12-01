@@ -15,7 +15,7 @@ namespace Isometric_test_1
 
         public Eagle(Vector2 pos)
         {
-            _texture ??= Globals.Content.Load<Texture2D>("SingleEagle_ss");
+            _texture ??= Sprites.Eagle_ss;
             _anim = new(_texture, 14, 1, 0.1f, 1);
             _position = pos;
         }
