@@ -32,6 +32,10 @@ namespace Isometric_test_1
             public static Texture2D tileObjectBush  = Globals.Content.Load<Texture2D>("tileObjectBush");
             public static Texture2D tileObjectTree  = Globals.Content.Load<Texture2D>("tileObjectTree");
             public static Texture2D forest          = Globals.Content.Load<Texture2D>("Forest");
+
+            //Backgrounds
+            public static Texture2D cloudsFast  = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
+            public static Texture2D cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
         }
 
         public readonly struct Audio

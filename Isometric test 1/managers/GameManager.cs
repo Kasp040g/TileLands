@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -19,6 +20,11 @@ namespace Isometric_test_1
         private const string _savePath = "testScore.json";
         //public static Map _map = new();
         private bool _saveFileCreated;
+
+        //Background
+        public static List<ScrollingBackground> _scrollingBackgrounds;
+
+
 
         //Animations
         //private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
@@ -54,6 +60,21 @@ namespace Isometric_test_1
 
             // save
             save(_sm);
+
+
+            //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
+            _scrollingBackgrounds = new List<ScrollingBackground>()
+            {
+                new ScrollingBackground(Assets.Sprites.cloudsFast, 18f, true)
+                {
+                  Layer = 0.99f,
+                },
+
+                new ScrollingBackground(Assets.Sprites.cloudsSlow, 25f, true)
+                {
+                  Layer = 0.8f,
+                }
+            };
         }
 
         public void ChangeState(ScreenStates state)
@@ -66,12 +87,26 @@ namespace Isometric_test_1
             InputManager.Update();
             _debugManager.Update(gameTime);            
             _state.Update(this);
+
+            //loops the backgrounds
+            foreach (var sb in _scrollingBackgrounds)
+            {
+                sb.Update(gameTime);
+            }
+
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime)
         {            
             _debugManager.Draw();
             _state.Draw(this);
+
+            foreach (var sb in _scrollingBackgrounds)
+            {   
+                sb.Draw(gameTime, Globals.SpriteBatch);
+            }
+
+
         }
 
         #region Button Methods

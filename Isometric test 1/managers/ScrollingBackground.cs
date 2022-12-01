@@ -80,6 +80,8 @@ namespace Isometric_test_1
         {
             foreach (var sprite in _sprites)
                 sprite.Draw(gameTime, spriteBatch);
+
+            
         }
 
         public override void Update(GameTime gameTime)
