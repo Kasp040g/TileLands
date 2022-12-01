@@ -105,14 +105,16 @@ namespace Isometric_test_1
         }
 
         public void Draw(GameTime gameTime)
-        {            
+        {
+            foreach (var sb in _scrollingBackgrounds)
+            {
+                sb.Draw(gameTime, Globals.SpriteBatch);
+            }
+
             _debugManager.Draw();
             _state.Draw(this);
 
-            foreach (var sb in _scrollingBackgrounds)
-            {   
-                sb.Draw(gameTime, Globals.SpriteBatch);
-            }
+           
 
 
         }
