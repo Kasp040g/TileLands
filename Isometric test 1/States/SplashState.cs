@@ -24,7 +24,7 @@ namespace Isometric_test_1
 
         public override void Draw(GameManager gm)
         {
-            Globals.SpriteBatch.Draw(Sprites.SplashScreen, Vector2.Zero, Color.White);
+            Globals.SpriteBatch.Draw(Assets.Sprites.SplashScreen, Vector2.Zero, Color.White);
         }
     }
 }

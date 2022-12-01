@@ -13,13 +13,11 @@ namespace Isometric_test_1
         {
 
             // Screen BackGrounds
-            SplashScreen = content.Load<Texture2D>("Splash");
-            MenuScreen = content.Load<Texture2D>("tempmenu");
+            
 
-            Btn_Big = content.Load<Texture2D>("Button");
-            Btn_Small = content.Load<Texture2D>("Button_square");
+            
 
-            Eagle_ss = content.Load<Texture2D>("SingleEagle_ss");
+            
         }
     }
 }

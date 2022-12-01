@@ -4,7 +4,6 @@ namespace Isometric_test_1
 {
     public class MenuState : State
     {
-
         private List<Button> _buttons = new();
         public MenuState(GameManager gm)
         {
@@ -13,8 +12,8 @@ namespace Isometric_test_1
             var x = Globals.Bounds.X / 2;
 
             //Bottons            
-            AddButton(new(Sprites.Btn_Big, new(x, y))).OnClick += gm.Play;
-            AddButton(new(Sprites.Btn_Small, new(x, y + 300))).OnClick += gm.Quit;
+            AddButton(new(Assets.Sprites.Btn_Big, new(x, y))).OnClick += gm.Play;
+            AddButton(new(Assets.Sprites.Btn_Small, new(x, y + 300))).OnClick += gm.Quit;
         }
 
         private Button AddButton(Button button)
@@ -42,7 +41,7 @@ namespace Isometric_test_1
         public override void Draw(GameManager gm)
         {
             // Draw Background
-            Globals.SpriteBatch.Draw(Sprites.MenuScreen, Vector2.Zero, Color.White);
+            Globals.SpriteBatch.Draw(Assets.Sprites.MenuScreen, Vector2.Zero, Color.White);
 
             // Draw Buttons
             foreach(var button in _buttons)

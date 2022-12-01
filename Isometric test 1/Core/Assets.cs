@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
-
+﻿
 namespace Isometric_test_1
 {
     public class Assets : Component
@@ -18,8 +15,19 @@ namespace Isometric_test_1
 
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
 
-        public readonly struct Sprites
+        public struct Sprites
         {
+            // Backgrounds
+            public static Texture2D  SplashScreen   = Globals.Content.Load<Texture2D>("Splash");
+            public static Texture2D  MenuScreen     = Globals.Content.Load<Texture2D>("tempmenu");
+
+            // Buttons
+            public static Texture2D  Btn_Big        = Globals.Content.Load<Texture2D>("Button");
+            public static Texture2D  Btn_Small      = Globals.Content.Load<Texture2D>("Button_square");
+
+            // Animations
+            public static Texture2D  Eagle_ss       = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+
             // Tile struct members
             public static Texture2D tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
             public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
@@ -34,14 +42,17 @@ namespace Isometric_test_1
             public static Texture2D forest          = Globals.Content.Load<Texture2D>("Forest");
         }
 
+        /// <summary>
+        /// Audio struct member
+        /// </summary>
         public readonly struct Audio
         {
-            // Audio struct members
+            // SoundEffects
             public static SoundEffect MergeSound;
             public static SoundEffect WinSound;
-            public static SoundEffect ResetSound;
-          
+            public static SoundEffect ResetSound;          
 
+            // Background Music
             public static Song BackgroundMusic;
 
 
@@ -65,7 +76,7 @@ namespace Isometric_test_1
         }
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

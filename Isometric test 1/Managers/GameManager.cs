@@ -16,13 +16,9 @@ namespace Isometric_test_1
 
         // Save/Load
         private ScoreManager _sm;
-        private const string _savePath = "testScore.json";
-        //public static Map _map = new();
+        private const string _savePath = "testScore.json";        
         private bool _saveFileCreated;
-
-        //Animations
-        //private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
-
+        
         public GameManager()
         {
             // Init
@@ -34,6 +30,14 @@ namespace Isometric_test_1
 
         public void Init()
         {
+            //Load audio files
+            Assets.Audio.LoadAudio();
+
+            //Plays and repeats the background music
+            MediaPlayer.Play(Assets.Audio.BackgroundMusic);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 1f;
+
             _sm = new()
             {
                 Level1Done = false,
@@ -84,6 +88,21 @@ namespace Isometric_test_1
         {
 
         }
+
+        public void ToggleMusic(object sender, EventArgs e)
+        {
+
+        }
+
+        public void ToggleSoundEffect(object sender, EventArgs e)
+        {
+
+        }
+
+        //public void ResetLevel(object sender, EventArgs e)
+        //{
+
+        //}
         #endregion Button Methods
 
         private void save(ScoreManager sm)
