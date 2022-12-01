@@ -1,3 +1,3 @@
 ﻿
-using var game = new Isometric_test_1.GameWorld();
+using var game = new TileLands.GameWorld();
 game.Run();

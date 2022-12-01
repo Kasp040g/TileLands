@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Isometric_test_1
+namespace TileLands
 {
     public class Animation
     {
