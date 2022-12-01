@@ -18,7 +18,11 @@ namespace Isometric_test_1
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";        
         private bool _saveFileCreated;
+
+        // Music bool
+        private bool _musicIsPaused;
         
+
         public GameManager()
         {
             // Init
@@ -36,7 +40,10 @@ namespace Isometric_test_1
             //Plays and repeats the background music
             MediaPlayer.Play(Assets.Audio.BackgroundMusic);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 1f;
+            MediaPlayer.Volume = 1.2f;
+
+            // sound effect not muted
+            Globals._soundEffectsMuted = false;
 
             _sm = new()
             {
@@ -90,13 +97,34 @@ namespace Isometric_test_1
         }
 
         public void ToggleMusic(object sender, EventArgs e)
-        {
-
+        {            
+            if(!_musicIsPaused)
+            {
+                //MediaPlayer.Play();
+                
+                MediaPlayer.Volume = 0f;
+                _musicIsPaused = true;
+            }
+            else
+            {
+                //MediaPlayer.Pause();
+                
+                MediaPlayer.Volume = 1.2f;
+                _musicIsPaused = false;
+            }
         }
 
         public void ToggleSoundEffect(object sender, EventArgs e)
         {
-
+            if(Globals._soundEffectsMuted)
+            {
+                Globals._soundEffectsMuted = false;
+            }
+            else
+            {
+                Globals._soundEffectsMuted = true;
+            }
+            Console.WriteLine(Globals._soundEffectsMuted);
         }
 
         //public void ResetLevel(object sender, EventArgs e)

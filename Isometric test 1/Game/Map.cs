@@ -231,7 +231,11 @@ namespace Isometric_test_1
         public void ResetLevel(object sender, EventArgs e)
         {
             var _tempLevel = _levels;
-            Assets.Audio.ResetSound.Play(0.1f, 0, 0);
+            if(!Globals._soundEffectsMuted)
+            {
+                Console.WriteLine(Globals._soundEffectsMuted);
+                Assets.Audio.ResetSound.Play(0.1f, 0, 0);
+            }
 
             ClearLevel();
             _shouldDrawMap = true;

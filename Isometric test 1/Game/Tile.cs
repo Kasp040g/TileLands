@@ -154,7 +154,11 @@ public class Tile
         {
             hoveredTile._tileType = _mergeRecipies[recipeIndex][2];
 
-            Assets.Audio.MergeSound.Play();
+            if(!Globals._soundEffectsMuted)
+            {
+                Assets.Audio.MergeSound.Play();
+            }
+            
 
             // Find and update the correct tile object sprite for both tiles
             hoveredTile.UpdateTileObjectSprite();
@@ -162,6 +166,8 @@ public class Tile
 
             // invoke Event
             WinCon?.Invoke(_mergeRecipies, new EventArgs());
+
+            
         }
     }
 
