@@ -1,5 +1,5 @@
 ﻿
-namespace Isometric_test_1
+namespace TileLands
 {
     public static class Globals
     {

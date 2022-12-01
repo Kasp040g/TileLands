@@ -1,6 +1,5 @@
 ﻿
-
-namespace Isometric_test_1
+namespace TileLands
 {
     public class Assets : Component
     {

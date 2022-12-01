@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Isometric_test_1
+namespace TileLands
 {
     public class GameWorld : Game
     {

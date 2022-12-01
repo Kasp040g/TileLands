@@ -5,8 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
-
-namespace Isometric_test_1
+namespace TileLands
 {
     public class GameManager
     {

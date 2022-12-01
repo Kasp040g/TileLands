@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Isometric_test_1;
+namespace TileLands;
 
 public class Tile
 {
