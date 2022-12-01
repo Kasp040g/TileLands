@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Security.Cryptography.Xml;
 
 namespace TileLands
 {
     public class Map
     {
+        
         //Animations
         private Eagle _bird_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight /2));
+        private Deer _deer_m_run_ss;
+        private bool _forestFound = false;
 
         //Setup basic tile and map information variables
         private Point _mapSize;
@@ -46,6 +50,7 @@ namespace TileLands
         /// </summary>
         public Map()
         {
+            
             _levels = Level.Level1;
 
             //Update tile size variables
@@ -94,20 +99,14 @@ namespace TileLands
         {
             // Update Animations
             _bird_ss.Update();
+            if(_forestFound)
+            {
+                _deer_m_run_ss.Update();
+            }
+            
 
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
-
-            //// Reset current level
-            //if (_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
-            //{
-            //    var _tempLevel = _levels;
-            //    Assets.Audio.ResetSound.Play(0.1f, 0, 0);
-
-            //    ClearLevel();
-            //    _shouldDrawMap = true;
-            //    _levels = _tempLevel;
-            //}
 
             // Skip current level  ***************for Debugging**************
             if (_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
@@ -240,13 +239,8 @@ namespace TileLands
             ClearLevel();
             _shouldDrawMap = true;
             _levels = _tempLevel;
-
-            //// Reset current level
-            //if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
-            //{
-                
-            //}
         } 
+
         /// <summary>
         /// Draw calls for tiles in map
         /// </summary>
@@ -297,12 +291,6 @@ namespace TileLands
                 Globals.SpriteBatch.DrawString(Globals.FontTest, _text1, _textPosition1, _TEXT_COL);
                 Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X, _textPosition2.Y + _size2.Y), _TEXT_COL);
             }
-            /*if(_forest)
-            {
-                Globals.SpriteBatch.DrawString(Globals.FontTest, $"      Congratulations \n you have created a forest", new Vector2(GameWorld.ScreenHeight / 2, GameWorld.ScreenWidth / 2), Color.White);
-                _forest = false;
-            }*/
-
 
             if (_textGoal != "")
             {
@@ -329,9 +317,11 @@ namespace TileLands
 
                 Globals.SpriteBatch.DrawString(Globals.FontTest, _text, _textPosition1, _TEXT_COL);
             }
+            if(_forestFound)
+            {
+                _deer_m_run_ss.Draw();
+            }            
         }
-
-        //Tile.WinCon = new EventHandler(solutio);
 
         private void SolutionFound()
         {
@@ -360,6 +350,7 @@ namespace TileLands
                         if (_spacePressed)
                         {     
                             _levels = Level.Level2;
+                            
                         }
                     }
                     break;
@@ -762,10 +753,10 @@ namespace TileLands
                                         _forestTile._tileObjectOffset.X = -40;
                                         _forestTile._tileObjectOffset.Y = -200;
 
-                                        //START HOVERING BIRDS ANIMATION
-
-
-                                        //forest = true;
+                                        //START Animal reward Animation
+                                        _forestFound = true;
+                                        Console.WriteLine("forest");
+                                        DeerAnimation(x, y);
                                     }
                                 }
                             }
@@ -775,6 +766,11 @@ namespace TileLands
             }
         }
 
+        private void DeerAnimation(int x, int y)
+        {
+            // TODO : rework deer så i draw on top of forest
+            _deer_m_run_ss = new(new(x + 500, y + 200));
+        }
 
         /// <summary>
         /// Updates the text that is displayed to track level goals

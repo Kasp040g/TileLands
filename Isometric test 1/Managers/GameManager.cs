@@ -46,7 +46,7 @@ namespace TileLands
             Globals._soundEffectsMuted = false;
 
             _sm = new()
-            {
+            {                
                 Level1Done = false,
                 Level2Done = false,
                 Level3Done = false,
