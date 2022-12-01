@@ -72,7 +72,7 @@ namespace Isometric_test_1
             //Transfer content to be global
             Globals.Content = Content;
 
-            
+
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -81,11 +81,11 @@ namespace Isometric_test_1
                 {
                   Layer = 0.99f,
                 },
-       
+
                 new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
                 {
                   Layer = 0.8f,
-                } 
+                }
             };
 
             //Load audio files
