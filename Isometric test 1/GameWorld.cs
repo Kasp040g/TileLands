@@ -1,6 +1,4 @@
-﻿
-using Microsoft.Xna.Framework.Media;
-using static Isometric_test_1.Assets;
+﻿using System.Collections.Generic;
 
 namespace Isometric_test_1
 {
@@ -47,6 +45,9 @@ namespace Isometric_test_1
             //Transfer content to be global
             Globals.Content = Content;
 
+            // TODO : merge into assets
+            Assets.Sprites.LoadSprites();
+
             //Instantiate game manager and run GameManager's Initialize
             _gameManager = new();
             _gameManager.Init();
@@ -80,14 +81,13 @@ namespace Isometric_test_1
 
            
 
-            //Load audio files
-            Assets.Audio.LoadAudio();
-
-
-            //Plays and repeats the background music
-            MediaPlayer.Play(Audio.BackgroundMusic);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 1f;
+            ////Load audio files
+            //Assets.Audio.LoadAudio();
+            
+            ////Plays and repeats the background music
+            //MediaPlayer.Play(Audio.BackgroundMusic);
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Volume = 1f;
             
 
             

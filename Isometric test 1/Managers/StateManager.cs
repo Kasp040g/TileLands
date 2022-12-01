@@ -22,7 +22,7 @@ namespace Isometric_test_1
             States.Clear();
             States.Add(ScreenStates.Splash, new SplashState());
             States.Add(ScreenStates.Menu, new MenuState(gm));
-            States.Add(ScreenStates.Game, new GameState());
+            States.Add(ScreenStates.Game, new GameState(gm));
 
 
         }

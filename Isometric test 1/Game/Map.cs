@@ -1,4 +1,6 @@
-﻿namespace Isometric_test_1
+﻿using System;
+
+namespace Isometric_test_1
 {
     public class Map
     {
@@ -100,16 +102,16 @@
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
-            // Reset current level
-            if (_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
-            {
-                var _tempLevel = _levels;
-                Assets.Audio.ResetSound.Play(0.1f, 0, 0);
+            //// Reset current level
+            //if (_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
+            //{
+            //    var _tempLevel = _levels;
+            //    Assets.Audio.ResetSound.Play(0.1f, 0, 0);
 
-                ClearLevel();
-                _shouldDrawMap = true;
-                _levels = _tempLevel;
-            }
+            //    ClearLevel();
+            //    _shouldDrawMap = true;
+            //    _levels = _tempLevel;
+            //}
 
             // Skip current level  ***************for Debugging**************
             if (_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
@@ -236,7 +238,21 @@
             DisplayForest();
         }
 
+        public void ResetLevel(object sender, EventArgs e)
+        {
+            var _tempLevel = _levels;
+            Assets.Audio.ResetSound.Play(0.1f, 0, 0);
 
+            ClearLevel();
+            _shouldDrawMap = true;
+            _levels = _tempLevel;
+
+            //// Reset current level
+            //if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
+            //{
+                
+            //}
+        } 
         /// <summary>
         /// Draw calls for tiles in map
         /// </summary>
