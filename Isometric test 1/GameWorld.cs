@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.Xna.Framework.Media;
-using System.Collections.Generic;
 using static Isometric_test_1.Assets;
 
 namespace Isometric_test_1
@@ -45,12 +44,17 @@ namespace Isometric_test_1
             _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
 
-            // TODO : merge into assets
-            Sprites.Load(Content);
+            //Transfer content to be global
+            Globals.Content = Content;
 
             //Instantiate game manager and run GameManager's Initialize
             _gameManager = new();
             _gameManager.Init();
+
+            // TODO : merge into assets
+            Sprites.Load(Content);
+
+          
 
             //Call game base initialization
             base.Initialize();
@@ -65,11 +69,12 @@ namespace Isometric_test_1
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
-            //Transfer content to be global
-            Globals.Content = Content;
+            
+          
 
 
 
