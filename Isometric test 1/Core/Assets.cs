@@ -11,7 +11,7 @@ namespace TileLands
         {
             get => _layer;
             set => _layer = value;
-        }                
+        }
 
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
 
@@ -27,6 +27,8 @@ namespace TileLands
 
             // Animations
             public static Texture2D Eagle_ss;
+            public static Texture2D Deer_m_run_ss;
+            public static Texture2D Deer_f_run_ss;
 
             // Tile struct members
             public static Texture2D tileGrassBlock1;
@@ -56,8 +58,11 @@ namespace TileLands
                 Btn_Big = Globals.Content.Load<Texture2D>("Button");
                 Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
 
+
                 // Animations
                 Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+                Deer_m_run_ss = Globals.Content.Load<Texture2D>("deer_f_run");
+                Deer_f_run_ss = Globals.Content.Load<Texture2D>("deer_m_run");
 
                 // Tile struct members
                 tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
@@ -83,17 +88,17 @@ namespace TileLands
             
 
         }
-        
+
 
         /// <summary>
         /// Audio struct member
         /// </summary>
-        public readonly struct Audio
+        public struct Audio
         {
             // SoundEffects
             public static SoundEffect MergeSound;
             public static SoundEffect WinSound;
-            public static SoundEffect ResetSound;          
+            public static SoundEffect ResetSound;
 
             // Background Music
             public static Song BackgroundMusic;
@@ -103,23 +108,23 @@ namespace TileLands
             public static void LoadAudio()
             {
                 // SoundEffects
-                MergeSound      = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");                
-                WinSound        = Globals.Content.Load<SoundEffect>("Audio/WinSound");
-                ResetSound      = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
+                MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
+                WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");
+                ResetSound = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
 
                 // Music
                 BackgroundMusic = Globals.Content.Load<Song>("Audio/lunar lounging_mp3");
-               
+
             }
         }
-        
+
         public Assets(Texture2D texture)
         {
             _texture = texture;
         }
         public override void Update(GameTime gameTime)
         {
-            
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -127,7 +132,5 @@ namespace TileLands
 
             spriteBatch.Draw(_texture, Position, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, Layer);
         }
-
-
     }
 }
