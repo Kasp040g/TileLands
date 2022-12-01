@@ -43,8 +43,11 @@ namespace Isometric_test_1
             _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
 
+            //Transfer content to be global
+            Globals.Content = Content;
+
             // TODO : merge into assets
-            Sprites.Load(Content);
+            Assets.Sprites.LoadSprites();
 
             //Instantiate game manager and run GameManager's Initialize
             _gameManager = new();
@@ -66,10 +69,7 @@ namespace Isometric_test_1
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
-            //Transfer content to be global
-            Globals.Content = Content;
-
-
+            
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()

@@ -18,29 +18,57 @@ namespace Isometric_test_1
         public struct Sprites
         {
             // Backgrounds
-            public static Texture2D  SplashScreen   = Globals.Content.Load<Texture2D>("Splash");
-            public static Texture2D  MenuScreen     = Globals.Content.Load<Texture2D>("tempmenu");
+            public static Texture2D SplashScreen;
+            public static Texture2D MenuScreen;
 
             // Buttons
-            public static Texture2D  Btn_Big        = Globals.Content.Load<Texture2D>("Button");
-            public static Texture2D  Btn_Small      = Globals.Content.Load<Texture2D>("Button_square");
+            public static Texture2D Btn_Big;
+            public static Texture2D Btn_Small;
 
             // Animations
-            public static Texture2D  Eagle_ss       = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+            public static Texture2D Eagle_ss;
 
             // Tile struct members
-            public static Texture2D tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
-            public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
-            public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
-            public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
-            public static Texture2D tileEmpty       = Globals.Content.Load<Texture2D>("tile5");
+            public static Texture2D tileGrassBlock1;
+            public static Texture2D tileGrassBlock2;
+            public static Texture2D tileGrassBlock3;
+            public static Texture2D tileGrassBlock4;
+            public static Texture2D tileEmpty;
 
             // Tile objects
-            public static Texture2D tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
-            public static Texture2D tileObjectBush  = Globals.Content.Load<Texture2D>("tileObjectBush");
-            public static Texture2D tileObjectTree  = Globals.Content.Load<Texture2D>("tileObjectTree");
-            public static Texture2D forest          = Globals.Content.Load<Texture2D>("Forest");
+            public static Texture2D tileObjectGrass;
+            public static Texture2D tileObjectBush;
+            public static Texture2D tileObjectTree;
+            public static Texture2D forest;
+
+            public static void LoadSprites()
+            {
+             // Backgrounds
+            SplashScreen = Globals.Content.Load<Texture2D>("Splash");
+            MenuScreen = Globals.Content.Load<Texture2D>("tempmenu");
+
+            // Buttons
+            Btn_Big = Globals.Content.Load<Texture2D>("Button");
+            Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
+
+            // Animations
+            Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+
+            // Tile struct members
+            tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
+            tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
+            tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
+            tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
+            tileEmpty = Globals.Content.Load<Texture2D>("tile5");
+
+            // Tile objects
+            tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
+            tileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
+            tileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
+            forest = Globals.Content.Load<Texture2D>("Forest");
+            }
         }
+        
 
         /// <summary>
         /// Audio struct member
