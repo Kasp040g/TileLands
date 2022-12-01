@@ -733,14 +733,14 @@
                                         _tiles[x, y]._tileType = Tile.TileTypes.forest;
 
                                         // Update tiles to forest sprite
-                                        _forestTile._tileObjectSprite = Assets.Sprites.forest;
+                                        _forestTile._tileObjectSprite = Assets.Sprites.tileObjectForest;
                                         _tiles[x, y + 1]._tileObjectSprite = null;
                                         _tiles[x + 1, y]._tileObjectSprite = null;
                                         _tiles[x, y]._tileObjectSprite = null;
 
                                         // update forest sprite offset
-                                        _forestTile._tileObjectOffset.X = -40;
-                                        _forestTile._tileObjectOffset.Y = -200;
+                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.tileObjectForest.Width/4;
+                                        _forestTile._tileObjectOffset.Y = -225;
 
                                         //START HOVERING BIRDS ANIMATION
 
