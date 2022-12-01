@@ -40,37 +40,49 @@ namespace Isometric_test_1
             public static Texture2D tileObjectGrass;
             public static Texture2D tileObjectBush;
             public static Texture2D tileObjectTree;
-            public static Texture2D forest;
+            public static Texture2D tileObjectForest;
+
+            // Backgrounds
+            public static Texture2D cloudsFast;
+            public static Texture2D cloudsSlow;
+
 
             public static void LoadSprites()
             {
-             // Backgrounds
-            SplashScreen = Globals.Content.Load<Texture2D>("Splash");
-            MenuScreen = Globals.Content.Load<Texture2D>("tempmenu");
+                // Backgrounds
+                SplashScreen = Globals.Content.Load<Texture2D>("Splash");
+                MenuScreen = Globals.Content.Load<Texture2D>("tempmenu");
 
-            // Buttons
-            Btn_Big = Globals.Content.Load<Texture2D>("Button");
-            Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
+                // Buttons
+                Btn_Big = Globals.Content.Load<Texture2D>("Button");
+                Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
 
-            // Animations
-            Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+                // Animations
+                Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
 
-            // Tile struct members
-            tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
-            tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
-            tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
-            tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
-            tileEmpty = Globals.Content.Load<Texture2D>("tile5");
+                // Tile struct members
+                tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
+                tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
+                tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
+                tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
+                tileEmpty = Globals.Content.Load<Texture2D>("tile5");
 
-            // Tile objects
-            public static Texture2D tileObjectGrass  = Globals.Content.Load<Texture2D>("tileObjectGrass");
-            public static Texture2D tileObjectBush   = Globals.Content.Load<Texture2D>("tileObjectBush");
-            public static Texture2D tileObjectTree   = Globals.Content.Load<Texture2D>("tileObjectTree");
-            public static Texture2D tileObjectForest = Globals.Content.Load<Texture2D>("tileObjectForest");
+                // Tile Objects
+                tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
+                tileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
+                tileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
+                tileObjectForest = Globals.Content.Load<Texture2D>("tileObjectForest");
 
-            //Backgrounds
-            public static Texture2D cloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
-            public static Texture2D cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
+                //Backgrounds
+                cloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
+                cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
+
+        }
+
+            
+
+            
+
         }
         
 

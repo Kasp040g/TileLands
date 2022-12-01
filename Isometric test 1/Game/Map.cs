@@ -863,12 +863,12 @@ namespace Isometric_test_1
 
                     // Level 7
                     case Level.Level7:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)*25+TileTypeCount(Tile.TileTypes.bush)*10}";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 7 trees";
                         break;
 
                     // Level Endless
                     case Level.LevelEndless:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree) * 25 + TileTypeCount(Tile.TileTypes.bush) * 10}";
+                        _textGoal = $"{(TileTypeCount(Tile.TileTypes.tree) * 25) + (TileTypeCount(Tile.TileTypes.bush) * 10) + (TileTypeCount(Tile.TileTypes.forest) * 50)}";
                         break;
 
 
