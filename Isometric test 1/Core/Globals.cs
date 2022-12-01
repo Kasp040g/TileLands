@@ -3,6 +3,9 @@ namespace Isometric_test_1
 {
     public static class Globals
     {
+        // Global sound effect bool
+        public static bool _soundEffectsMuted;
+
         ///Global variables for use in the project by all objects
         public static float TotalSeconds { get; set; }
         public static ContentManager Content { get; set; }
@@ -10,6 +13,10 @@ namespace Isometric_test_1
         public static Point Bounds { get; set; }            // Screen Bounderies
         public static SpriteFont FontTest { get; set; }
         public static bool DebugModeToggled { get; set; }   // Debug
+        
+
+
+
 
        
         /// <summary>
