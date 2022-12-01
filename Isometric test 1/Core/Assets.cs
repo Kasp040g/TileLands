@@ -21,21 +21,17 @@ namespace Isometric_test_1
         public readonly struct Sprites
         {
             // Tile struct members
-            public static Texture2D tileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
-            public static Texture2D tileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
-            public static Texture2D tileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
-            public static Texture2D tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
-            public static Texture2D tileEmpty       = Globals.Content.Load<Texture2D>("tile5");
+            public static Texture2D tileGrassBlock1  = Globals.Content.Load<Texture2D>("tile0");
+            public static Texture2D tileGrassBlock2  = Globals.Content.Load<Texture2D>("tile1");
+            public static Texture2D tileGrassBlock3  = Globals.Content.Load<Texture2D>("tile2");
+            public static Texture2D tileGrassBlock4  = Globals.Content.Load<Texture2D>("tile3");
+            public static Texture2D tileEmpty        = Globals.Content.Load<Texture2D>("tile5");
 
             // Tile objects
-            public static Texture2D tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
-            public static Texture2D tileObjectBush  = Globals.Content.Load<Texture2D>("tileObjectBush");
-            public static Texture2D tileObjectTree  = Globals.Content.Load<Texture2D>("tileObjectTree");
-            public static Texture2D forest          = Globals.Content.Load<Texture2D>("Forest");
-
-            //Backgrounds
-            public static Texture2D cloudsFast  = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
-            public static Texture2D cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
+            public static Texture2D tileObjectGrass  = Globals.Content.Load<Texture2D>("tileObjectGrass");
+            public static Texture2D tileObjectBush   = Globals.Content.Load<Texture2D>("tileObjectBush");
+            public static Texture2D tileObjectTree   = Globals.Content.Load<Texture2D>("tileObjectTree");
+            public static Texture2D tileObjectForest = Globals.Content.Load<Texture2D>("tileObjectForest");
         }
 
         public readonly struct Audio
