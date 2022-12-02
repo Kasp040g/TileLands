@@ -74,7 +74,7 @@ namespace TileLands
             }
 
             // save
-            save(_sm);
+            Save(_sm);
 
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value

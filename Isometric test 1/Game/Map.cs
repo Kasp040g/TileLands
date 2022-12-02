@@ -848,7 +848,7 @@ namespace TileLands
 
             //TimeSpan.FromSeconds(4).;
 
-            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.5f, GameWorld.ScreenHeight * 0.45f));            
+            _deer_m_run_ss = new(new(x, y+1));            
         }
 
         /// <summary>
