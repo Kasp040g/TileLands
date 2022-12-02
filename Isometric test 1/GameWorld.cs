@@ -52,11 +52,6 @@ namespace TileLands
             _gameManager = new();
             _gameManager.Init();
 
-            // TODO : merge into assets
-            Sprites.Load(Content);
-
-          
-
             //Call game base initialization
             base.Initialize();
         }

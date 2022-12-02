@@ -308,22 +308,16 @@ namespace TileLands
                 //Text
                 string _text = "";
 
-                if (_levels == Level.LevelEndless)
-                {
-                    _text = $"Score:\n{_textGoal}";
-
-                }
+                if (_levels == Level.LevelEndless)              
+                    _text = $"Score:\n{_textGoal}";                
                 else
-                {
-                    _text = $"Goals:\n{_textGoal}";
-
-                }
+                    _text = $"Goals:\n{_textGoal}";               
                
 
                 //Measure the string both horizontal and vertical
                 Vector2 _size1 = Globals.FontTest.MeasureString(_textGoal);
 
-                //Setup text shadow
+                //Setup text shadow                                                                                                                                                                                                                                                       
                 int _SO = 2;                                 //Shadow offset
                 Color _SHA_COL = Color.DarkSlateBlue;        //Shadow color
 
@@ -852,9 +846,9 @@ namespace TileLands
         {
             // TODO : rework deer ..direction,gender, states
 
-            TimeSpan.FromSeconds(4).;
+            //TimeSpan.FromSeconds(4).;
 
-            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.5f, GameWorld.ScreenHeight * 0.45f));            
+            _deer_m_run_ss = new(new(x, y+1));            
         }
 
         /// <summary>
