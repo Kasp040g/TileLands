@@ -39,6 +39,7 @@ namespace TileLands
 
         public enum Level
         {
+            Level0,
             Level1,
             Level2,
             Level3,
@@ -54,7 +55,7 @@ namespace TileLands
         /// </summary>
         public Map()
         {
-            
+            // Start game at level:
             _levels = Level.Level1;
 
             //Update tile size variables
@@ -525,6 +526,21 @@ namespace TileLands
          
         }
 
+        private void Level0()
+        {
+            _mapSize = new(2, 2);
+
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            // Level 1
+            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.forest);
+            _tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.forest);
+            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.forest);
+            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.forest);
+
+        }
+
         private void Level1()
         {
             _mapSize = new(2,1);
@@ -834,8 +850,11 @@ namespace TileLands
 
         private void DeerAnimation(int x, int y)
         {
-            // TODO : rework deer så i draw on top of forest
-            _deer_m_run_ss = new(new(x + 500, y + 200));
+            // TODO : rework deer ..direction,gender, states
+
+            TimeSpan.FromSeconds(4).;
+
+            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.5f, GameWorld.ScreenHeight * 0.45f));            
         }
 
         /// <summary>

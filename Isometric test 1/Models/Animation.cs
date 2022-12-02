@@ -15,13 +15,19 @@ namespace TileLands
         private float _frameTime;
         private float _frameTimeLeft;
         private bool _active = true;
+        private float _layer;
+        private float _scale;
+        private float _lifeTime;
 
-        public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row)
+        public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row, float scale, float layer)
         {
             _texture = texture;
             _frameTime = frameTime;
             _frameTimeLeft = _frameTime;
             _frames = framesX;
+            _layer = layer;
+            _scale = scale;
+            //_lifeTime = life;
             var frameWidth = _texture.Width / framesX;
             var frameHeight = _texture.Height / framesY;
 
@@ -62,7 +68,7 @@ namespace TileLands
 
         public void Draw(Vector2 pos)
         {
-            Globals.SpriteBatch.Draw(_texture, pos, _sourceRectangles[_frame], Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 1);
+            Globals.SpriteBatch.Draw(_texture, pos, _sourceRectangles[_frame], Color.White, 0, Vector2.Zero, _scale, SpriteEffects.None, _layer);
         }
     }
 }
