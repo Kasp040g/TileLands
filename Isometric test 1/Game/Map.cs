@@ -248,9 +248,9 @@ namespace Isometric_test_1
             _levels = _tempLevel;
 
             //// Reset current level
-            //if(_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
+            //if (_currentKey.IsKeyDown(Keys.R) && _previousKey.IsKeyUp(Keys.R))
             //{
-                
+
             //}
         } 
         /// <summary>
@@ -399,7 +399,7 @@ namespace Isometric_test_1
 
                 // Level 3
                 case Level.Level3:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 4)
+                    if (TileTypeCount(Tile.TileTypes.forest) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -459,6 +459,24 @@ namespace Isometric_test_1
 
                 // Level 7
                 case Level.Level7:
+                    if (TileTypeCount(Tile.TileTypes.forest) >=8 ) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _levelComplete = true;
+
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.LevelEndless;
+                        }
+                    }
+                    break;
+
+
+
+
+                // Level Endless
+                case Level.LevelEndless:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
@@ -863,7 +881,7 @@ namespace Isometric_test_1
 
                     // Level 7
                     case Level.Level7:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 7 trees";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) + (TileTypeCount(Tile.TileTypes.tree))} / 2 forests";
                         break;
 
                     // Level Endless
