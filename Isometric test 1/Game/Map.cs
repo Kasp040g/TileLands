@@ -459,7 +459,7 @@ namespace Isometric_test_1
 
                 // Level 7
                 case Level.Level7:
-                    if (TileTypeCount(Tile.TileTypes.forest) >=8 ) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.forest) >=12 ) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -881,7 +881,7 @@ namespace Isometric_test_1
 
                     // Level 7
                     case Level.Level7:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) + (TileTypeCount(Tile.TileTypes.tree))} / 2 forests";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) + (TileTypeCount(Tile.TileTypes.tree))} / 12 trees";
                         break;
 
                     // Level Endless
