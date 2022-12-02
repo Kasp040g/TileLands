@@ -59,12 +59,12 @@ namespace TileLands
             // load
             if(_saveFileCreated)
             {
-                _sm = load();
+                _sm = Load();
                 Trace.WriteLine($"{_sm.Level1Done} {_sm.Level2Done} {_sm.Level3Done} {_sm.Level4Done} {_sm.Level5Done} {_sm.EndlessUnlocked} {_sm.Score}");
             }
 
             // save
-            save(_sm);
+            Save(_sm);
         }
 
         public void ChangeState(ScreenStates state)
@@ -116,14 +116,11 @@ namespace TileLands
 
         public void ToggleSoundEffect(object sender, EventArgs e)
         {
-            if(Globals._soundEffectsMuted)
-            {
-                Globals._soundEffectsMuted = false;
-            }
-            else
-            {
+            if(Globals._soundEffectsMuted)            
+                Globals._soundEffectsMuted = false;            
+            else            
                 Globals._soundEffectsMuted = true;
-            }
+            
             Console.WriteLine(Globals._soundEffectsMuted);
         }
 
@@ -133,7 +130,7 @@ namespace TileLands
         //}
         #endregion Button Methods
 
-        private void save(ScoreManager sm)
+        private void Save(ScoreManager sm)
         {
             string SaveThis = JsonSerializer.Serialize<ScoreManager>(sm);
             Trace.WriteLine(SaveThis);
@@ -142,7 +139,7 @@ namespace TileLands
             _saveFileCreated = true;
         }
 
-        private ScoreManager load()
+        private ScoreManager Load()
         {
             var loadedData = File.ReadAllText(_savePath);  // read alllines output is a string array readall text is just a string
             return JsonSerializer.Deserialize<ScoreManager>(loadedData);

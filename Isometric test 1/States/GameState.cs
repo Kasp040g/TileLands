@@ -20,8 +20,7 @@ namespace TileLands
             //Bottons
             AddButton(new(Assets.Sprites.Btn_Small, new(x, y ))).OnClick += _map.ResetLevel;
             AddButton(new(Assets.Sprites.Btn_Small, new(x + btn_offset, y))).OnClick += gm.ToggleMusic;
-            AddButton(new(Assets.Sprites.Btn_Small, new(x + btn_offset + btn_offset, y))).OnClick += gm.ToggleSoundEffect;
-            
+            AddButton(new(Assets.Sprites.Btn_Small, new(x + btn_offset + btn_offset, y))).OnClick += gm.ToggleSoundEffect;            
         }
 
         private Button AddButton(Button button)
@@ -39,7 +38,6 @@ namespace TileLands
             {
                 button.Update();
             }
-
         }
 
         public override void Draw(GameManager gm)
@@ -51,7 +49,6 @@ namespace TileLands
             {
                 button.Draw();
             }
-
         }
     }
 }
