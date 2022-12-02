@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -18,6 +19,15 @@ namespace TileLands
         private ScoreManager _sm;
         private const string _savePath = "testScore.json";        
         private bool _saveFileCreated;
+
+        //Background
+        public static List<ScrollingBackground> _scrollingBackgrounds;
+
+
+
+        //Animations
+        //private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
+
 
         // Music bool
         private bool _musicIsPaused;
@@ -64,7 +74,22 @@ namespace TileLands
             }
 
             // save
-            Save(_sm);
+            save(_sm);
+
+
+            //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
+            _scrollingBackgrounds = new List<ScrollingBackground>()
+            {
+                new ScrollingBackground(Assets.Sprites.cloudsFast, 18f, true)
+                {
+                  Layer = 0.99f,
+                },
+
+                new ScrollingBackground(Assets.Sprites.cloudsSlow, 25f, true)
+                {
+                  Layer = 0.8f,
+                }
+            };
         }
 
         public void ChangeState(ScreenStates state)
@@ -77,12 +102,28 @@ namespace TileLands
             InputManager.Update();
             _debugManager.Update(gameTime);            
             _state.Update(this);
+
+            //loops the backgrounds
+            foreach (var sb in _scrollingBackgrounds)
+            {
+                sb.Update(gameTime);
+            }
+
         }
 
-        public void Draw()
-        {            
+        public void Draw(GameTime gameTime)
+        {
+            foreach (var sb in _scrollingBackgrounds)
+            {
+                sb.Draw(gameTime, Globals.SpriteBatch);
+            }
+
             _debugManager.Draw();
             _state.Draw(this);
+
+           
+
+
         }
 
         #region Button Methods

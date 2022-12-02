@@ -41,7 +41,12 @@ namespace TileLands
             public static Texture2D tileObjectGrass;
             public static Texture2D tileObjectBush;
             public static Texture2D tileObjectTree;
-            public static Texture2D forest;
+            public static Texture2D tileObjectForest;
+
+            // Backgrounds
+            public static Texture2D cloudsFast;
+            public static Texture2D cloudsSlow;
+
 
             public static void LoadSprites()
             {
@@ -66,12 +71,22 @@ namespace TileLands
                 tileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
                 tileEmpty = Globals.Content.Load<Texture2D>("tile5");
 
-                // Tile objects
+                // Tile Objects
                 tileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
                 tileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
                 tileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
-                forest = Globals.Content.Load<Texture2D>("Forest");
-            }
+                tileObjectForest = Globals.Content.Load<Texture2D>("tileObjectForest");
+
+                //Backgrounds
+                cloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
+                cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
+
+        }
+
+            
+
+            
+
         }
 
 

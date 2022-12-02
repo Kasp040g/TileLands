@@ -8,7 +8,6 @@ namespace TileLands
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
-        private List<ScrollingBackground> _scrollingBackgrounds;
 
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 900;
@@ -66,24 +65,16 @@ namespace TileLands
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
             
+          
 
-            //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
-            _scrollingBackgrounds = new List<ScrollingBackground>()
-            {
-                new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Fast"), 18f, true)
-                {
-                  Layer = 0.99f,
-                },
 
-                new ScrollingBackground(Content.Load<Texture2D>("BackGrounds/Clouds_Slow"), 25f, true)
-                {
-                  Layer = 0.8f,
-                }
-            };
+
+           
 
             ////Load audio files
             //Assets.Audio.LoadAudio();
@@ -123,9 +114,7 @@ namespace TileLands
             //Calls for game manager to update
             _gameManager.Update(gameTime);
 
-            //loops the backgrounds
-            foreach (var sb in _scrollingBackgrounds)
-                sb.Update(gameTime);
+
 
             //Calls game update
             base.Update(gameTime);
@@ -143,13 +132,12 @@ namespace TileLands
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
 
             
-            foreach (var sb in _scrollingBackgrounds)
-                sb.Draw(gameTime, _spriteBatch);
+           
 
             _spriteBatch.End();
 
             _spriteBatch.Begin();
-            _gameManager.Draw();
+            _gameManager.Draw(gameTime);
             _spriteBatch.End();
 
             base.Draw(gameTime);
