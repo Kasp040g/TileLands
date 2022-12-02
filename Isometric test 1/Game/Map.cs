@@ -16,9 +16,11 @@ namespace TileLands
         private readonly Point _tileSize;
         private Vector2 _mapOffset = new(4.5f, 4f);
         private Tile[,] _tiles;
+        private int highscore;
         private bool _shouldDrawMap = true;
         private bool _levelComplete = false;
         private bool _forest = false;
+
 
 
         //Mouse interaction variables
@@ -44,6 +46,8 @@ namespace TileLands
             Level4,
             Level5,
             Level6,
+            Level7,
+            LevelEndless,
         }
 
         /// <summary>
@@ -147,6 +151,12 @@ namespace TileLands
                         break;
                     case Level.Level6:
                         Level6();
+                        break;
+                    case Level.Level7:
+                        Level7();
+                        break;
+                    case Level.LevelEndless:
+                        LevelEndless();
                         break;
                     default:
                         break;
@@ -296,12 +306,18 @@ namespace TileLands
             if (_textGoal != "")
             {
                 //Text
-                string _text = $"Goals:\n{_textGoal}";
+                string _text = "";
+
+                if (_levels == Level.LevelEndless)              
+                    _text = $"Score:\n{_textGoal}";                
+                else
+                    _text = $"Goals:\n{_textGoal}";               
+               
 
                 //Measure the string both horizontal and vertical
                 Vector2 _size1 = Globals.FontTest.MeasureString(_textGoal);
 
-                //Setup text shadow
+                //Setup text shadow                                                                                                                                                                                                                                                       
                 int _SO = 2;                                 //Shadow offset
                 Color _SHA_COL = Color.DarkSlateBlue;        //Shadow color
 
@@ -342,7 +358,7 @@ namespace TileLands
             {
                 // Level 1
                 case Level.Level1:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 1)
+                    if (TileTypeCount(Tile.TileTypes.bush) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -358,7 +374,7 @@ namespace TileLands
 
                 // Level 2
                 case Level.Level2:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 4)
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -373,7 +389,7 @@ namespace TileLands
 
                 // Level 3
                 case Level.Level3:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 4)
+                    if (TileTypeCount(Tile.TileTypes.forest) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -388,7 +404,7 @@ namespace TileLands
 
                 // Level 4
                 case Level.Level4:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 4)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -403,7 +419,7 @@ namespace TileLands
 
                 // Level 5
                 case Level.Level5:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -418,6 +434,39 @@ namespace TileLands
 
                 // Level 6
                 case Level.Level6:
+                    if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _levelComplete = true;
+
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.Level7;
+                        }
+                    }
+                    break;
+
+                // Level 7
+                case Level.Level7:
+                    if (TileTypeCount(Tile.TileTypes.forest) >=12 ) // ****TEMP GOAL***
+                    {
+                        // Press Space to continue
+                        _levelComplete = true;
+
+                        // Go to next level
+                        if (_spacePressed)
+                        {
+                            _levels = Level.LevelEndless;
+                        }
+                    }
+                    break;
+
+
+
+
+                // Level Endless
+                case Level.LevelEndless:
                     if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
@@ -468,9 +517,7 @@ namespace TileLands
         {
 
             _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.empty);
-            _tiles[0, 1] = new(new Point(0, 1), Tile.TileTypes.empty);
-            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.empty);
-            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.empty);
+         
         }
 
         private void Level0()
@@ -490,6 +537,19 @@ namespace TileLands
 
         private void Level1()
         {
+            _mapSize = new(2,1);
+
+            //Create tile array from map size
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+
+            // Level 1
+            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.grass);
+
+            _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.grass);
+
+        }
+        private void Level2()
+        {
             _mapSize = new(2, 2);
 
             //Create tile array from map size
@@ -504,7 +564,7 @@ namespace TileLands
 
         }
 
-        private void Level2()
+        private void Level3()
         {
             _mapSize = new(3, 3);
 
@@ -524,7 +584,7 @@ namespace TileLands
             _tiles[2, 2] = new(new Point(2, 2), Tile.TileTypes.grass);
         }
 
-        private void Level3() //Goal 6 træer og 4 buske
+        private void Level4() //Goal 6 træer og 4 buske
         {
             _mapSize = new(5, 5);
             _mapOffset = new(4.5f, 3f);
@@ -567,7 +627,7 @@ namespace TileLands
             _tiles[4, 4] = new(new Point(4, 4), Tile.TileTypes.empty);
         }
 
-        private void Level4()
+        private void Level5()
         {
             _mapSize = new(5, 2);
             _mapOffset = new(3.75f, 3f);
@@ -592,7 +652,7 @@ namespace TileLands
 
         }
 
-        private void Level5()
+        private void Level6()
         {
             _mapSize = new(4, 7);
             _mapOffset = new(5f, 3f);
@@ -633,7 +693,7 @@ namespace TileLands
             _tiles[3, 6] = new(new Point(3, 6), Tile.TileTypes.empty);
 
         }
-        private void Level6()
+        private void Level7()
         {
             _mapSize = new(6, 6);
             _mapOffset = new(5f, 3f);
@@ -691,7 +751,7 @@ namespace TileLands
         /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
         /// whereas level 6 only consists of 1 type, which makes it easy to make in a loop.
         /// </summary>
-        private void Level7()
+        private void LevelEndless()
         {
 
             _mapSize = new(10, 10);
@@ -760,14 +820,14 @@ namespace TileLands
                                         _tiles[x, y]._tileType = Tile.TileTypes.forest;
 
                                         // Update tiles to forest sprite
-                                        _forestTile._tileObjectSprite = Assets.Sprites.forest;
+                                        _forestTile._tileObjectSprite = Assets.Sprites.tileObjectForest;
                                         _tiles[x, y + 1]._tileObjectSprite = null;
                                         _tiles[x + 1, y]._tileObjectSprite = null;
                                         _tiles[x, y]._tileObjectSprite = null;
 
                                         // update forest sprite offset
-                                        _forestTile._tileObjectOffset.X = -40;
-                                        _forestTile._tileObjectOffset.Y = -200;
+                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.tileObjectForest.Width/4;
+                                        _forestTile._tileObjectOffset.Y = -225;
 
                                         //START Animal reward Animation
                                         _forestFound = true;
@@ -801,30 +861,47 @@ namespace TileLands
             {
                 switch (_levels)
                 {
+
                     // Level 1
                     case Level.Level1:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 bush";
                         break;
 
                     // Level 2
                     case Level.Level2:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 4 trees";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
                         break;
 
                     // Level 3
                     case Level.Level3:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 6 trees\n{TileTypeCount(Tile.TileTypes.bush)} / 4 bushes";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 4 trees";
                         break;
 
                     // Level 4
                     case Level.Level4:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 5 trees";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 6 trees\n{TileTypeCount(Tile.TileTypes.bush)} / 4 bushes";
                         break;
 
                     // Level 5
                     case Level.Level5:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 5 trees";
+                        break;
+
+                    // Level 6
+                    case Level.Level6:
                         _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 7 trees";
                         break;
+
+                    // Level 7
+                    case Level.Level7:
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) + (TileTypeCount(Tile.TileTypes.tree))} / 12 trees";
+                        break;
+
+                    // Level Endless
+                    case Level.LevelEndless:
+                        _textGoal = $"{(TileTypeCount(Tile.TileTypes.tree) * 25) + (TileTypeCount(Tile.TileTypes.bush) * 10) + (TileTypeCount(Tile.TileTypes.forest) * 50)}";
+                        break;
+
 
                     // Default
                     default:
