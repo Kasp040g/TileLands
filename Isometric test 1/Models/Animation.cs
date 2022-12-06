@@ -1,13 +1,12 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TileLands
 {
     public class Animation
     {
+        #region Fields
         private Texture2D _texture;
         private List<Rectangle> _sourceRectangles = new();
         private int _frames;
@@ -18,6 +17,7 @@ namespace TileLands
         private float _layer;
         private float _scale;
         private float _lifeTime;
+        #endregion Fields
 
         public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row, float scale, float layer)
         {
@@ -36,7 +36,7 @@ namespace TileLands
                 _sourceRectangles.Add(new(i * frameWidth, (row - 1) * frameHeight, frameWidth, frameHeight));
             }
         }
-
+        #region Methods
         public void Stop()
         {
             _active = false;
@@ -70,5 +70,6 @@ namespace TileLands
         {
             Globals.SpriteBatch.Draw(_texture, pos, _sourceRectangles[_frame], Color.White, 0, Vector2.Zero, _scale, SpriteEffects.None, _layer);
         }
+        #endregion Methods
     }
 }

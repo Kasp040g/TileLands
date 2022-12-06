@@ -15,6 +15,10 @@ namespace TileLands
 
         public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
 
+        #region Structs
+        /// <summary>
+        /// Sprites
+        /// </summary>
         public struct Sprites
         {
             // Backgrounds
@@ -47,7 +51,6 @@ namespace TileLands
             public static Texture2D cloudsFast;
             public static Texture2D cloudsSlow;
 
-
             public static void LoadSprites()
             {
                 // Backgrounds
@@ -57,7 +60,6 @@ namespace TileLands
                 // Buttons
                 Btn_Big = Globals.Content.Load<Texture2D>("Button");
                 Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
-
 
                 // Animations
                 Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
@@ -80,13 +82,7 @@ namespace TileLands
                 //Backgrounds
                 cloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
                 cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
-
-        }
-
-            
-
-            
-
+             }
         }
 
 
@@ -114,9 +110,9 @@ namespace TileLands
 
                 // Music
                 BackgroundMusic = Globals.Content.Load<Song>("Audio/lunar lounging_mp3");
-
             }
         }
+        #endregion Structs
 
         public Assets(Texture2D texture)
         {

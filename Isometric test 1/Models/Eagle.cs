@@ -1,5 +1,8 @@
 ﻿namespace TileLands
 {
+    /// <summary>
+    /// Eagle Animation Class
+    /// </summary>
     internal class Eagle
     {
         private static Texture2D _texture;

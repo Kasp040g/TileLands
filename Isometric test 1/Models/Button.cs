@@ -12,8 +12,8 @@ namespace TileLands
 
         // button data
         private Rectangle _rectangle;
-        protected Vector2 origin;
-        protected Vector2 scale;
+        private Vector2 origin;
+        private Vector2 scale;
 
         // Properties
         public Vector2 Position { get; set; }

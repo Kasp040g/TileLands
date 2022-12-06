@@ -16,7 +16,7 @@ namespace TileLands
         private readonly Point _tileSize;
         private Vector2 _mapOffset = new(4.5f, 4f);
         private Tile[,] _tiles;
-        private int highscore;
+        private int _highscore;
         private bool _shouldDrawMap = true;
         private bool _levelComplete = false;
         private bool _forest = false;
