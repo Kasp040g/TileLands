@@ -121,8 +121,6 @@ namespace TileLands
             _debugManager.Draw();
             _state.Draw(this);
 
-           
-
 
         }
 

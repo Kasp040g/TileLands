@@ -138,6 +138,7 @@ namespace TileLands
 
             _spriteBatch.Begin();
             _gameManager.Draw(gameTime);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
