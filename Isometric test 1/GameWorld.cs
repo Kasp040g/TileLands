@@ -70,7 +70,7 @@ namespace TileLands
             Globals.SpriteBatch = _spriteBatch;
 
             //Create test font
-            //Globals.FontTest = Globals.Content.Load<SpriteFont>("FontTest");
+            Globals.FontTest = Globals.Content.Load<SpriteFont>("FontTest");
         }
 
         /// <summary>
