@@ -51,11 +51,15 @@ namespace TileLands
             public static Texture2D cloudsFast;
             public static Texture2D cloudsSlow;
 
+            // Overlays
+            public static Texture2D vignette;
+
+
             public static void LoadSprites()
             {
                 // Backgrounds
                 SplashScreen = Globals.Content.Load<Texture2D>("Splash");
-                MenuScreen = Globals.Content.Load<Texture2D>("tempmenu");
+                MenuScreen = Globals.Content.Load<Texture2D>("unavngivet(1)");
 
                 // Buttons
                 Btn_Big = Globals.Content.Load<Texture2D>("Button");
@@ -82,7 +86,16 @@ namespace TileLands
                 //Backgrounds
                 cloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
                 cloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
-             }
+
+                // Overlays
+                vignette = Globals.Content.Load<Texture2D>("Vignette");
+
+        }
+
+            
+
+            
+
         }
 
 

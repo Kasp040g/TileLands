@@ -9,11 +9,11 @@ namespace TileLands
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
-        public static int ScreenWidth = 1600;
-        public static int ScreenHeight = 900;
+        //public static int ScreenWidth = 1600;
+        //public static int ScreenHeight = 900;
 
-        //public static int ScreenWidth = 1280;
-        //public static int ScreenHeight = 720;
+        public static int ScreenWidth = 1280;
+        public static int ScreenHeight = 720;
 
         /// <summary>
         /// Game world constructer, creates and sets up the game world
@@ -37,7 +37,7 @@ namespace TileLands
         protected override void Initialize()
         {
             //Set game window size
-            Globals.Bounds = new(1600, 900);
+            Globals.Bounds = new(1280, 720);
             _graphics.PreferredBackBufferWidth = Globals.Bounds.X;
             _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
@@ -69,30 +69,9 @@ namespace TileLands
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
-            
-          
-
-
-
-           
-
-            ////Load audio files
-            //Assets.Audio.LoadAudio();
-            
-            ////Plays and repeats the background music
-            //MediaPlayer.Play(Audio.BackgroundMusic);
-            //MediaPlayer.IsRepeating = true;
-            //MediaPlayer.Volume = 1f;
-            
-
-            
-
             //Create test font
             Globals.FontTest = Globals.Content.Load<SpriteFont>("FontTest");
-
-            
         }
-
 
         /// <summary>
         /// Updates the game, runs once every frame
@@ -113,8 +92,6 @@ namespace TileLands
 
             //Calls for game manager to update
             _gameManager.Update(gameTime);
-
-
 
             //Calls game update
             base.Update(gameTime);
@@ -138,6 +115,7 @@ namespace TileLands
 
             _spriteBatch.Begin();
             _gameManager.Draw(gameTime);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
