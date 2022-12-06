@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -44,7 +43,7 @@ namespace TileLands
             //Plays and repeats the background music
             MediaPlayer.Play(Assets.Audio.BackgroundMusic);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 1.2f;
+            MediaPlayer.Volume = 1.0f;
 
             // sound effect not muted
             Globals._soundEffectsMuted = false;
@@ -56,8 +55,10 @@ namespace TileLands
                 Level3Done = false,
                 Level4Done = false,
                 Level5Done = false,
+                Level6Done = false,
+                Level7Done = false,
                 EndlessUnlocked = false,
-                Score = 1000,
+                Score = 0,
             };
 
             // load
@@ -67,8 +68,11 @@ namespace TileLands
                 Trace.WriteLine($"{_sm.Level1Done} {_sm.Level2Done} {_sm.Level3Done} {_sm.Level4Done} {_sm.Level5Done} {_sm.EndlessUnlocked} {_sm.Score}");
             }
 
-            // save
-            Save(_sm);
+            if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // save
+                Save(_sm);
+            }
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -121,9 +125,12 @@ namespace TileLands
             ChangeState(ScreenStates.Game);
         }
 
-        public void Quit(object sender, EventArgs e)
+        public void Restart(object sender, EventArgs e)
         {
-
+            StateManager.States.Remove(ScreenStates.Game);
+            StateManager.States.Add(ScreenStates.Game, new GameState(this));
+            
+            ChangeState(ScreenStates.Game);
         }
 
         public void ToggleMusic(object sender, EventArgs e)

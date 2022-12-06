@@ -80,7 +80,7 @@ namespace TileLands
         protected override void Update(GameTime gameTime)
         {
             // TODO : Quick game exit using escape (SAVE FOR LATER Method) <<<<<
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
 
             //Quick Menu acces using escape
@@ -107,9 +107,6 @@ namespace TileLands
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
-
-            
-           
 
             _spriteBatch.End();
 

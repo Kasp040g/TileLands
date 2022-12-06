@@ -8,7 +8,9 @@ namespace TileLands
 {
     public class Button
     {
+        // Mouse click and hover
         public event EventHandler OnClick;
+        private bool _mouseIsHovering;
 
         // button data
         private Rectangle _rectangle;
@@ -31,6 +33,13 @@ namespace TileLands
 
         public void Update()
         {
+            // Button Color change when hover 
+            _mouseIsHovering = false;
+            if(InputManager.MouseRectangle.Intersects(_rectangle))
+            {
+                _mouseIsHovering = true;
+            }
+
             if(InputManager.MouseLeftClicked && _rectangle.Contains(InputManager.MouseRectangle))
             {
                 OnClick?.Invoke(this, EventArgs.Empty);
@@ -39,7 +48,12 @@ namespace TileLands
 
         public void Draw()
         {
-            Globals.SpriteBatch.Draw(Texture, Position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 1f);
+            var _btnColor = Color.White;
+
+            if(_mouseIsHovering)
+                _btnColor = Color.BlanchedAlmond;
+
+            Globals.SpriteBatch.Draw(Texture, Position, null, _btnColor, 0f, origin, scale, SpriteEffects.None, 1f);
         }
     }
 }

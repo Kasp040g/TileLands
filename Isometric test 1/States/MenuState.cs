@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace TileLands
 {
     public class MenuState : State
     {
-        private List<Button> _buttons = new();
+        private List<Button> _buttons = new();               
+
         public MenuState(GameManager gm)
         {
             // Init Screen Bound
@@ -13,7 +15,7 @@ namespace TileLands
 
             //Bottons            
             AddButton(new(Assets.Sprites.Btn_Big, new(x, y))).OnClick += gm.Play;
-            AddButton(new(Assets.Sprites.Btn_Small, new(x, y + 300))).OnClick += gm.Quit;
+            AddButton(new(Assets.Sprites.Btn_Big, new(x, y + Assets.Sprites.Btn_Big.Height * (float)1.5))).OnClick += gm.Restart;
         }
 
         private Button AddButton(Button button)
@@ -23,15 +25,7 @@ namespace TileLands
         }
 
         public override void Update(GameManager gm)
-        {
-            //private static SpriteFont _font;
-            //private static Vector2 _textPosition;
-            //private static string _text = "";
-
-            //_text = "Play";
-            //var size = _font.MeasureString(_text);
-            //_textPosition = new((Globals.Bounds.X - size.X) / 2, _position.Y + (_texture.Height / 4));
-
+        {            
             foreach(var button in _buttons)
             {
                 button.Update();

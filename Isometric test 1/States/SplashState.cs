@@ -16,7 +16,7 @@ namespace TileLands
 
         public override void Update(GameManager gm)
         {
-            if(InputManager.SpacePressed)
+            if(InputManager.SpacePressed || InputManager.MouseLeftClicked)
             {
                 gm.ChangeState(ScreenStates.Menu);
             }
@@ -24,7 +24,11 @@ namespace TileLands
 
         public override void Draw(GameManager gm)
         {
+            
             Globals.SpriteBatch.Draw(Assets.Sprites.SplashScreen, Vector2.Zero, Color.White);
+            
+            
+            
         }
     }
 }
