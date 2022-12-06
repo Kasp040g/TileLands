@@ -23,12 +23,6 @@ namespace TileLands
         //Background
         public static List<ScrollingBackground> _scrollingBackgrounds;
 
-
-
-        //Animations
-        //private Eagle _bird_ss = new(new(Globals.Bounds.Y / 2, 100));
-
-
         // Music bool
         private bool _musicIsPaused;
         
@@ -76,7 +70,6 @@ namespace TileLands
             // save
             Save(_sm);
 
-
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
             {
@@ -120,10 +113,6 @@ namespace TileLands
 
             _debugManager.Draw();
             _state.Draw(this);
-
-           
-
-
         }
 
         #region Button Methods
