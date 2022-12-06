@@ -337,7 +337,7 @@ namespace TileLands
             if(_forestFound)
             {
                 _deer_m_run_ss.Draw();
-            }            
+            }   
         }
 
         private void SolutionFound()
