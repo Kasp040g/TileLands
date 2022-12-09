@@ -56,15 +56,16 @@ namespace TileLands
             {
                 OnClick?.Invoke(this, EventArgs.Empty);
             }
-            if(Globals._musicIsPaused && _btn_sound[0] != null)
+
+            if(!Globals._musicIsPaused && _btn_sound[0] != null)
                 Texture = _btn_sound[0];
-            else if(!Globals._musicIsPaused && _btn_sound[1] != null)            
+            else if(Globals._musicIsPaused && _btn_sound[1] != null)            
                 Texture = _btn_sound[2];
 
 
-            if(Globals._soundEffectsMuted && _btn_sound[0] != null)            
+            if(!Globals._soundEffectsMuted && _btn_sound[0] != null)            
                 Texture = _btn_sound[0];            
-            else if(!Globals._soundEffectsMuted && _btn_sound[1] != null)            
+            else if(Globals._soundEffectsMuted && _btn_sound[1] != null)            
                 Texture = _btn_sound[1];
            
         }

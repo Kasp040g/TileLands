@@ -27,8 +27,11 @@ namespace TileLands
 
             // Buttons
             public static Texture2D Btn_Big;
-            public static Texture2D Btn_Small;
+            public static Texture2D Btn_Restart;
             public static Texture2D Btn_Toggle_Sound_On;
+            public static Texture2D Btn_Toggle_Sound_Off;
+            public static Texture2D Btn_Toggle_Music_On;
+            public static Texture2D Btn_Toggle_Music_Off;
 
             // Animations
             public static Texture2D Eagle_ss;
@@ -64,8 +67,11 @@ namespace TileLands
 
                 // Buttons
                 Btn_Big = Globals.Content.Load<Texture2D>("Button");
-                Btn_Small = Globals.Content.Load<Texture2D>("Button_square");
-                Btn_Toggle_Sound_On = Globals.Content.Load<Texture2D>("Button_square_sound");
+                Btn_Restart = Globals.Content.Load<Texture2D>("Button_restart");
+                Btn_Toggle_Sound_On = Globals.Content.Load<Texture2D>("Button_sound_effects");
+                Btn_Toggle_Sound_Off = Globals.Content.Load<Texture2D>("Button_sound_effects_muted");
+                Btn_Toggle_Music_On = Globals.Content.Load<Texture2D>("Button_music");
+                Btn_Toggle_Music_Off = Globals.Content.Load<Texture2D>("Button_music_muted");
 
                 // Animations
                 Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
