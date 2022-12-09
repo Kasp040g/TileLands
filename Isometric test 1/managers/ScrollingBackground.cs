@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileLands
 {
     public class ScrollingBackground : Component
-    {
-        
+    {        
         // if true, the object will always be moving.
         private bool _constantSpeed;
-
-        
+                
         private float _layer;
 
         //used in the _speed calculation
         private float _scrollingSpeed;
-
-        
-        private List<Assets> _sprites;
-
-        
         private float _speed;
 
+        private List<Assets> _sprites;
 
-        //puts all ScrollingBackground.Layer to the same
+        /// <summary>
+        /// puts all ScrollingBackground.Layer to the same
+        /// </summary>
         public float Layer
         {
             get { return _layer; }
@@ -49,7 +41,6 @@ namespace TileLands
         {
 
         }
-
 
         /// <summary>
         ///  Cronstructer where you only need to pass in one sprite
@@ -79,9 +70,7 @@ namespace TileLands
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (var sprite in _sprites)
-                sprite.Draw(gameTime, spriteBatch);
-
-            
+                sprite.Draw(gameTime, spriteBatch);            
         }
 
         public override void Update(GameTime gameTime)
@@ -98,7 +87,6 @@ namespace TileLands
         private void ApplySpeed(GameTime gameTime)
         {
             _speed = (float)(_scrollingSpeed * gameTime.ElapsedGameTime.TotalSeconds); 
-
 
             foreach (var sprite in _sprites)
                 sprite.Position.X -= _speed; 
@@ -124,7 +112,5 @@ namespace TileLands
                 }
             }
         }
-
-
     }
 }

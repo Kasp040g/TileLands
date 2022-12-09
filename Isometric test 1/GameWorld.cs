@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TileLands
 {
@@ -9,11 +10,11 @@ namespace TileLands
         private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
-        //public static int ScreenWidth = 1600;
-        //public static int ScreenHeight = 900;
+        public static int ScreenWidth = 1600;
+        public static int ScreenHeight = 900;
 
-        public static int ScreenWidth = 1280;
-        public static int ScreenHeight = 720;
+        //public static int ScreenWidth = 1280;
+        //public static int ScreenHeight = 720;
 
         /// <summary>
         /// Game world constructer, creates and sets up the game world
@@ -37,7 +38,7 @@ namespace TileLands
         protected override void Initialize()
         {
             //Set game window size
-            Globals.Bounds = new(1280, 720);
+            Globals.Bounds = new(1600, 900);
             _graphics.PreferredBackBufferWidth = Globals.Bounds.X;
             _graphics.PreferredBackBufferHeight = Globals.Bounds.Y;
             _graphics.ApplyChanges();
@@ -65,7 +66,6 @@ namespace TileLands
             //Creates a new sprite batch for drawing
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
             //Transfer sprite batch to be global
             Globals.SpriteBatch = _spriteBatch;
 
@@ -82,6 +82,8 @@ namespace TileLands
             // TODO : Quick game exit using escape (SAVE FOR LATER Method) <<<<<
             //if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
+            if(Globals._quit)
+                Exit();
 
             //Quick Menu acces using escape
             if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -112,10 +114,11 @@ namespace TileLands
 
             _spriteBatch.Begin();
             _gameManager.Draw(gameTime);
+            _spriteBatch.Draw(Assets.Sprites.Vignette, Vector2.Zero, Color.White);
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }
+        }       
     }
 }

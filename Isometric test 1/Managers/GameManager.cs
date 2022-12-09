@@ -16,16 +16,15 @@ namespace TileLands
 
         // Save/Load
         private ScoreManager _sm;
-        private const string _savePath = "testScore.json";        
-        private bool _saveFileCreated;
+        private const string _savePath = "topsecret.data";
+        public bool _saveFileCreated;
 
         //Background
         public static List<ScrollingBackground> _scrollingBackgrounds;
 
-        // Music bool
-        private bool _musicIsPaused;
         
 
+        public int lxd;
         public GameManager()
         {
             // Init
@@ -33,10 +32,20 @@ namespace TileLands
 
             // state
             ChangeState(ScreenStates.Splash);
+
+            if(File.Exists(_savePath))
+            {
+                _saveFileCreated = true;
+            }
         }
 
         public void Init()
         {
+
+
+            // sound effect not muted
+            Globals._soundEffectsMuted = false;
+
             //Load audio files
             Assets.Audio.LoadAudio();
 
@@ -45,44 +54,26 @@ namespace TileLands
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Volume = 1.0f;
 
-            // sound effect not muted
-            Globals._soundEffectsMuted = false;
-
             _sm = new()
-            {                
-                Level1Done = false,
-                Level2Done = false,
-                Level3Done = false,
-                Level4Done = false,
-                Level5Done = false,
-                Level6Done = false,
-                Level7Done = false,
+            {
+                LevelXDone = 0,
                 EndlessUnlocked = false,
                 Score = 0,
             };
 
-            // load
-            if(_saveFileCreated)
-            {
-                _sm = Load();
-                Trace.WriteLine($"{_sm.Level1Done} {_sm.Level2Done} {_sm.Level3Done} {_sm.Level4Done} {_sm.Level5Done} {_sm.EndlessUnlocked} {_sm.Score}");
-            }
 
-            if(Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                // save
-                Save(_sm);
-            }
+
+
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
             {
-                new ScrollingBackground(Assets.Sprites.cloudsFast, 18f, true)
+                new ScrollingBackground(Assets.Sprites.CloudsFast, 18f, true)
                 {
                   Layer = 0.99f,
                 },
 
-                new ScrollingBackground(Assets.Sprites.cloudsSlow, 25f, true)
+                new ScrollingBackground(Assets.Sprites.CloudsSlow, 25f, true)
                 {
                   Layer = 0.8f,
                 }
@@ -97,20 +88,25 @@ namespace TileLands
         public void Update(GameTime gameTime)
         {
             InputManager.Update();
-            _debugManager.Update(gameTime);            
+            _debugManager.Update(gameTime);
             _state.Update(this);
 
             //loops the backgrounds
-            foreach (var sb in _scrollingBackgrounds)
+            foreach(var sb in _scrollingBackgrounds)
             {
                 sb.Update(gameTime);
             }
 
+            if(Keyboard.GetState().IsKeyDown(Keys.Escape) || Globals._quit == true)
+            {
+                // save
+                Save(_sm);
+            }
         }
 
         public void Draw(GameTime gameTime)
         {
-            foreach (var sb in _scrollingBackgrounds)
+            foreach(var sb in _scrollingBackgrounds)
             {
                 sb.Draw(gameTime, Globals.SpriteBatch);
             }
@@ -129,35 +125,50 @@ namespace TileLands
         {
             StateManager.States.Remove(ScreenStates.Game);
             StateManager.States.Add(ScreenStates.Game, new GameState(this));
-            
+
             ChangeState(ScreenStates.Game);
         }
 
+        public void LoadSave(object sender, EventArgs e)
+        {
+            if(_saveFileCreated)
+            {
+                _sm = Load();
+                Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked} {_sm.Score}");
+                ChangeState(ScreenStates.Game);
+            }
+        }
+
+        public void Quit(object sender, EventArgs e)
+        {
+            Globals._quit = true;
+        }
+
         public void ToggleMusic(object sender, EventArgs e)
-        {            
-            if(!_musicIsPaused)
+        {
+            if(!Globals._musicIsPaused)
             {
                 //MediaPlayer.Play();
-                
+
                 MediaPlayer.Volume = 0f;
-                _musicIsPaused = true;
+                Globals._musicIsPaused = true;
             }
             else
             {
                 //MediaPlayer.Pause();
-                
+
                 MediaPlayer.Volume = 1.2f;
-                _musicIsPaused = false;
+                Globals._musicIsPaused = false;
             }
         }
 
         public void ToggleSoundEffect(object sender, EventArgs e)
         {
-            if(Globals._soundEffectsMuted)            
-                Globals._soundEffectsMuted = false;            
-            else            
+            if(Globals._soundEffectsMuted)
+                Globals._soundEffectsMuted = false;
+            else
                 Globals._soundEffectsMuted = true;
-            
+
             Console.WriteLine(Globals._soundEffectsMuted);
         }
 
@@ -167,20 +178,38 @@ namespace TileLands
         //}
         #endregion Button Methods
 
+        #region Load/save
         private void Save(ScoreManager sm)
         {
             string SaveThis = JsonSerializer.Serialize<ScoreManager>(sm);
             Trace.WriteLine(SaveThis);
-            File.WriteAllText(_savePath, SaveThis);
-            // File.AppendAllLines ?? for adding data??
+            //File.Encrypt(_savePath); bulshit ntfs shit
+            File.AppendAllText(_savePath, SaveThis);
+
+            //File.AppendAllText(_savePath,)
             _saveFileCreated = true;
         }
 
         private ScoreManager Load()
         {
+            //File.Decrypt(_savePath);
             var loadedData = File.ReadAllText(_savePath);  // read alllines output is a string array readall text is just a string
             return JsonSerializer.Deserialize<ScoreManager>(loadedData);
         }
+
+        // Encrypt a file.
+        public static void AddEncryption(string FileName)
+        {
+
+            File.Encrypt(FileName);
+        }
+
+        // Decrypt a file.
+        public static void RemoveEncryption(string FileName)
+        {
+            File.Decrypt(FileName);
+        }
+        #endregion Load/Save
     }
 }
 

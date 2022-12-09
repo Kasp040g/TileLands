@@ -3,11 +3,7 @@
 namespace TileLands;
 
 public class Tile
-{
-    //Eventhandler for WinCon
-    public static EventHandler WinCon;
-
-
+{    
     //Tile visuals variables
     public Texture2D _tileSprite;                       //The sprite of the tile
     public readonly Point _mapPosition;
@@ -19,10 +15,10 @@ public class Tile
 
     private readonly Texture2D[] _tileSprites =
     {
-        Assets.Sprites.tileGrassBlock1,
-        Assets.Sprites.tileGrassBlock2,
-        Assets.Sprites.tileGrassBlock3,
-        Assets.Sprites.tileGrassBlock4
+        Assets.Sprites.TileGrassBlock1,
+        Assets.Sprites.TileGrassBlock2,
+        Assets.Sprites.TileGrassBlock3,
+        Assets.Sprites.TileGrassBlock4
     };
 
 
@@ -76,7 +72,7 @@ public class Tile
         //Check if tile is empty instead
         if (_tileType == TileTypes.empty)
         {
-            _tileSprite = Assets.Sprites.tileEmpty;
+            _tileSprite = Assets.Sprites.TileEmpty;
         }
 
         // Find and update the correct tile object sprite
@@ -163,11 +159,6 @@ public class Tile
             // Find and update the correct tile object sprite for both tiles
             hoveredTile.UpdateTileObjectSprite();
             this.UpdateTileObjectSprite();
-
-            // invoke Event
-            WinCon?.Invoke(_mergeRecipies, new EventArgs());
-
-            
         }
     }
 
@@ -209,7 +200,7 @@ public class Tile
 
             // Grass
             case TileTypes.grass:
-                _tileObjectSprite = Assets.Sprites.tileObjectGrass;
+                _tileObjectSprite = Assets.Sprites.TileObjectGrass;
 
                 _tileObjectOffset.X = _tileObjectSprite.Width / 2 + 13;
                 _tileObjectOffset.Y = -5;
@@ -217,7 +208,7 @@ public class Tile
 
             // Bush
             case TileTypes.bush:
-                _tileObjectSprite = Assets.Sprites.tileObjectBush;
+                _tileObjectSprite = Assets.Sprites.TileObjectBush;
 
                 _tileObjectOffset.X = 0;
                 _tileObjectOffset.Y = -_tileObjectSprite.Height / 3 - 7;
@@ -225,7 +216,7 @@ public class Tile
 
             // Tree
             case TileTypes.tree:
-                _tileObjectSprite = Assets.Sprites.tileObjectTree;
+                _tileObjectSprite = Assets.Sprites.TileObjectTree;
 
                 _tileObjectOffset.X = 0;
                 _tileObjectOffset.Y = -_tileObjectSprite.Height / 2 - 7;

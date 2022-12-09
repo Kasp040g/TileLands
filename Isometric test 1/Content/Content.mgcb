@@ -61,6 +61,18 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/Clouds_Slow.png
 
+#begin Button_square_sound.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button_square_sound.png
+
 #begin Button_square.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -116,6 +128,18 @@
 /processorParam:TextureFormat=Compressed
 /build:FontTest.spritefont
 
+#begin MenuScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MenuScreen.png
+
 #begin SingleEagle_ss.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -128,7 +152,7 @@
 /processorParam:TextureFormat=Color
 /build:SingleEagle_ss.png
 
-#begin Splash.png
+#begin SplashScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -138,19 +162,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Splash.png
-
-#begin tempmenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:tempmenu.png
+/build:SplashScreen.png
 
 #begin tile0.png
 /importer:TextureImporter
@@ -271,18 +283,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:tileObjectTree.png
-
-#begin unavngivet(1).png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:unavngivet(1).png
 
 #begin Vignette.png
 /importer:TextureImporter

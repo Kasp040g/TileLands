@@ -7,7 +7,7 @@ namespace TileLands
     {
         
         //Animations
-        private Eagle _bird_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight /2));
+        private Eagle _Eagle_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight /2));
         private Deer _deer_m_run_ss;
         private bool _forestFound = false;
 
@@ -59,8 +59,8 @@ namespace TileLands
             _levels = Level.Level1;
 
             //Update tile size variables
-            _tileSize.X = Assets.Sprites.tileGrassBlock1.Width;
-            _tileSize.Y = Assets.Sprites.tileGrassBlock1.Height / 2;
+            _tileSize.X = Assets.Sprites.TileGrassBlock1.Width;
+            _tileSize.Y = Assets.Sprites.TileGrassBlock1.Height / 2;
         }
 
 
@@ -103,7 +103,7 @@ namespace TileLands
         public void Update()
         {
             // Update Animations
-            _bird_ss.Update();
+            _Eagle_ss.Update();
             if(_forestFound)
             {
                 _deer_m_run_ss.Update();
@@ -258,7 +258,7 @@ namespace TileLands
         public void Draw()
         {
             // Draw Animations
-            _bird_ss.Draw();
+            _Eagle_ss.Draw();
 
             //Loops through the map array and calls the individual tiles' draw method
             for (int y = 0; y < _mapSize.Y; y++)
@@ -457,6 +457,8 @@ namespace TileLands
                         // Go to next level
                         if (_spacePressed)
                         {
+                            // Clears the level of tiles
+                            ClearLevel();
                             _levels = Level.LevelEndless;
                         }
                     }
@@ -500,7 +502,7 @@ namespace TileLands
 
         #region Levels
 
-        //private void TempLevel()
+        //private void TempLevel()  ***Skabelon***
         //{
         //    _tiles[0, 0] = new( new Point(0, 0), MapToScreen(0, 0), Tile.TileTypes.grass);
         //    _tiles[0, 1] = new( new Point(0, 1), MapToScreen(0, 1), Tile.TileTypes.grass);
@@ -516,8 +518,19 @@ namespace TileLands
         private void ClearLevel()
         {
 
-            _tiles[0, 0] = new(new Point(0, 0), Tile.TileTypes.empty);
-         
+            _mapSize = new(10, 10);
+            _tiles = new Tile[_mapSize.X, _mapSize.Y];
+            
+
+            for(int y = 0; y < _mapSize.Y; y++)
+            {
+                for(int x = 0; x < _mapSize.X; x++)
+                {
+                    _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.empty);
+
+                }
+            }
+
         }
 
         private void Level0()
@@ -753,7 +766,6 @@ namespace TileLands
         /// </summary>
         private void LevelEndless()
         {
-
             _mapSize = new(10, 10);
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
             _mapOffset = new(4.5f, 0.1f);
@@ -820,13 +832,13 @@ namespace TileLands
                                         _tiles[x, y]._tileType = Tile.TileTypes.forest;
 
                                         // Update tiles to forest sprite
-                                        _forestTile._tileObjectSprite = Assets.Sprites.tileObjectForest;
+                                        _forestTile._tileObjectSprite = Assets.Sprites.TileObjectForest;
                                         _tiles[x, y + 1]._tileObjectSprite = null;
                                         _tiles[x + 1, y]._tileObjectSprite = null;
                                         _tiles[x, y]._tileObjectSprite = null;
 
                                         // update forest sprite offset
-                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.tileObjectForest.Width/4;
+                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.TileObjectForest.Width/4;
                                         _forestTile._tileObjectOffset.Y = -225;
 
                                         //START Animal reward Animation

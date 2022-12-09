@@ -5,20 +5,20 @@ namespace TileLands
     {
         // Global sound effect bool
         public static bool _soundEffectsMuted;
+        // global Music bool
+        public static bool _musicIsPaused;
 
-        ///Global variables for use in the project by all objects
+        public static bool _quit = false;
+
+        /// Global variables for use in the project by all objects
         public static float TotalSeconds { get; set; }
         public static ContentManager Content { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
         public static Point Bounds { get; set; }            // Screen Bounderies
         public static SpriteFont FontTest { get; set; }
         public static bool DebugModeToggled { get; set; }   // Debug
-        
+        public static int LevelXDone { get; set; }
 
-
-
-
-       
         /// <summary>
         /// Update total seconds elapsed
         /// </summary>

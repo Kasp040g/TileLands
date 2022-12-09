@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileLands
 {
@@ -14,21 +10,37 @@ namespace TileLands
 
         // button data
         private Rectangle _rectangle;
-        private Vector2 origin;
-        private Vector2 scale;
+        private Vector2 _origin;
+        private Vector2 _scale;
+        private bool _toggle;
+        private Texture2D[] _btn_sound = new Texture2D[3];
+
 
         // Properties
         public Vector2 Position { get; set; }
-        public Texture2D Texture { get; protected set; }
+        public Texture2D Texture { get; set; }
 
         public Button(Texture2D tex, Vector2 pos)
         {
             Texture = tex;
             Position = pos;
-            origin = new(tex.Width / 2, tex.Height / 2);
-            scale = Vector2.One;
+            _origin = new(tex.Width / 2, tex.Height / 2);
+            _scale = Vector2.One;
 
-            _rectangle = new((int)(pos.X - origin.X), (int)(pos.Y - origin.Y), tex.Width, tex.Height);
+            _rectangle = new((int)(pos.X - _origin.X), (int)(pos.Y - _origin.Y), tex.Width, tex.Height);
+
+        }
+        public Button(Texture2D tex, Texture2D tex2, Vector2 pos)
+        {
+            _btn_sound[0] = tex;
+            _btn_sound[1] = tex2;
+            Texture = tex;
+
+            Position = pos;
+            _origin = new(tex.Width / 2, tex.Height / 2);
+            _scale = Vector2.One;
+
+            _rectangle = new((int)(pos.X - _origin.X), (int)(pos.Y - _origin.Y), tex.Width, tex.Height);
         }
 
         public void Update()
@@ -44,6 +56,17 @@ namespace TileLands
             {
                 OnClick?.Invoke(this, EventArgs.Empty);
             }
+            if(Globals._musicIsPaused && _btn_sound[0] != null)
+                Texture = _btn_sound[0];
+            else if(!Globals._musicIsPaused && _btn_sound[1] != null)            
+                Texture = _btn_sound[2];
+
+
+            if(Globals._soundEffectsMuted && _btn_sound[0] != null)            
+                Texture = _btn_sound[0];            
+            else if(!Globals._soundEffectsMuted && _btn_sound[1] != null)            
+                Texture = _btn_sound[1];
+           
         }
 
         public void Draw()
@@ -53,7 +76,7 @@ namespace TileLands
             if(_mouseIsHovering)
                 _btnColor = Color.BlanchedAlmond;
 
-            Globals.SpriteBatch.Draw(Texture, Position, null, _btnColor, 0f, origin, scale, SpriteEffects.None, 1f);
+            Globals.SpriteBatch.Draw(Texture, Position, null, _btnColor, 0f, _origin, _scale, SpriteEffects.None, 1f);
         }
     }
 }

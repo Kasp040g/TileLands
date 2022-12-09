@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace TileLands
 {
     public class MenuState : State
     {
-        private List<Button> _buttons = new();               
+        private List<Button> _buttons = new();
 
+        /// <summary>
+        /// Menustate Constructor which will add buttons to the screen
+        /// </summary>
+        /// <param name="gm"></param>
         public MenuState(GameManager gm)
         {
             // Init Screen Bound
@@ -15,9 +18,15 @@ namespace TileLands
 
             //Bottons            
             AddButton(new(Assets.Sprites.Btn_Big, new(x, y))).OnClick += gm.Play;
-            AddButton(new(Assets.Sprites.Btn_Big, new(x, y + Assets.Sprites.Btn_Big.Height * (float)1.5))).OnClick += gm.Restart;
+            //AddButton(new(Assets.Sprites.Btn_Big, new(x, y + Assets.Sprites.Btn_Big.Height * (float)1.5))).OnClick += gm.Restart;
+            AddButton(new(Assets.Sprites.Btn_Big, new(x, y + Assets.Sprites.Btn_Big.Height * (float)1.5))).OnClick += gm.LoadSave;
+            AddButton(new(Assets.Sprites.Btn_Big, new(x, y + Assets.Sprites.Btn_Big.Height * (float)3))).OnClick += gm.Quit;
         }
-
+        /// <summary>
+        /// Add button to the list of buttons
+        /// </summary>
+        /// <param name="button"></param>
+        /// <returns></returns>
         private Button AddButton(Button button)
         {
             _buttons.Add(button);
@@ -25,7 +34,7 @@ namespace TileLands
         }
 
         public override void Update(GameManager gm)
-        {            
+        {
             foreach(var button in _buttons)
             {
                 button.Update();
