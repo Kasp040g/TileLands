@@ -168,14 +168,7 @@ namespace TileLands
                 Globals._soundEffectsMuted = false;
             else
                 Globals._soundEffectsMuted = true;
-
-            Console.WriteLine(Globals._soundEffectsMuted);
         }
-
-        //public void ResetLevel(object sender, EventArgs e)
-        //{
-
-        //}
         #endregion Button Methods
 
         #region Load/save

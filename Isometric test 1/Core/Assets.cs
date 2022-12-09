@@ -26,7 +26,8 @@ namespace TileLands
             public static Texture2D MenuScreen;
 
             // Buttons
-            public static Texture2D Btn_Big;
+            public static Texture2D Btn_Play;
+            public static Texture2D Btn_Quit;
             public static Texture2D Btn_Restart;
             public static Texture2D Btn_Toggle_Sound_On;
             public static Texture2D Btn_Toggle_Sound_Off;
@@ -66,7 +67,8 @@ namespace TileLands
                 MenuScreen = Globals.Content.Load<Texture2D>("MenuScreen");
 
                 // Buttons
-                Btn_Big = Globals.Content.Load<Texture2D>("Button");
+                Btn_Play = Globals.Content.Load<Texture2D>("Button_play");
+                Btn_Quit = Globals.Content.Load<Texture2D>("Button_exit");
                 Btn_Restart = Globals.Content.Load<Texture2D>("Button_restart");
                 Btn_Toggle_Sound_On = Globals.Content.Load<Texture2D>("Button_sound_effects");
                 Btn_Toggle_Sound_Off = Globals.Content.Load<Texture2D>("Button_sound_effects_muted");

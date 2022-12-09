@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TileLands
 {
@@ -13,8 +14,16 @@ namespace TileLands
         private Vector2 _origin;
         private Vector2 _scale;
         private bool _toggle;
-        private Texture2D[] _btn_sound = new Texture2D[3];
-
+        //private List<Texture2D> _btnSprites = new()
+        //private readonly Texture2D[] _btnSprites =
+        //{   
+        //    Assets.Sprites.Btn_Restart,
+        //    Assets.Sprites.Btn_Toggle_Music_On,   
+        //    Assets.Sprites.Btn_Toggle_Music_Off,   
+        //    Assets.Sprites.Btn_Toggle_Sound_On,
+        //    Assets.Sprites.Btn_Toggle_Sound_Off
+        //};
+        private Texture2D[] _btnSprites = new Texture2D[2];
 
         // Properties
         public Vector2 Position { get; set; }
@@ -32,8 +41,9 @@ namespace TileLands
         }
         public Button(Texture2D tex, Texture2D tex2, Vector2 pos)
         {
-            _btn_sound[0] = tex;
-            _btn_sound[1] = tex2;
+            _btnSprites[0] = tex;
+            _btnSprites[1] = tex2;
+
             Texture = tex;
 
             Position = pos;
@@ -54,20 +64,20 @@ namespace TileLands
 
             if(InputManager.MouseLeftClicked && _rectangle.Contains(InputManager.MouseRectangle))
             {
+                // if the rectangles of mouse and a button intersect, invoke the subsribed method defined in menustate when the button is instatiated
                 OnClick?.Invoke(this, EventArgs.Empty);
+
+                // Sprite change when clicked and bool change state
+                ChangeIcon(Globals._musicIsPaused || Globals._soundEffectsMuted);
             }
+        }
 
-            if(!Globals._musicIsPaused && _btn_sound[0] != null)
-                Texture = _btn_sound[0];
-            else if(Globals._musicIsPaused && _btn_sound[1] != null)            
-                Texture = _btn_sound[2];
-
-
-            if(!Globals._soundEffectsMuted && _btn_sound[0] != null)            
-                Texture = _btn_sound[0];            
-            else if(Globals._soundEffectsMuted && _btn_sound[1] != null)            
-                Texture = _btn_sound[1];
-           
+        private void ChangeIcon(bool change)
+        {
+            if(!change && _btnSprites[0] != null)
+                Texture = _btnSprites[0];
+            else if(change && _btnSprites[1] != null)
+                Texture = _btnSprites[1];
         }
 
         public void Draw()
