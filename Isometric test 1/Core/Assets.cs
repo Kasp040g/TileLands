@@ -99,7 +99,6 @@ namespace TileLands
 
                 // Overlays
                 Vignette = Globals.Content.Load<Texture2D>("Vignette");
-
             }
         }
 
@@ -109,6 +108,11 @@ namespace TileLands
         /// </summary>
         public struct Audio
         {
+            // Splash_intro
+            public static Song Splash_intro;
+            public static Song Splash_loop;
+            public static Song Splash_outro;
+
             // SoundEffects
             public static SoundEffect MergeSound;
             public static SoundEffect WinSound;
@@ -121,6 +125,11 @@ namespace TileLands
             // Method to load audio files and assign them to the struct members
             public static void LoadAudio()
             {
+                // Splash
+                Splash_intro = Globals.Content.Load<Song>("Audio/BSBIntro");
+                Splash_loop = Globals.Content.Load<Song>("Audio/BSBLoop");
+                Splash_outro = Globals.Content.Load<Song>("Audio/BSBOutro");
+
                 // SoundEffects
                 MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
                 WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");

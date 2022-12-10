@@ -7,7 +7,7 @@ namespace TileLands
         public static bool _soundEffectsMuted;
         // global Music bool
         public static bool _musicIsPaused;
-
+        // Gloabl Bool for exiting the game
         public static bool _quit = false;
 
         /// Global variables for use in the project by all objects

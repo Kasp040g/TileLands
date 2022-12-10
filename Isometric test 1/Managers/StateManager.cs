@@ -18,7 +18,7 @@ namespace TileLands
             States.Clear();
             States.Add(ScreenStates.Splash, new SplashState());
             States.Add(ScreenStates.Menu, new MenuState(gm));
-            States.Add(ScreenStates.Game, new GameState(gm));
+            //States.Add(ScreenStates.Game, new GameState(gm));
 
 
         }

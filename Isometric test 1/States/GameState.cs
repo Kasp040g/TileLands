@@ -17,6 +17,11 @@ namespace TileLands
         /// <param name="gm"></param>
         public GameState(GameManager gm)
         {
+            //Plays and repeats the background music
+            MediaPlayer.Play(Assets.Audio.BackgroundMusic);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 1.0f;
+
             // Init Screen Bound
             var y = 75;
             var btn_offset = 125;

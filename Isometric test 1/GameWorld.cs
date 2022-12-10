@@ -46,7 +46,9 @@ namespace TileLands
             //Transfer content to be global
             Globals.Content = Content;
 
-            // TODO : merge into assets
+            //Load audio files
+            Assets.Audio.LoadAudio();
+            // Load Sprites on start
             Assets.Sprites.LoadSprites();
 
             //Instantiate game manager and run GameManager's Initialize

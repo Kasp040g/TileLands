@@ -22,7 +22,7 @@ namespace TileLands
         //Background
         public static List<ScrollingBackground> _scrollingBackgrounds;
 
-        
+
 
         public int lxd;
         public GameManager()
@@ -41,18 +41,8 @@ namespace TileLands
 
         public void Init()
         {
-
-
             // sound effect not muted
             Globals._soundEffectsMuted = false;
-
-            //Load audio files
-            Assets.Audio.LoadAudio();
-
-            //Plays and repeats the background music
-            MediaPlayer.Play(Assets.Audio.BackgroundMusic);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 1.0f;
 
             _sm = new()
             {
@@ -60,10 +50,6 @@ namespace TileLands
                 EndlessUnlocked = false,
                 Score = 0,
             };
-
-
-
-
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -118,12 +104,14 @@ namespace TileLands
         #region Button Methods
         public void Play(object sender, EventArgs e)
         {
+            StateManager.States.Add(ScreenStates.Game, new GameState(this));
             ChangeState(ScreenStates.Game);
         }
 
         public void Restart(object sender, EventArgs e)
         {
             StateManager.States.Remove(ScreenStates.Game);
+            StateManager.States.Clear();
             StateManager.States.Add(ScreenStates.Game, new GameState(this));
 
             ChangeState(ScreenStates.Game);

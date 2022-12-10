@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Security.Cryptography.Xml;
 
 namespace TileLands
 {
     public class Map
     {
-        
+        #region Fields
         //Animations
-        private Eagle _Eagle_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight /2));
+        private Eagle _eagle_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight / 2));
         private Deer _deer_m_run_ss;
         private bool _forestFound = false;
 
@@ -20,8 +19,6 @@ namespace TileLands
         private bool _shouldDrawMap = true;
         private bool _levelComplete = false;
         private bool _forest = false;
-
-
 
         //Mouse interaction variables
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
@@ -49,6 +46,7 @@ namespace TileLands
             Level7,
             LevelEndless,
         }
+        #endregion Fields
 
         /// <summary>
         /// Map constructer to load, setup and create tiles on map
@@ -103,18 +101,18 @@ namespace TileLands
         public void Update()
         {
             // Update Animations
-            _Eagle_ss.Update();
+            _eagle_ss.Update();
             if(_forestFound)
             {
                 _deer_m_run_ss.Update();
             }
-            
+
 
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
             // Skip current level  ***************for Debugging**************
-            if (_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
             {
                 ClearLevel();
                 _shouldDrawMap = true;
@@ -122,17 +120,17 @@ namespace TileLands
             }
 
             // Skip current level  ***************for Debugging**************
-            if (_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
             {
                 ClearLevel();
                 _shouldDrawMap = true;
                 _levels--;
             }
 
-            if (_shouldDrawMap)
+            if(_shouldDrawMap)
             {
                 // Level state machine
-                switch (_levels)
+                switch(_levels)
                 {
                     case Level.Level1:
                         Level1();
@@ -180,7 +178,7 @@ namespace TileLands
             var _mousePosition = new Point(_mouseState.X, _mouseState.Y);
 
             //Checks if the mouse coordinates are within bounds of the tile, thereby hovering it
-            if (mouseMap.X >= 0 && mouseMap.Y >= 0 && mouseMap.X < _mapSize.X && mouseMap.Y < _mapSize.Y)
+            if(mouseMap.X >= 0 && mouseMap.Y >= 0 && mouseMap.X < _mapSize.X && mouseMap.Y < _mapSize.Y)
             {
                 //Save the hovered tile
                 _mouseHovered = _tiles[mouseMap.X, mouseMap.Y];
@@ -195,7 +193,7 @@ namespace TileLands
             }
 
             //If the player is hovering a tile and no other tile is being dragged, then they are able to drag the tile around
-            if (_mouseHovered != null && _mouseGrabbed == null && _mouseState.LeftButton == ButtonState.Pressed)
+            if(_mouseHovered != null && _mouseGrabbed == null && _mouseState.LeftButton == ButtonState.Pressed)
             {
                 //Transfers the hovered tile to grabbed
                 _mouseGrabbed = _mouseHovered;
@@ -205,10 +203,10 @@ namespace TileLands
             }
 
             //Release tile with mouse
-            if (_mouseGrabbed != null && _mouseState.LeftButton == ButtonState.Released)
+            if(_mouseGrabbed != null && _mouseState.LeftButton == ButtonState.Released)
             {
                 //Check if the tile is dropped on another tile
-                if (_mouseHovered != null && _mouseHovered != _mouseGrabbed)
+                if(_mouseHovered != null && _mouseHovered != _mouseGrabbed)
                 {
                     //if (_mouseHovered._mapPosition.X < _mouseGrabbed._mapPosition.X + 1.05
                     //    && _mouseHovered._mapPosition.X > _mouseGrabbed._mapPosition.X - 1.05
@@ -218,7 +216,7 @@ namespace TileLands
                     var _hoveredTileVector = _mouseHovered._mapPosition.ToVector2();
                     var _grabbedTileVector = _mouseGrabbed._mapPosition.ToVector2();
 
-                    if (Vector2.Distance(_hoveredTileVector, _grabbedTileVector) <= 1)
+                    if(Vector2.Distance(_hoveredTileVector, _grabbedTileVector) <= 1)
                     {
                         //_mouseGrabbed._texture = textures[5];
                         _mouseGrabbed.CheckTileMerge(_mouseHovered);
@@ -250,7 +248,7 @@ namespace TileLands
             ClearLevel();
             _shouldDrawMap = true;
             _levels = _tempLevel;
-        } 
+        }
 
         /// <summary>
         /// Draw calls for tiles in map
@@ -258,17 +256,17 @@ namespace TileLands
         public void Draw()
         {
             // Draw Animations
-            _Eagle_ss.Draw();
+            _eagle_ss.Draw();
 
             //Loops through the map array and calls the individual tiles' draw method
-            for (int y = 0; y < _mapSize.Y; y++)
+            for(int y = 0; y < _mapSize.Y; y++)
             {
-                for (int x = 0; x < _mapSize.X; x++)
+                for(int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[x, y].Draw();
                 }
             }
-            if (_levelComplete)
+            if(_levelComplete)
             {
                 //Setup text strings
                 string _text1 = "Congratulations";
@@ -303,16 +301,16 @@ namespace TileLands
                 Globals.SpriteBatch.DrawString(Globals.FontTest, _text2, new Vector2(_textPosition2.X, _textPosition2.Y + _size2.Y), _TEXT_COL);
             }
 
-            if (_textGoal != "")
+            if(_textGoal != "")
             {
                 //Text
                 string _text = "";
 
-                if (_levels == Level.LevelEndless)              
-                    _text = $"Score:\n{_textGoal}";                
+                if(_levels == Level.LevelEndless)
+                    _text = $"Score:\n{_textGoal}";
                 else
-                    _text = $"Goals:\n{_textGoal}";               
-               
+                    _text = $"Goals:\n{_textGoal}";
+
 
                 //Measure the string both horizontal and vertical
                 Vector2 _size1 = Globals.FontTest.MeasureString(_textGoal);
@@ -337,7 +335,7 @@ namespace TileLands
             if(_forestFound)
             {
                 _deer_m_run_ss.Draw();
-            }   
+            }
         }
 
         private void SolutionFound()
@@ -348,39 +346,39 @@ namespace TileLands
             bool _spacePressed = false;
 
             // Check for SPACE press
-            if (_currentKey.IsKeyDown(Keys.Space))
+            if(_currentKey.IsKeyDown(Keys.Space))
             {
                 _spacePressed = true;
             }
 
             // Check if all goals of the current level is met
-            switch (_levels)
+            switch(_levels)
             {
                 // Level 1
                 case Level.Level1:
-                    if (TileTypeCount(Tile.TileTypes.bush) >= 1)
+                    if(TileTypeCount(Tile.TileTypes.bush) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
-                        {     
+                        if(_spacePressed)
+                        {
                             _levels = Level.Level2;
-                            
+
                         }
                     }
                     break;
 
                 // Level 2
                 case Level.Level2:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 1)
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             _levels = Level.Level3;
                         }
@@ -389,13 +387,13 @@ namespace TileLands
 
                 // Level 3
                 case Level.Level3:
-                    if (TileTypeCount(Tile.TileTypes.forest) >= 1)
+                    if(TileTypeCount(Tile.TileTypes.forest) >= 1)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             _levels = Level.Level4;
                         }
@@ -404,13 +402,13 @@ namespace TileLands
 
                 // Level 4
                 case Level.Level4:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 4)
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 4)
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             _levels = Level.Level5;
                         }
@@ -419,13 +417,13 @@ namespace TileLands
 
                 // Level 5
                 case Level.Level5:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             _levels = Level.Level6;
                         }
@@ -434,13 +432,13 @@ namespace TileLands
 
                 // Level 6
                 case Level.Level6:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 7) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             _levels = Level.Level7;
                         }
@@ -449,13 +447,13 @@ namespace TileLands
 
                 // Level 7
                 case Level.Level7:
-                    if (TileTypeCount(Tile.TileTypes.forest) >=12 ) // ****TEMP GOAL***
+                    if(TileTypeCount(Tile.TileTypes.forest) >= 12) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
 
                         // Go to next level
-                        if (_spacePressed)
+                        if(_spacePressed)
                         {
                             // Clears the level of tiles
                             ClearLevel();
@@ -469,7 +467,7 @@ namespace TileLands
 
                 // Level Endless
                 case Level.LevelEndless:
-                    if (TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -482,10 +480,10 @@ namespace TileLands
             }
 
             // Check if level is complete and the player can progress to the next scene
-            if (_levelComplete == true)
+            if(_levelComplete == true)
             {
                 // Check for SPACE key press
-                if (_spacePressed)
+                if(_spacePressed)
                 {
                     // Clears the level of tiles
                     ClearLevel();
@@ -520,17 +518,14 @@ namespace TileLands
 
             _mapSize = new(10, 10);
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
-            
 
             for(int y = 0; y < _mapSize.Y; y++)
             {
                 for(int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.empty);
-
                 }
             }
-
         }
 
         private void Level0()
@@ -550,7 +545,7 @@ namespace TileLands
 
         private void Level1()
         {
-            _mapSize = new(2,1);
+            _mapSize = new(2, 1);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -720,21 +715,21 @@ namespace TileLands
             _tiles[0, 3] = new(new Point(0, 3), Tile.TileTypes.empty);
             _tiles[0, 4] = new(new Point(0, 4), Tile.TileTypes.empty);
             _tiles[0, 5] = new(new Point(0, 5), Tile.TileTypes.empty);
-            
+
             _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.grass);
             _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.grass);
             _tiles[1, 2] = new(new Point(1, 2), Tile.TileTypes.grass);
             _tiles[1, 3] = new(new Point(1, 3), Tile.TileTypes.empty);
             _tiles[1, 4] = new(new Point(1, 4), Tile.TileTypes.empty);
             _tiles[1, 5] = new(new Point(1, 5), Tile.TileTypes.empty);
-            
+
             _tiles[2, 0] = new(new Point(2, 0), Tile.TileTypes.grass);
             _tiles[2, 1] = new(new Point(2, 1), Tile.TileTypes.grass);
             _tiles[2, 2] = new(new Point(2, 2), Tile.TileTypes.grass);
             _tiles[2, 3] = new(new Point(2, 3), Tile.TileTypes.empty);
             _tiles[2, 4] = new(new Point(2, 4), Tile.TileTypes.empty);
             _tiles[2, 5] = new(new Point(2, 5), Tile.TileTypes.empty);
-            
+
             _tiles[3, 0] = new(new Point(3, 0), Tile.TileTypes.empty);
             _tiles[3, 1] = new(new Point(3, 1), Tile.TileTypes.empty);
             _tiles[3, 2] = new(new Point(3, 2), Tile.TileTypes.empty);
@@ -760,9 +755,9 @@ namespace TileLands
 
 
         /// <summary>
-        /// Level 6 is a for loop that makes a 10x10 map, allowing the player to play around and see how many trees they can get.
-        /// The reason that this is a loop, ane the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
-        /// whereas level 6 only consists of 1 type, which makes it easy to make in a loop.
+        /// Level makes a for loop that makes a 10x10 map, allowing the player to play around and see how many trees they can get.
+        /// The reason that this is a loop, and the previous levels arent, is because the other level is made of different tiletypes, such as empty, grass, bush and tree.
+        /// whereas this level only consists of 1 type, which makes it easy to make in a loop.
         /// </summary>
         private void LevelEndless()
         {
@@ -770,9 +765,9 @@ namespace TileLands
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
             _mapOffset = new(4.5f, 0.1f);
 
-            for (int y = 0; y < _mapSize.Y; y++)
+            for(int y = 0; y < _mapSize.Y; y++)
             {
-                for (int x = 0; x < _mapSize.X; x++)
+                for(int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.grass);
 
@@ -780,6 +775,7 @@ namespace TileLands
             }
         }
         #endregion Levels
+
         /// <summary>
         /// Loops through the tile map and returns the amount/count of how many of the provided tiletype were found
         /// </summary>
@@ -791,11 +787,11 @@ namespace TileLands
             int _count = 0;
 
             //Loop through tile map and count how many of the specific tile type were found
-            for (int x = 0; x < _tiles.GetLength(0); x++)
+            for(int x = 0; x < _tiles.GetLength(0); x++)
             {
-                for (int y = 0; y < _tiles.GetLength(1); y++)
+                for(int y = 0; y < _tiles.GetLength(1); y++)
                 {
-                    if (_tiles[x, y]._tileType == tileType)
+                    if(_tiles[x, y]._tileType == tileType)
                     {
                         _count++;
                     }
@@ -808,19 +804,19 @@ namespace TileLands
 
         public void DisplayForest()
         {
-            if (TileTypeCount(Tile.TileTypes.tree) <= 4)
+            if(TileTypeCount(Tile.TileTypes.tree) <= 4)
             {
-                for (int x = 0; x < _tiles.GetLength(0) - 1; x++)
+                for(int x = 0; x < _tiles.GetLength(0) - 1; x++)
                 {
-                    for (int y = 0; y < _tiles.GetLength(1) - 1; y++)
+                    for(int y = 0; y < _tiles.GetLength(1) - 1; y++)
                     {
-                        if (_tiles[x, y]._tileType == Tile.TileTypes.tree)
+                        if(_tiles[x, y]._tileType == Tile.TileTypes.tree)
                         {
-                            if (_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
+                            if(_tiles[x, y + 1]._tileType == Tile.TileTypes.tree)
                             {
-                                if (_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
+                                if(_tiles[x + 1, y]._tileType == Tile.TileTypes.tree)
                                 {
-                                    if (_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
+                                    if(_tiles[x + 1, y + 1]._tileType == Tile.TileTypes.tree)
                                     {
                                         // CHANGE ABOVE TILE DISPLAY
                                         var _forestTile = _tiles[x + 1, y + 1];
@@ -838,7 +834,7 @@ namespace TileLands
                                         _tiles[x, y]._tileObjectSprite = null;
 
                                         // update forest sprite offset
-                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.TileObjectForest.Width/4;
+                                        _forestTile._tileObjectOffset.X = -Assets.Sprites.TileObjectForest.Width / 4;
                                         _forestTile._tileObjectOffset.Y = -225;
 
                                         //START Animal reward Animation
@@ -854,17 +850,18 @@ namespace TileLands
             }
         }
 
+        
+
         private void DeerAnimation(int x, int y)
         {
             // TODO : rework deer ..direction,gender, states
 
             //TimeSpan.FromSeconds(4).;
 
-            _deer_m_run_ss = new(new(x, y+1));
-            _deer_m_run_ss = new(new(x, y + 1 +20));
-   
-            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.45f, GameWorld.ScreenHeight * 0.5f));
+            _deer_m_run_ss = new(new(x, y + 1));
+            _deer_m_run_ss = new(new(x, y + 1 + 20));
 
+            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.45f, GameWorld.ScreenHeight * 0.5f));
         }
 
         /// <summary>
@@ -873,9 +870,9 @@ namespace TileLands
         public void UpdateGoalText()
         {
             // Won't be updated if level is complete
-            if (_levelComplete == false)
+            if(_levelComplete == false)
             {
-                switch (_levels)
+                switch(_levels)
                 {
 
                     // Level 1

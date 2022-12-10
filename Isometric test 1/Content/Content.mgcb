@@ -13,6 +13,30 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/BSBIntro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BSBIntro.mp3
+
+#begin Audio/BSBLoop.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BSBLoop.mp3
+
+#begin Audio/BSBOutro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BSBOutro.mp3
+
+#begin Audio/lunar lounging_mp3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/lunar lounging_mp3.mp3
+
 #begin Audio/lunar lounging_mp3.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -25,11 +49,29 @@
 /processorParam:Quality=Best
 /build:Audio/Pop_sound_5.wav
 
+#begin Audio/Pop_sound_5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Pop_sound_5.wav
+
 #begin Audio/ResetSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/ResetSound.wav
+
+#begin Audio/ResetSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/ResetSound.wav
+
+#begin Audio/WinSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/WinSound.wav
 
 #begin Audio/WinSound.wav
 /importer:WavImporter
