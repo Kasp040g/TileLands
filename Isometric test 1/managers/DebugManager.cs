@@ -1,12 +1,9 @@
-﻿
-namespace TileLands
+﻿namespace TileLands
 {
-    internal class DebugManager
-    {
+    public class DebugManager
+    {        
         double _frameRate = 0;                  // Keeps track of the current frame rate of the game
-
         bool _canPressF3 = true;                // Checks whether or not the F3 button can be pressed again
-
 
         /// <summary>
         /// Debug manager constructer, creates an instance of the debug manager
@@ -16,7 +13,6 @@ namespace TileLands
             // Turn of debug mode
             Globals.DebugModeToggled = false;
         }
-
 
         /// <summary>
         /// Updates the debug manager, is called in gamemanager's update
@@ -52,7 +48,6 @@ namespace TileLands
             // Update the frame rate tracker
             _frameRate = (1 / Globals.TotalSeconds);
         }
-
 
         /// <summary>
         /// Debug manager draw method, is called in gamemanager's draw event

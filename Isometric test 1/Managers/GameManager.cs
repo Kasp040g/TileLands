@@ -11,7 +11,7 @@ namespace TileLands
         // Init States
         private State _state;
 
-        // Instantiate DebugManager
+        // Instantiate Managers
         private DebugManager _debugManager = new();
         private DataManager _dataManager = new();
 
@@ -23,9 +23,6 @@ namespace TileLands
         //Background
         public static List<ScrollingBackground> _scrollingBackgrounds;
 
-
-
-        public int lxd;
         public GameManager()
         {
             // Init
@@ -108,14 +105,14 @@ namespace TileLands
             ChangeState(ScreenStates.Game);
         }
 
-        public void Restart(object sender, EventArgs e)
-        {
-            StateManager.States.Remove(ScreenStates.Game);
-            StateManager.States.Clear();
-            StateManager.States.Add(ScreenStates.Game, new GameState(this));
+        //public void Restart(object sender, EventArgs e)
+        //{
+        //    StateManager.States.Remove(ScreenStates.Game);
+        //    StateManager.States.Clear();
+        //    StateManager.States.Add(ScreenStates.Game, new GameState(this));
 
-            ChangeState(ScreenStates.Game);
-        }
+        //    ChangeState(ScreenStates.Game);
+        //}
 
         public void LoadSave(object sender, EventArgs e)
         {
