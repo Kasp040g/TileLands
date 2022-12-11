@@ -14,11 +14,9 @@ namespace TileLands
         private Point _mapSize;
         private readonly Point _tileSize;
         private Vector2 _mapOffset = new(4.5f, 4f);
-        private Tile[,] _tiles;
-        private int _highscore;
+        private Tile[,] _tiles;        
         private bool _shouldDrawMap = true;
-        private bool _levelComplete = false;
-        private bool _forest = false;
+        private bool _levelComplete = false;        
 
         //Mouse interaction variables
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
@@ -462,9 +460,6 @@ namespace TileLands
                     }
                     break;
 
-
-
-
                 // Level Endless
                 case Level.LevelEndless:
                     if(TileTypeCount(Tile.TileTypes.tree) >= 20) // ****TEMP GOAL***
@@ -482,6 +477,8 @@ namespace TileLands
             // Check if level is complete and the player can progress to the next scene
             if(_levelComplete == true)
             {
+                // uptick level complete counter
+                Globals.LevelXDone++;
                 // Check for SPACE key press
                 if(_spacePressed)
                 {
@@ -496,7 +493,6 @@ namespace TileLands
                 }
             }
         }
-
 
         #region Levels
 
@@ -770,7 +766,6 @@ namespace TileLands
                 for(int x = 0; x < _mapSize.X; x++)
                 {
                     _tiles[y, x] = new(new Point(y, x), Tile.TileTypes.grass);
-
                 }
             }
         }

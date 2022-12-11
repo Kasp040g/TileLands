@@ -2,13 +2,13 @@
 namespace TileLands
 {
     public class SplashState : State
-    {       
+    {
         public SplashState()
         {
             // Play Intro song
             MediaPlayer.Play(Assets.Audio.Splash_intro);
         }
-
+        
         public override void Update(GameManager gm)
         {
             if(MediaPlayer.State != MediaState.Playing)

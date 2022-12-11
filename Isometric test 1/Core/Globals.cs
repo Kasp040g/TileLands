@@ -17,7 +17,10 @@ namespace TileLands
         public static Point Bounds { get; set; }            // Screen Bounderies
         public static SpriteFont FontTest { get; set; }
         public static bool DebugModeToggled { get; set; }   // Debug
+
+        // LoadSave
         public static int LevelXDone { get; set; }
+        public static bool Unlocked { get; set; }
 
         /// <summary>
         /// Update total seconds elapsed

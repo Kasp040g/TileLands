@@ -13,10 +13,11 @@ namespace TileLands
 
         // Instantiate DebugManager
         private DebugManager _debugManager = new();
+        private DataManager _dataManager = new();
 
         // Save/Load
         private ScoreManager _sm;
-        private const string _savePath = "topsecret.data";
+        private const string _savePath = "thisisnottopsecret.data";
         public bool _saveFileCreated;
 
         //Background
@@ -46,23 +47,16 @@ namespace TileLands
 
             _sm = new()
             {
-                LevelXDone = 0,
-                EndlessUnlocked = false,
-                Score = 0,
+                LevelXDone = Globals.LevelXDone,
+                EndlessUnlocked = Globals.Unlocked
             };
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
             {
-                new ScrollingBackground(Assets.Sprites.CloudsFast, 18f, true)
-                {
-                  Layer = 0.99f,
-                },
+                new ScrollingBackground(Assets.Sprites.CloudsFast, 18f, true) {Layer = 0.99f,},
 
-                new ScrollingBackground(Assets.Sprites.CloudsSlow, 25f, true)
-                {
-                  Layer = 0.8f,
-                }
+                new ScrollingBackground(Assets.Sprites.CloudsSlow, 25f, true) {Layer = 0.77f,}
             };
         }
 
@@ -83,10 +77,13 @@ namespace TileLands
                 sb.Update(gameTime);
             }
 
+            // Save progress on exit
             if(Keyboard.GetState().IsKeyDown(Keys.Escape) || Globals._quit == true)
             {
                 // save
-                Save(_sm);
+                //Save(_sm);
+                _dataManager.BinarySerialize(_sm, _savePath);
+                _saveFileCreated = true;
             }
         }
 
@@ -104,7 +101,10 @@ namespace TileLands
         #region Button Methods
         public void Play(object sender, EventArgs e)
         {
+            StateManager.States.Remove(ScreenStates.Game);
             StateManager.States.Add(ScreenStates.Game, new GameState(this));
+
+
             ChangeState(ScreenStates.Game);
         }
 
@@ -121,8 +121,13 @@ namespace TileLands
         {
             if(_saveFileCreated)
             {
-                _sm = Load();
-                Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked} {_sm.Score}");
+                _sm = _dataManager.BinaryDeserialize(_savePath) as ScoreManager;
+                
+                //_sm = Load();
+                //Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
+                Globals.LevelXDone = _sm.LevelXDone;
+                Globals.Unlocked = _sm.EndlessUnlocked;
+                StateManager.States.Add(ScreenStates.Game, new GameState(this));
                 ChangeState(ScreenStates.Game);
             }
         }
@@ -159,7 +164,9 @@ namespace TileLands
         }
         #endregion Button Methods
 
-        #region Load/save
+
+
+        #region OLD Load/save 
         private void Save(ScoreManager sm)
         {
             string SaveThis = JsonSerializer.Serialize<ScoreManager>(sm);
@@ -179,18 +186,21 @@ namespace TileLands
         }
 
         // Encrypt a file.
-        public static void AddEncryption(string FileName)
+        public static string AddEpicL33tEncryption(string fileName)
         {
 
-            File.Encrypt(FileName);
+            //File.Encrypt(FileName);
+            var strLow = fileName.ToLower();
+            return fileName.Replace("a", "@").Replace("e", "3").Replace("i", "!").Replace("o", "0").Replace("s", "5").Replace("l", "£").Replace("c", "<").Replace("r", "&");
         }
 
         // Decrypt a file.
-        public static void RemoveEncryption(string FileName)
+        public static string RemoveEpicL33tEncryption(string fileName)
         {
-            File.Decrypt(FileName);
+            //File.Decrypt(FileName);
+            var strLow = fileName.ToLower();
+            return fileName.Replace("@", "a").Replace("3", "e").Replace("!", "1").Replace("0", "o").Replace("5", "s").Replace("£", "l").Replace("<", "c").Replace("&", "r");
         }
         #endregion Load/Save
     }
 }
-
