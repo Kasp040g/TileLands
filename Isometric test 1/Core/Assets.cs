@@ -63,42 +63,42 @@ namespace TileLands
             public static void LoadSprites()
             {
                 // Backgrounds
-                SplashScreen = Globals.Content.Load<Texture2D>("SplashScreen");
-                MenuScreen = Globals.Content.Load<Texture2D>("MenuScreen");
+                SplashScreen         = Globals.Content.Load<Texture2D>("SplashScreen");
+                MenuScreen           = Globals.Content.Load<Texture2D>("MenuScreen");
 
                 // Buttons
-                Btn_Play = Globals.Content.Load<Texture2D>("Button_play");
-                Btn_Quit = Globals.Content.Load<Texture2D>("Button_exit");
-                Btn_Restart = Globals.Content.Load<Texture2D>("Button_restart");
-                Btn_Toggle_Sound_On = Globals.Content.Load<Texture2D>("Button_sound_effects");
+                Btn_Play             = Globals.Content.Load<Texture2D>("Button_play");
+                Btn_Quit             = Globals.Content.Load<Texture2D>("Button_exit");
+                Btn_Restart          = Globals.Content.Load<Texture2D>("Button_restart");
+                Btn_Toggle_Sound_On  = Globals.Content.Load<Texture2D>("Button_sound_effects");
                 Btn_Toggle_Sound_Off = Globals.Content.Load<Texture2D>("Button_sound_effects_muted");
-                Btn_Toggle_Music_On = Globals.Content.Load<Texture2D>("Button_music");
+                Btn_Toggle_Music_On  = Globals.Content.Load<Texture2D>("Button_music");
                 Btn_Toggle_Music_Off = Globals.Content.Load<Texture2D>("Button_music_muted");
 
                 // Animations
-                Eagle_ss = Globals.Content.Load<Texture2D>("SingleEagle_ss");
-                Deer_m_run_ss = Globals.Content.Load<Texture2D>("deer_f_run");
-                Deer_f_run_ss = Globals.Content.Load<Texture2D>("deer_m_run");
+                Eagle_ss             = Globals.Content.Load<Texture2D>("SingleEagle_ss");
+                Deer_m_run_ss        = Globals.Content.Load<Texture2D>("deer_f_run");
+                Deer_f_run_ss        = Globals.Content.Load<Texture2D>("deer_m_run");
 
                 // Tile struct members
-                TileGrassBlock1 = Globals.Content.Load<Texture2D>("tile0");
-                TileGrassBlock2 = Globals.Content.Load<Texture2D>("tile1");
-                TileGrassBlock3 = Globals.Content.Load<Texture2D>("tile2");
-                TileGrassBlock4 = Globals.Content.Load<Texture2D>("tile3");
-                TileEmpty = Globals.Content.Load<Texture2D>("tile5");
+                TileGrassBlock1      = Globals.Content.Load<Texture2D>("tile0");
+                TileGrassBlock2      = Globals.Content.Load<Texture2D>("tile1");
+                TileGrassBlock3      = Globals.Content.Load<Texture2D>("tile2");
+                TileGrassBlock4      = Globals.Content.Load<Texture2D>("tile3");
+                TileEmpty            = Globals.Content.Load<Texture2D>("tile5");
 
                 // Tile Objects
-                TileObjectGrass = Globals.Content.Load<Texture2D>("tileObjectGrass");
-                TileObjectBush = Globals.Content.Load<Texture2D>("tileObjectBush");
-                TileObjectTree = Globals.Content.Load<Texture2D>("tileObjectTree");
-                TileObjectForest = Globals.Content.Load<Texture2D>("tileObjectForest");
+                TileObjectGrass      = Globals.Content.Load<Texture2D>("tileObjectGrass");
+                TileObjectBush       = Globals.Content.Load<Texture2D>("tileObjectBush");
+                TileObjectTree       = Globals.Content.Load<Texture2D>("tileObjectTree");
+                TileObjectForest     = Globals.Content.Load<Texture2D>("tileObjectForest");
 
                 //Backgrounds
-                CloudsFast = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
-                CloudsSlow = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
+                CloudsFast           = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Fast");
+                CloudsSlow           = Globals.Content.Load<Texture2D>("Backgrounds/Clouds_Slow");
 
                 // Overlays
-                Vignette = Globals.Content.Load<Texture2D>("Vignette");
+                Vignette             = Globals.Content.Load<Texture2D>("Vignette");
             }
         }
 
@@ -126,14 +126,14 @@ namespace TileLands
             public static void LoadAudio()
             {
                 // Splash
-                Splash_intro = Globals.Content.Load<Song>("Audio/BSBIntro");
-                Splash_loop = Globals.Content.Load<Song>("Audio/BSBLoop");
-                Splash_outro = Globals.Content.Load<Song>("Audio/BSBOutro");
+                Splash_intro    = Globals.Content.Load<Song>("Audio/BSBIntro");
+                Splash_loop     = Globals.Content.Load<Song>("Audio/BSBLoop");
+                Splash_outro    = Globals.Content.Load<Song>("Audio/BSBOutro");
 
                 // SoundEffects
-                MergeSound = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
-                WinSound = Globals.Content.Load<SoundEffect>("Audio/WinSound");
-                ResetSound = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
+                MergeSound      = Globals.Content.Load<SoundEffect>("Audio/Pop_sound_5");
+                WinSound        = Globals.Content.Load<SoundEffect>("Audio/WinSound");
+                ResetSound      = Globals.Content.Load<SoundEffect>("Audio/ResetSound");
 
                 // Music
                 BackgroundMusic = Globals.Content.Load<Song>("Audio/lunar lounging_mp3");
