@@ -8,6 +8,7 @@ namespace TileLands
         private bool _constantSpeed;
                 
         private float _layer;
+        public float Layer;
 
         //used in the _speed calculation
         private float _scrollingSpeed;
@@ -15,19 +16,8 @@ namespace TileLands
 
         private List<Assets> _sprites;
 
-        /// <summary>
-        /// puts all ScrollingBackground.Layer to the same
-        /// </summary>
-        public float Layer
-        {
-            get { return _layer; }
-            set
-            {
-                _layer = value;
-                foreach (var sprite in _sprites)
-                    sprite.Layer = _layer;
-            }
-        }
+        
+       
 
         /// <summary>
         ///  constructor that uses the constructor underneath, to update appropiately, so you can pass in multiple sprites.
