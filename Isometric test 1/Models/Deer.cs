@@ -7,7 +7,7 @@ namespace TileLands
         private Vector2 _position;
         private Animation _anim;
         private Vector2 _animSpeed = new Vector2(0, 0);
-                
+
         public Deer(Vector2 pos)
         {
             _texture ??= Assets.Sprites.Deer_m_run_ss;
