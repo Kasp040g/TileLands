@@ -16,7 +16,6 @@ namespace TileLands
         private bool _active = true;
         private float _layer;
         private float _scale;
-        private float _lifeTime;
         #endregion Fields
 
         public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row, float scale, float layer)

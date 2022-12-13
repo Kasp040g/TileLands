@@ -13,7 +13,7 @@ namespace TileLands
         private Rectangle _rectangle;
         private Vector2 _origin;
         private Vector2 _scale;
-        private bool _toggle;
+        
         //private List<Texture2D> _btnSprites = new()
         //private readonly Texture2D[] _btnSprites =
         //{   

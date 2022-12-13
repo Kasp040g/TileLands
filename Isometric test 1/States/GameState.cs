@@ -33,7 +33,6 @@ namespace TileLands
             AddButton(new(Assets.Sprites.Btn_Toggle_Sound_On, Assets.Sprites.Btn_Toggle_Sound_Off, new(x + btn_offset + btn_offset, y))).OnClick += gm.ToggleSoundEffect;
             //AddButton(new(Assets.Sprites.Btn_Toggle_Music_On, new(x + btn_offset, y))).OnClick += gm.ToggleMusic;
             //AddButton(new(Assets.Sprites.Btn_Toggle_Sound_On, new(x + btn_offset + btn_offset, y))).OnClick += gm.ToggleSoundEffect;
-
         }
 
         private Button AddButton(Button button)
