@@ -13,11 +13,11 @@ namespace TileLands
 
         // Instantiate Managers
         private DebugManager _debugManager = new();
-        private DataManager _dataManager = new();
 
         // Save/Load
+        private DataManager _dataManager = new();
         private ScoreManager _sm;
-        private const string _savePath = "thisisnottopsecret.data";
+        public static string _savePath = "thisisnottopsecret.data";
         public bool _saveFileCreated;
 
         //Background

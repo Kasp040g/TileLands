@@ -6,7 +6,7 @@ namespace TileLands
     {
         #region Fields
         //Animations
-        private Eagle _eagle_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight / 2));
+        private Eagle _eagle_ss = new(new(GameWorld.ScreenWidth + 100, GameWorld.ScreenHeight * 0.15f));
         private Deer _deer_m_run_ss;
         private bool _forestFound = false;
 
@@ -14,9 +14,9 @@ namespace TileLands
         private Point _mapSize;
         private readonly Point _tileSize;
         private Vector2 _mapOffset = new(5.7f, 4.2f);
-        private Tile[,] _tiles;        
+        private Tile[,] _tiles;
         private bool _shouldDrawMap = true;
-        private bool _levelComplete = false;        
+        private bool _levelComplete = false;
 
         //Mouse interaction variables
         private Tile _mouseHovered;                 //Null means none has been hovered, else stores a reference to hovered tile instance
@@ -105,24 +105,26 @@ namespace TileLands
                 _deer_m_run_ss.Update();
             }
 
-
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
-            // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if(Globals.DebugModeToggled)
             {
-                ClearLevel();
-                _shouldDrawMap = true;
-                _levels++;
-            }
+                // Skip current level  ***************for Debugging**************
+                if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+                {
+                    ClearLevel();
+                    _shouldDrawMap = true;
+                    _levels++;
+                }
 
-            // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
-            {
-                ClearLevel();
-                _shouldDrawMap = true;
-                _levels--;
+                // Skip current level  ***************for Debugging**************
+                if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+                {
+                    ClearLevel();
+                    _shouldDrawMap = true;
+                    _levels--;
+                }
             }
 
             if(_shouldDrawMap)
@@ -526,7 +528,7 @@ namespace TileLands
 
         private void Level0()
         {
-            _mapSize = new(2, 2);   
+            _mapSize = new(2, 2);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -763,7 +765,7 @@ namespace TileLands
             _mapSize = new(10, 10);
             _mapOffset = new(5.7f, 2.8f);
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
-            
+
 
             for(int y = 0; y < _mapSize.Y; y++)
             {
@@ -839,7 +841,8 @@ namespace TileLands
                                         //START Animal reward Animation
                                         _forestFound = true;
                                         Console.WriteLine("forest");
-                                        DeerAnimation(x, y);
+
+                                        DeerAnimation(_forestTile._coordinates);
                                     }
                                 }
                             }
@@ -849,18 +852,13 @@ namespace TileLands
             }
         }
 
-        
 
-        private void DeerAnimation(int x, int y)
+
+        private void DeerAnimation(Vector2 pos)
         {
             // TODO : rework deer ..direction,gender, states
 
-            //TimeSpan.FromSeconds(4).;
-
-            _deer_m_run_ss = new(new(x, y + 1));
-            _deer_m_run_ss = new(new(x, y + 1 + 20));
-
-            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.45f, GameWorld.ScreenHeight * 0.5f));
+            _deer_m_run_ss = new(pos);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@
         public Eagle(Vector2 pos)
         {
             _texture ??= Assets.Sprites.Eagle_ss;
-            _anim = new(_texture, 14, 1, 0.1f, 1, 1, 1);
+            _anim = new(_texture, 14, 1, 0.1f, 1, 1, 0.1f);
             _position = pos;
         }
 
