@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Security.Policy;
 
 namespace TileLands
 {
@@ -54,6 +56,17 @@ namespace TileLands
             // Start game at level:
             _levels = Level.Level1;
 
+            ////Load saved level
+            //if(File.Exists(GameManager._savePath))
+            //{
+            //    _levels = (Level)Globals.LevelXDone;
+            //}
+            //else
+            //{
+            //    // Start game at level:
+            //    _levels = Level.Level1;
+            //}
+
             //Update tile size variables
             _tileSize.X = Assets.Sprites.TileGrassBlock1.Width;
             _tileSize.Y = Assets.Sprites.TileGrassBlock1.Height / 2;
@@ -105,24 +118,27 @@ namespace TileLands
                 _deer_m_run_ss.Update();
             }
 
-
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
-            // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
-            {
-                ClearLevel();
-                _shouldDrawMap = true;
-                _levels++;
-            }
 
-            // Skip current level  ***************for Debugging**************
-            if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+            if(Globals.DebugModeToggled)
             {
-                ClearLevel();
-                _shouldDrawMap = true;
-                _levels--;
+                // Skip current level  ***************for Debugging**************
+                if(_currentKey.IsKeyDown(Keys.N) && _previousKey.IsKeyUp(Keys.N)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+                {
+                    ClearLevel();
+                    _shouldDrawMap = true;
+                    _levels++;
+                }
+
+                // Skip current level  ***************for Debugging**************
+                if(_currentKey.IsKeyDown(Keys.P) && _previousKey.IsKeyUp(Keys.P)) //  && Keyboard.GetState().IsKeyUp(Keys.N)) 
+                {
+                    ClearLevel();
+                    _shouldDrawMap = true;
+                    _levels--;
+                }
             }
 
             if(_shouldDrawMap)
@@ -835,7 +851,8 @@ namespace TileLands
                                         //START Animal reward Animation
                                         _forestFound = true;
                                         Console.WriteLine("forest");
-                                        DeerAnimation(x, y);
+                                        
+                                        DeerAnimation(_forestTile._coordinates);
                                     }
                                 }
                             }
@@ -847,16 +864,10 @@ namespace TileLands
 
         
 
-        private void DeerAnimation(int x, int y)
+        private void DeerAnimation(Vector2 pos)
         {
             // TODO : rework deer ..direction,gender, states
-
-            //TimeSpan.FromSeconds(4).;
-
-            _deer_m_run_ss = new(new(x, y + 1));
-            _deer_m_run_ss = new(new(x, y + 1 + 20));
-
-            _deer_m_run_ss = new(new(GameWorld.ScreenWidth * 0.45f, GameWorld.ScreenHeight * 0.5f));
+            _deer_m_run_ss = new(pos);
         }
 
         /// <summary>

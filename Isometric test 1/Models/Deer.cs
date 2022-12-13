@@ -6,8 +6,8 @@ namespace TileLands
         private static Texture2D _texture;
         private Vector2 _position;
         private Animation _anim;
-        private Vector2 _animSpeed = new Vector2(-0.5f, 0);
-
+        private Vector2 _animSpeed = new Vector2(0, 0);
+                
         public Deer(Vector2 pos)
         {
             _texture ??= Assets.Sprites.Deer_m_run_ss;
@@ -17,12 +17,17 @@ namespace TileLands
 
         public void Update()
         {
+            // So sorry for the shitty code, my dear deer have fun in space
+            if(InputManager.SpacePressed)
+            {
+                _position = new (GameWorld.ScreenHeight - 100, GameWorld.ScreenWidth - 100);
+            }
             _position += _animSpeed;
             _anim.Update();
         }
 
         public void Draw()
-        {
+        {            
             _anim.Draw(_position);
         }
     }
