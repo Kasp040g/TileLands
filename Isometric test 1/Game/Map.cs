@@ -13,7 +13,7 @@ namespace TileLands
         //Setup basic tile and map information variables
         private Point _mapSize;
         private readonly Point _tileSize;
-        private Vector2 _mapOffset = new(4.5f, 4f);
+        private Vector2 _mapOffset = new(5.7f, 4.2f);
         private Tile[,] _tiles;        
         private bool _shouldDrawMap = true;
         private bool _levelComplete = false;        
@@ -526,7 +526,7 @@ namespace TileLands
 
         private void Level0()
         {
-            _mapSize = new(2, 2);
+            _mapSize = new(2, 2);   
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -542,6 +542,7 @@ namespace TileLands
         private void Level1()
         {
             _mapSize = new(2, 1);
+            _mapOffset = new(5.4f, 6.2f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -555,6 +556,7 @@ namespace TileLands
         private void Level2()
         {
             _mapSize = new(2, 2);
+            _mapOffset = new(5.8f, 6.1f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -571,6 +573,7 @@ namespace TileLands
         private void Level3()
         {
             _mapSize = new(3, 3);
+            _mapOffset = new(5.7f, 5.5f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -591,7 +594,7 @@ namespace TileLands
         private void Level4() //Goal 6 træer og 4 buske
         {
             _mapSize = new(5, 5);
-            _mapOffset = new(4.5f, 3f);
+            _mapOffset = new(5.7f, 4.5f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -634,7 +637,7 @@ namespace TileLands
         private void Level5()
         {
             _mapSize = new(5, 2);
-            _mapOffset = new(3.75f, 3f);
+            _mapOffset = new(5f, 5.3f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -659,7 +662,7 @@ namespace TileLands
         private void Level6()
         {
             _mapSize = new(4, 7);
-            _mapOffset = new(5f, 3f);
+            _mapOffset = new(6.5f, 5f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -700,7 +703,7 @@ namespace TileLands
         private void Level7()
         {
             _mapSize = new(6, 6);
-            _mapOffset = new(5f, 3f);
+            _mapOffset = new(5.7f, 4.2f);
 
             //Create tile array from map size
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
@@ -758,8 +761,9 @@ namespace TileLands
         private void LevelEndless()
         {
             _mapSize = new(10, 10);
+            _mapOffset = new(5.7f, 2.8f);
             _tiles = new Tile[_mapSize.X, _mapSize.Y];
-            _mapOffset = new(4.5f, 0.1f);
+            
 
             for(int y = 0; y < _mapSize.Y; y++)
             {
