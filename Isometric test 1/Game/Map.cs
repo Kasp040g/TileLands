@@ -394,7 +394,7 @@ namespace TileLands
 
                 // Level 3
                 case Level.Level3:
-                    if(TileTypeCount(Tile.TileTypes.forest) >= 1)
+                    if(TileTypeCount(Tile.TileTypes.tree) >= 4)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -424,7 +424,7 @@ namespace TileLands
 
                 // Level 5
                 case Level.Level5:
-                    if(TileTypeCount(Tile.TileTypes.tree) >= 5) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.forest) / 4 >= 1 && TileTypeCount(Tile.TileTypes.tree) >= 1) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -454,7 +454,7 @@ namespace TileLands
 
                 // Level 7
                 case Level.Level7:
-                    if(TileTypeCount(Tile.TileTypes.forest) >= 12) // ****TEMP GOAL***
+                    if (TileTypeCount(Tile.TileTypes.forest) / 4 >= 2 && TileTypeCount(Tile.TileTypes.tree) >= 4) // ****TEMP GOAL***
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -592,12 +592,12 @@ namespace TileLands
             _tiles[0, 2] = new(new Point(0, 2), Tile.TileTypes.grass);
 
             _tiles[1, 0] = new(new Point(1, 0), Tile.TileTypes.grass);
-            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.grass);
+            _tiles[1, 1] = new(new Point(1, 1), Tile.TileTypes.empty);
             _tiles[1, 2] = new(new Point(1, 2), Tile.TileTypes.grass);
 
             _tiles[2, 0] = new(new Point(2, 0), Tile.TileTypes.grass);
-            _tiles[2, 1] = new(new Point(2, 1), Tile.TileTypes.grass);
-            _tiles[2, 2] = new(new Point(2, 2), Tile.TileTypes.grass);
+            _tiles[2, 1] = new(new Point(2, 1), Tile.TileTypes.empty);
+            _tiles[2, 2] = new(new Point(2, 2), Tile.TileTypes.empty);
         }
 
         private void Level4() //Goal 6 træer og 4 buske
@@ -812,7 +812,7 @@ namespace TileLands
 
         public void DisplayForest()
         {
-            if(TileTypeCount(Tile.TileTypes.tree) <= 4)
+            if(TileTypeCount(Tile.TileTypes.tree) >= 4)
             {
                 for(int x = 0; x < _tiles.GetLength(0) - 1; x++)
                 {
@@ -901,7 +901,7 @@ namespace TileLands
 
                     // Level 5
                     case Level.Level5:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.tree)} / 5 trees";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) / 4} / 1 forests\n{TileTypeCount(Tile.TileTypes.tree)} / 1 tree";
                         break;
 
                     // Level 6
@@ -911,7 +911,7 @@ namespace TileLands
 
                     // Level 7
                     case Level.Level7:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) + (TileTypeCount(Tile.TileTypes.tree))} / 12 trees";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest)/4} / 2 forests\n{TileTypeCount(Tile.TileTypes.tree)} / 4 trees";
                         break;
 
                     // Level Endless
