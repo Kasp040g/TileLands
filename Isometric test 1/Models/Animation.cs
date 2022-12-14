@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace TileLands
 {
+    /// <summary>
+    /// This class handles all the animation in game
+    /// </summary>
     public class Animation
     {
         #region Fields
@@ -19,6 +22,17 @@ namespace TileLands
         private float _lifeTime;
         #endregion Fields
 
+        #region Constroctor
+        /// <summary>
+        /// Called in the classes that use animation; Eagle and Deer
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="framesX"></param>
+        /// <param name="framesY"></param>
+        /// <param name="frameTime"></param>
+        /// <param name="row"></param>
+        /// <param name="scale"></param>
+        /// <param name="layer"></param>
         public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row, float scale, float layer)
         {
             _texture = texture;
@@ -36,6 +50,8 @@ namespace TileLands
                 _sourceRectangles.Add(new(i * frameWidth, (row - 1) * frameHeight, frameWidth, frameHeight));
             }
         }
+        #endregion Constructor
+
         #region Methods
         public void Stop()
         {

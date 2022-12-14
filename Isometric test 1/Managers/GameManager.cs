@@ -6,8 +6,12 @@ using System.Text.Json;
 
 namespace TileLands
 {
+    /// <summary>
+    /// Main class for controlling the game    
+    /// </summary>
     public class GameManager
     {
+        #region Fields
         // Init States
         private State _state;
 
@@ -22,7 +26,13 @@ namespace TileLands
 
         //Background
         public static List<ScrollingBackground> _scrollingBackgrounds;
+        #endregion Fields
 
+        #region Constructor
+        /// <summary>
+        /// Initialize Statemanager
+        /// and set starting state
+        /// </summary>
         public GameManager()
         {
             // Init
@@ -36,7 +46,12 @@ namespace TileLands
                 _saveFileCreated = true;
             }
         }
+        #endregion Constructor
 
+        #region Methods
+        /// <summary>
+        /// Init is calles in Gameworld
+        /// </summary>
         public void Init()
         {
             // sound effect not muted
@@ -57,11 +72,20 @@ namespace TileLands
             };
         }
 
+        /// <summary>
+        /// Change State
+        /// </summary>
+        /// <param name="state"></param>
         public void ChangeState(ScreenStates state)
         {
             _state = StateManager.States[state];
         }
 
+        /// <summary>
+        /// Update the game and the importent managers
+        /// Update is called in Gameworld
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             InputManager.Update();
@@ -84,6 +108,11 @@ namespace TileLands
             }
         }
 
+        /// <summary>
+        /// Draw scrolling background, debugmanager and states
+        /// called in gameworld
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
         {
             foreach(var sb in _scrollingBackgrounds)
@@ -96,13 +125,22 @@ namespace TileLands
         }
 
         #region Button Methods
+        /// <summary>
+        /// The Play Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Play(object sender, EventArgs e)
         {
             StateManager.States.Remove(ScreenStates.Game);
             StateManager.States.Add(ScreenStates.Game, new GameState(this));
             ChangeState(ScreenStates.Game);
         }
-
+        /// <summary>
+        /// Restart game button (not implemented in this version)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         //public void Restart(object sender, EventArgs e)
         //{
         //    StateManager.States.Remove(ScreenStates.Game);
@@ -112,6 +150,7 @@ namespace TileLands
         //    ChangeState(ScreenStates.Game);
         //}
 
+        
         public void LoadSave(object sender, EventArgs e)
         {
             if(_saveFileCreated)
@@ -127,11 +166,21 @@ namespace TileLands
             }
         }
 
+        /// <summary>
+        /// Quit Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Quit(object sender, EventArgs e)
         {
             Globals._quit = true;
         }
 
+        /// <summary>
+        /// Turn on/off music Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ToggleMusic(object sender, EventArgs e)
         {
             if(!Globals._musicIsPaused)
@@ -150,6 +199,11 @@ namespace TileLands
             }
         }
 
+        /// <summary>
+        /// Turn on/off Sound effects button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ToggleSoundEffect(object sender, EventArgs e)
         {
             if(Globals._soundEffectsMuted)
@@ -158,10 +212,12 @@ namespace TileLands
                 Globals._soundEffectsMuted = true;
         }
         #endregion Button Methods
-
-
-
-        #region OLD Load/save 
+                
+        #region OLD Load/save        
+        /// <summary>
+        /// Old save function
+        /// </summary>
+        /// <param name="sm"></param>
         private void Save(ScoreManager sm)
         {
             string SaveThis = JsonSerializer.Serialize<ScoreManager>(sm);
@@ -173,6 +229,10 @@ namespace TileLands
             _saveFileCreated = true;
         }
 
+        /// <summary>
+        /// Old load function
+        /// </summary>
+        /// <returns></returns>
         private ScoreManager Load()
         {
             //File.Decrypt(_savePath);
@@ -180,7 +240,11 @@ namespace TileLands
             return JsonSerializer.Deserialize<ScoreManager>(loadedData);
         }
 
-        // Encrypt a file.
+        /// <summary>
+        /// Encrypt a file with epic leet encryption
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static string AddEpicL33tEncryption(string fileName)
         {
 
@@ -189,7 +253,11 @@ namespace TileLands
             return fileName.Replace("a", "@").Replace("e", "3").Replace("i", "!").Replace("o", "0").Replace("s", "5").Replace("l", "£").Replace("c", "<").Replace("r", "&");
         }
 
-        // Decrypt a file.
+        /// <summary>
+        /// Decrypt a file with epic leet encryption
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static string RemoveEpicL33tEncryption(string fileName)
         {
             //File.Decrypt(FileName);
@@ -197,5 +265,6 @@ namespace TileLands
             return fileName.Replace("@", "a").Replace("3", "e").Replace("!", "1").Replace("0", "o").Replace("5", "s").Replace("£", "l").Replace("<", "c").Replace("&", "r");
         }
         #endregion Load/Save
+        #endregion Methods
     }
 }

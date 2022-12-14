@@ -2,6 +2,9 @@
 
 namespace TileLands
 {
+    /// <summary>
+    /// Class for creating and controlling the tiles used by map
+    /// </summary>
     public class Tile
     {
         #region Fields

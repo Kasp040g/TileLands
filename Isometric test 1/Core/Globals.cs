@@ -1,6 +1,9 @@
 ﻿
 namespace TileLands
 {
+    /// <summary>
+    /// Globals That is accessed by many/all classes
+    /// </summary>
     public static class Globals
     {
         // Global sound effect bool

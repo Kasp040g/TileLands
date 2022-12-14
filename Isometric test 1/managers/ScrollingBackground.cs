@@ -2,8 +2,12 @@
 
 namespace TileLands
 {
+    /// <summary>
+    /// Scrolling background is called in Gamemanager
+    /// </summary>
     public class ScrollingBackground : Component
-    {        
+    {
+        #region Fields
         // if true, the object will always be moving.
         private bool _constantSpeed;
                 
@@ -15,10 +19,9 @@ namespace TileLands
         private float _speed;
 
         private List<Assets> _sprites;
+        #endregion Fields
 
-        
-       
-
+        #region Constructors
         /// <summary>
         ///  constructor that uses the constructor underneath, to update appropiately, so you can pass in multiple sprites.
         /// </summary>
@@ -55,8 +58,9 @@ namespace TileLands
                 });
             }
         }
+        #endregion Constructors
 
-
+        #region Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (var sprite in _sprites)
@@ -66,7 +70,6 @@ namespace TileLands
         public override void Update(GameTime gameTime)
         {
             ApplySpeed(gameTime);
-
             CheckPosition();
         }
 
@@ -102,5 +105,6 @@ namespace TileLands
                 }
             }
         }
+        #endregion Methods
     }
 }

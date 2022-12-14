@@ -3,8 +3,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TileLands
 {
+    /// <summary>
+    /// class not used in current version
+    /// saved for later functionality
+    /// </summary>
     class DataManager
     {
+        /// <summary>
+        /// Create filestream and binaryformatter(obsolete)
+        /// create savefile and serialize data as binary 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="filePath"></param>
         public void BinarySerialize(object data, string filePath)
         {
             FileStream _filestream;
@@ -18,6 +28,11 @@ namespace TileLands
             _filestream.Close();
         }
 
+        /// <summary>
+        /// Load binary data and deserialize it into data        
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         public object BinaryDeserialize(string filepath)
         {
             object _obj = null;

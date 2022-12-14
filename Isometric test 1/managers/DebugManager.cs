@@ -1,5 +1,8 @@
 ﻿namespace TileLands
 {
+    /// <summary>
+    /// DebugManager, can be accessed by pressing F3
+    /// </summary>
     public class DebugManager
     {        
         double _frameRate = 0;                  // Keeps track of the current frame rate of the game

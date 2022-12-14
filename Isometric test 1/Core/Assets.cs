@@ -1,6 +1,9 @@
 ﻿
 namespace TileLands
 {
+    /// <summary>
+    /// This class holds all sprites and audio
+    /// </summary>
     public class Assets : Component
     {
         private float _layer;
@@ -150,6 +153,11 @@ namespace TileLands
 
         }
 
+        /// <summary>
+        /// draw used by scrolling background
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="spriteBatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 

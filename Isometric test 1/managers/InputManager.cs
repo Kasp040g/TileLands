@@ -1,8 +1,12 @@
 ﻿
 namespace TileLands
 {
+    /// <summary>
+    /// Class for handling all the input from mouse and keyboard
+    /// </summary>
     public static class InputManager
     {
+        #region Fields
         // Input states        
         private static MouseState _lastMouseState;
         private static KeyboardState _lastKeyboardState;
@@ -21,7 +25,12 @@ namespace TileLands
         public static Rectangle MouseRectangle { get; private set; }
         public static bool MouseRightClicked { get; private set; }
         public static bool MouseLeftClicked { get; private set; }
+        #endregion Fields
 
+        #region Methods
+        /// <summary>
+        /// Update called in gamemanager
+        /// </summary>
         public static void Update()
         {
             // Storing Input states
@@ -42,5 +51,6 @@ namespace TileLands
             _lastMouseState = mouseState;
             _lastKeyboardState = keyboardState;
         }
+        #endregion Methods
     }
 }

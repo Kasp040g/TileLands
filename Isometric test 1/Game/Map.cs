@@ -3,6 +3,9 @@ using System.IO;
 
 namespace TileLands
 {
+    /// <summary>
+    /// Map class for creating and controlling the map
+    /// </summary>
     public class Map
     {
         #region Fields
@@ -47,6 +50,7 @@ namespace TileLands
         }
         #endregion Fields
 
+        #region Constructor
         /// <summary>
         /// Map constructer to load, setup and create tiles on map
         /// </summary>
@@ -65,8 +69,9 @@ namespace TileLands
             _tileSize.X = Assets.Sprites.TileGrassBlock1.Width;
             _tileSize.Y = Assets.Sprites.TileGrassBlock1.Height / 2;
         }
+        #endregion Constructor
 
-
+        #region Methods
         /// <summary>
         /// Converts map coordinates (the location of tiles in the map) to screen coordinates
         /// </summary>
@@ -243,6 +248,11 @@ namespace TileLands
             DisplayForest();
         }
 
+        /// <summary>
+        /// Reset Level
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ResetLevel(object sender, EventArgs e)
         {
             var _tempLevel = _levels;
@@ -345,6 +355,9 @@ namespace TileLands
             }
         }
 
+        /// <summary>
+        /// Check if level has been completed
+        /// </summary>
         private void SolutionFound()
         {
             // Update 
@@ -503,6 +516,8 @@ namespace TileLands
             }
         }
 
+
+        
         #region Levels
 
         //private void TempLevel()  ***Skabelon***
@@ -518,6 +533,9 @@ namespace TileLands
         //    _tiles[2, 2] = new( new Point(2, 2), MapToScreen(2, 2), Tile.TileTypes.grass);
         //}
 
+        /// <summary>
+        /// Clear level by rewriting the map
+        /// </summary>
         private void ClearLevel()
         {
 
@@ -548,6 +566,10 @@ namespace TileLands
 
         }
 
+        /// <summary>
+        /// All levels:
+        /// Define Mapsize and Offset, instantiate a new multiarray of tiles and define positions and type of tile. 
+        /// </summary>
         private void Level1()
         {
             _mapSize = new(2, 1);
@@ -810,9 +832,13 @@ namespace TileLands
             return _count;
         }
 
+        /// <summary>
+        /// Method for checking if a forest can be made, and making it
+        /// Will also call for deer animation if forest is found and made
+        /// </summary>
         public void DisplayForest()
         {
-            if(TileTypeCount(Tile.TileTypes.tree) <= 4)
+            if(TileTypeCount(Tile.TileTypes.tree) >= 4)
             {
                 for(int x = 0; x < _tiles.GetLength(0) - 1; x++)
                 {
@@ -860,7 +886,10 @@ namespace TileLands
         }
 
 
-
+        /// <summary>
+        /// Deer Animation
+        /// </summary>
+        /// <param name="pos"></param>
         private void DeerAnimation(Vector2 pos)
         {
             // TODO : rework deer ..direction,gender, states
@@ -927,5 +956,6 @@ namespace TileLands
                 }
             }
         }
+        #endregion Methods
     }
 }

@@ -1,6 +1,9 @@
 ﻿
 namespace TileLands
 {
+    /// <summary>
+    /// Deer animation
+    /// </summary>
     public class Deer
     {
         private static Texture2D _texture;
@@ -8,13 +11,17 @@ namespace TileLands
         private Animation _anim;
         private Vector2 _animSpeed = new Vector2(0, 0);
 
+        /// <summary>
+        /// Call the animation
+        /// </summary>
+        /// <param name="pos"></param>
         public Deer(Vector2 pos)
         {
             _texture ??= Assets.Sprites.Deer_m_run_ss;
             _anim = new(_texture, 3, 4, 0.1f, 4, 1f, 0.1f);
             _position = pos;
         }
-
+                
         public void Update()
         {
             if(InputManager.SpacePressed)            

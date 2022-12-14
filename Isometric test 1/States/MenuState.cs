@@ -38,7 +38,6 @@ namespace TileLands
                 button.Update();
             }
         }
-
         public override void Draw(GameManager gm)
         {
             // Draw Background
