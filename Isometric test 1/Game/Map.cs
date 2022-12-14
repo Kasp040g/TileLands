@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace TileLands
 {
@@ -53,6 +54,12 @@ namespace TileLands
         {
             // Start game at level:
             _levels = Level.Level1;
+
+            //// Start from LoadSave
+            //if(File.Exists(GameManager._savePath))            
+            //    _levels = (Level)Globals.LevelXDone;            
+            //else
+            //    _levels = Level.Level1;
 
             //Update tile size variables
             _tileSize.X = Assets.Sprites.TileGrassBlock1.Width;

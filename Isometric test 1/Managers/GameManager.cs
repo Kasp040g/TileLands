@@ -100,8 +100,6 @@ namespace TileLands
         {
             StateManager.States.Remove(ScreenStates.Game);
             StateManager.States.Add(ScreenStates.Game, new GameState(this));
-
-
             ChangeState(ScreenStates.Game);
         }
 
