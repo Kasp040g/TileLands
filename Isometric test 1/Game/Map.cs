@@ -422,7 +422,7 @@ namespace TileLands
 
                 // Level 4
                 case Level.Level4:
-                    if(TileTypeCount(Tile.TileTypes.forest) >= 1 && TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 2)
+                    if(TileTypeCount(Tile.TileTypes.forest) / 4 >= 1 && TileTypeCount(Tile.TileTypes.tree) >= 6 && TileTypeCount(Tile.TileTypes.bush) >= 2)
                     {
                         // Press Space to continue
                         _levelComplete = true;
@@ -925,7 +925,7 @@ namespace TileLands
 
                     // Level 4
                     case Level.Level4:
-                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest)} / 1 forest\n{TileTypeCount(Tile.TileTypes.tree)} / 6 trees\n{TileTypeCount(Tile.TileTypes.bush)} / 2 bushes";
+                        _textGoal = $"{TileTypeCount(Tile.TileTypes.forest) / 4} / 1 forest\n{TileTypeCount(Tile.TileTypes.tree)} / 6 trees\n{TileTypeCount(Tile.TileTypes.bush)} / 2 bushes";
                         break;
 
                     // Level 5
