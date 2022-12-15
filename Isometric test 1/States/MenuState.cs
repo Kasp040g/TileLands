@@ -17,8 +17,9 @@ namespace TileLands
             var x = Globals.Bounds.X / 2;
 
             //Bottons            
-            AddButton(new(Assets.Sprites.Btn_Play, new(x, y))).OnClick += gm.Play;            
-            AddButton(new(Assets.Sprites.Btn_Quit, new(x, y + Assets.Sprites.Btn_Quit.Height * (float)1.5f))).OnClick += gm.Quit;
+            AddButton(new(Assets.Sprites.Btn_Play, new(x, y))).OnClick += gm.Play;
+            AddButton(new(Assets.Sprites.Btn_Play, new(x, y + Assets.Sprites.Btn_Quit.Height * (float)1.5f))).OnClick += gm.LoadSave;
+            AddButton(new(Assets.Sprites.Btn_Quit, new(x, y + Assets.Sprites.Btn_Quit.Height * (float)3f))).OnClick += gm.Quit;
         }
         /// <summary>
         /// Add button to the list of buttons

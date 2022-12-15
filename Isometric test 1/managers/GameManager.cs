@@ -39,7 +39,7 @@ namespace TileLands
             StateManager.Init(this);
 
             // state
-            ChangeState(ScreenStates.Splash);
+            ChangeState(ScreenStates.Menu);
 
             if(File.Exists(_savePath))
             {
@@ -55,13 +55,7 @@ namespace TileLands
         public void Init()
         {
             // sound effect not muted
-            Globals._soundEffectsMuted = false;
-
-            _sm = new()
-            {
-                LevelXDone = Globals.LevelXDone,
-                EndlessUnlocked = Globals.Unlocked
-            };
+            Globals._soundEffectsMuted = false;            
 
             //Loads the List of Scrolling backgrounds, and gives them their speed values and layer value
             _scrollingBackgrounds = new List<ScrollingBackground>()
@@ -101,9 +95,18 @@ namespace TileLands
             // Save progress on exit
             if(Keyboard.GetState().IsKeyDown(Keys.Escape) || Globals._quit == true)
             {
+                _sm = new()
+                {
+                    LevelXDone = Globals.LevelXDone,
+                    EndlessUnlocked = Globals.Unlocked
+                };
+
                 // save
-                //Save(_sm);
-                _dataManager.BinarySerialize(_sm, _savePath);
+                if(File.Exists(_savePath))
+                    File.Delete(_savePath);
+
+                Save(_sm);
+                //_dataManager.BinarySerialize(_sm, _savePath);
                 _saveFileCreated = true;
             }
         }
@@ -155,10 +158,10 @@ namespace TileLands
         {
             if(_saveFileCreated)
             {
-                _sm = _dataManager.BinaryDeserialize(_savePath) as ScoreManager;
+                //_sm = _dataManager.BinaryDeserialize(_savePath) as ScoreManager;
                 
-                //_sm = Load();
-                //Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
+                _sm = Load();
+                Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
                 Globals.LevelXDone = _sm.LevelXDone;
                 Globals.Unlocked = _sm.EndlessUnlocked;
                 StateManager.States.Add(ScreenStates.Game, new GameState(this));
@@ -221,11 +224,8 @@ namespace TileLands
         private void Save(ScoreManager sm)
         {
             string SaveThis = JsonSerializer.Serialize<ScoreManager>(sm);
-            Trace.WriteLine(SaveThis);
-            //File.Encrypt(_savePath); bulshit ntfs shit
+            Trace.WriteLine(SaveThis);            
             File.AppendAllText(_savePath, SaveThis);
-
-            //File.AppendAllText(_savePath,)
             _saveFileCreated = true;
         }
 
