@@ -144,16 +144,16 @@ namespace TileLands
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //public void Restart(object sender, EventArgs e)
-        //{
-        //    StateManager.States.Remove(ScreenStates.Game);
-        //    StateManager.States.Clear();
-        //    StateManager.States.Add(ScreenStates.Game, new GameState(this));
+        public void Restart(object sender, EventArgs e)
+        {
+            StateManager.States.Remove(ScreenStates.Game);
+            //StateManager.States.Clear();
+            StateManager.States.Add(ScreenStates.Game, new GameState(this));
 
-        //    ChangeState(ScreenStates.Game);
-        //}
+            ChangeState(ScreenStates.Game);
+        }
 
-        
+
         public void LoadSave(object sender, EventArgs e)
         {
             if(_saveFileCreated)
@@ -164,6 +164,9 @@ namespace TileLands
                 Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
                 Globals.LevelXDone = _sm.LevelXDone;
                 Globals.Unlocked = _sm.EndlessUnlocked;
+                if(StateManager.States.ContainsKey(ScreenStates.Game))              
+                    StateManager.States.Remove(ScreenStates.Game);
+
                 StateManager.States.Add(ScreenStates.Game, new GameState(this));
                 ChangeState(ScreenStates.Game);
             }
