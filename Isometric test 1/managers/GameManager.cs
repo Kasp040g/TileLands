@@ -105,7 +105,7 @@ namespace TileLands
                 if(File.Exists(_savePath))
                     File.Delete(_savePath);
 
-                Save(_sm);
+                //Save(_sm);
                 _dataManager.BinarySerialize(_sm, _savePath);
                 //_saveFileCreated = true;
             }
