@@ -37,18 +37,6 @@
 /processorParam:Quality=Best
 /build:Audio/lunar lounging_mp3.mp3
 
-#begin Audio/lunar lounging_mp3.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audio/lunar lounging_mp3.mp3
-
-#begin Audio/Pop_sound_5.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/Pop_sound_5.wav
-
 #begin Audio/Pop_sound_5.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -60,18 +48,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/ResetSound.wav
-
-#begin Audio/ResetSound.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/ResetSound.wav
-
-#begin Audio/WinSound.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/WinSound.wav
 
 #begin Audio/WinSound.wav
 /importer:WavImporter
@@ -114,6 +90,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Button_exit.png
+
+#begin Button_load_save.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button_load_save.png
 
 #begin Button_music_muted.png
 /importer:TextureImporter

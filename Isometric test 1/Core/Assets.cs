@@ -30,6 +30,7 @@ namespace TileLands
 
             // Buttons
             public static Texture2D Btn_Play;
+            public static Texture2D Btn_Load;
             public static Texture2D Btn_Quit;
             public static Texture2D Btn_Restart;
             public static Texture2D Btn_Toggle_Sound_On;
@@ -71,6 +72,7 @@ namespace TileLands
 
                 // Buttons
                 Btn_Play             = Globals.Content.Load<Texture2D>("Button_play");
+                Btn_Load             = Globals.Content.Load<Texture2D>("Button_Load_Save");
                 Btn_Quit             = Globals.Content.Load<Texture2D>("Button_exit");
                 Btn_Restart          = Globals.Content.Load<Texture2D>("Button_restart");
                 Btn_Toggle_Sound_On  = Globals.Content.Load<Texture2D>("Button_sound_effects");
