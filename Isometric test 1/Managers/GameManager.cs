@@ -106,8 +106,8 @@ namespace TileLands
                     File.Delete(_savePath);
 
                 Save(_sm);
-                //_dataManager.BinarySerialize(_sm, _savePath);
-                _saveFileCreated = true;
+                _dataManager.BinarySerialize(_sm, _savePath);
+                //_saveFileCreated = true;
             }
         }
 
@@ -158,10 +158,10 @@ namespace TileLands
         {
             if(_saveFileCreated)
             {
-                //_sm = _dataManager.BinaryDeserialize(_savePath) as ScoreManager;
+                _sm = _dataManager.BinaryDeserialize(_savePath) as ScoreManager;
                 
-                _sm = Load();
-                Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
+                //_sm = Load();
+                //Trace.WriteLine($"{_sm.LevelXDone} {_sm.EndlessUnlocked}");
                 Globals.LevelXDone = _sm.LevelXDone;
                 Globals.Unlocked = _sm.EndlessUnlocked;
                 if(StateManager.States.ContainsKey(ScreenStates.Game))              
