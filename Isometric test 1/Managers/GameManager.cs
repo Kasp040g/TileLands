@@ -86,7 +86,7 @@ namespace TileLands
             _debugManager.Update(gameTime);
             _state.Update(this);
 
-            //loops the backgrounds
+            // loops the backgrounds
             foreach(var sb in _scrollingBackgrounds)
             {
                 sb.Update(gameTime);
